@@ -6,19 +6,30 @@ export default function VaultIAM() {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="text-xl font-semibold">
-            Vault
-            <span className="bg-blue-600 text-white px-2 py-1 rounded-md ml-1">
-              IAM
-            </span>
+          
+          {/* Logo */}
+          <div className="flex items-center">
+            <img
+              src="/vaultiam-logo-no-tag.svg"
+              alt="VaultIAM"
+              className="h-8 w-auto"
+            />
           </div>
 
+          {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8 text-sm">
-            <a href="#services" className="hover:text-blue-600">Services</a>
-            <a href="#case-studies" className="hover:text-blue-600">Case Studies</a>
-            <a href="#contact" className="hover:text-blue-600">Contact</a>
+            <a href="#services" className="hover:text-blue-600">
+              Services
+            </a>
+            <a href="#case-studies" className="hover:text-blue-600">
+              Case Studies
+            </a>
+            <a href="#contact" className="hover:text-blue-600">
+              Contact
+            </a>
           </nav>
 
+          {/* CTA */}
           <a
             href="#contact"
             className="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors"
