@@ -3,21 +3,27 @@ import React from "react";
 export default function VaultIAM() {
   return (
     <div className="font-sans text-slate-900">
-     {/* Header */}
+    {/* Header */}
 <header className="sticky top-0 z-50 bg-white border-b border-slate-200">
   <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     
-    {/* Logo (left aligned, same line) */}
-    <a href="/" className="flex items-center">
-      <img
-        src="/vaultiam-logo.svg"
-        alt="VaultIAM"
-        className="h-9 md:h-10 w-auto"
-      />
-    </a>
+    {/* Logo */}
+    <div className="flex flex-col leading-tight">
+      <div className="flex items-center">
+        <span className="text-2xl font-semibold text-slate-900">
+          Vault
+        </span>
+        <span className="ml-1 px-2 py-1 bg-blue-600 text-white text-2xl font-semibold rounded-md">
+          IAM
+        </span>
+      </div>
+      <span className="text-xs text-slate-500 mt-1">
+        Identity-first security
+      </span>
+    </div>
 
     {/* Navigation */}
-    <nav className="hidden md:flex items-center space-x-8 text-sm font-medium">
+    <nav className="hidden md:flex items-center space-x-8 text-sm">
       <a href="#services" className="hover:text-blue-600">Services</a>
       <a href="#case-studies" className="hover:text-blue-600">Case Studies</a>
       <a href="#contact" className="hover:text-blue-600">Contact</a>
@@ -30,6 +36,7 @@ export default function VaultIAM() {
     >
       Book Risk Review
     </a>
+
   </div>
 </header>
 
