@@ -3,41 +3,35 @@ import React from "react";
 export default function VaultIAM() {
   return (
     <div className="font-sans text-slate-900">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          
-          {/* Logo */}
-          <div className="flex items-center">
-            <img
-              src="/vaultiam-logo-no-tag.svg"
-              alt="VaultIAM"
-              className="h-10 md:h-11 w-auto"
-            />
-          </div>
+     {/* Header */}
+<header className="sticky top-0 z-50 bg-white border-b border-slate-200">
+  <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    
+    {/* Logo (left aligned, same line) */}
+    <a href="/" className="flex items-center">
+      <img
+        src="/vaultiam-logo.svg"
+        alt="VaultIAM"
+        className="h-9 md:h-10 w-auto"
+      />
+    </a>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-8 text-sm">
-            <a href="#services" className="hover:text-blue-600">
-              Services
-            </a>
-            <a href="#case-studies" className="hover:text-blue-600">
-              Case Studies
-            </a>
-            <a href="#contact" className="hover:text-blue-600">
-              Contact
-            </a>
-          </nav>
+    {/* Navigation */}
+    <nav className="hidden md:flex items-center space-x-8 text-sm font-medium">
+      <a href="#services" className="hover:text-blue-600">Services</a>
+      <a href="#case-studies" className="hover:text-blue-600">Case Studies</a>
+      <a href="#contact" className="hover:text-blue-600">Contact</a>
+    </nav>
 
-          {/* CTA */}
-          <a
-            href="#contact"
-            className="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors"
-          >
-            Book Risk Review
-          </a>
-        </div>
-      </header>
+    {/* CTA */}
+    <a
+      href="#contact"
+      className="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors"
+    >
+      Book Risk Review
+    </a>
+  </div>
+</header>
 
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-12">
