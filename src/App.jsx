@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
-import Capabilities from "./Pages/Capabilities";
-import CaseStudies from "./Pages/CaseStudies";
-import Contact from "./Pages/Contact";
+import Home from "./pages/Home";
+import Capabilities from "./pages/Capabilities";
+import CaseStudies from "./pages/CaseStudies";
+import Contact from "./pages/Contact";
 
 export default function App() {
   return (
