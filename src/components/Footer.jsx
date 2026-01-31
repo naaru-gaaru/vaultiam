@@ -5,7 +5,12 @@ export default function Footer() {
         
         {/* Brand */}
         <div>
-          <span className="text-white font-semibold text-lg">VaultIAM</span>
+          <img
+            src="/vaultiam-logo-no-tag.svg"
+            alt="VaultIAM"
+            className="h-8 opacity-90"
+          />
+
           <p className="mt-4 text-sm text-slate-400 max-w-sm">
             Identity-first security services for regulated FinTech and Healthcare environments.
           </p>
@@ -38,4 +43,5 @@ export default function Footer() {
     </footer>
   );
 }
+
 
