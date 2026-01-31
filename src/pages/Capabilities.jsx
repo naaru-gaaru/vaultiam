@@ -1,5 +1,5 @@
 import VaultIAMModel from "../components/VaultIAMModel";
-// import ToolStack from "../components/ToolStack"; // enable in Step 3
+import ToolStack from "../components/ToolStack";
 
 export default function Capabilities() {
   return (
@@ -73,10 +73,11 @@ export default function Capabilities() {
         </a>
       </section>
 
-      {/* Tool stack – enable in Step 3 */}
-      {/*
+      {/* Tool stack */}
+     
       <ToolStack />
-      */}
+     
     </main>
   );
 }
+
