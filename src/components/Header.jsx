@@ -11,7 +11,7 @@ export default function Header() {
             <img
               src="/vaultiam-logo.svg"
               alt="VaultIAM"
-              className="h-8 w-auto"
+              className="h-12 w-auto"
             />
             
           </Link>
@@ -56,4 +56,5 @@ export default function Header() {
     </header>
   );
 }
+
 
