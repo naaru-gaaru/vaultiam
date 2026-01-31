@@ -3,7 +3,7 @@ import ToolStack from "../components/ToolStack";
 
 export default function Capabilities() {
   return (
-    <main className="max-w-7xl mx-auto px-6 pt-6 pb-24">
+    <main className="max-w-7xl mx-auto px-6 pt-12 pb-24">
       {/* Page header */}
       <section className="mb-12">
         <h1 className="text-4xl font-semibold tracking-tight mb-4">
@@ -18,7 +18,7 @@ export default function Capabilities() {
       </section>
 
       {/* Core capability areas */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-10 mt-12">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
         <div>
           <h3 className="text-xl font-semibold mb-2">
             Identity & Access Management
@@ -60,7 +60,7 @@ export default function Capabilities() {
         </div>
       </section>
 
-      {/* VaultIAM engagement model */}
+      {/* VaultIAM model */}
       <VaultIAMModel />
 
       {/* CTA */}
