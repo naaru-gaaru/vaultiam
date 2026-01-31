@@ -7,7 +7,7 @@ export default function Footer() {
           <img
             src="/vaultiam-logo-no-tag.svg"
             alt="VaultIAM"
-            className="h-7 w-auto"
+            className="h-8 w-auto opacity-90"
           />
           <p className="mt-4 text-sm text-slate-400 max-w-xs">
             Identity-first security services for regulated FinTech and Healthcare
@@ -42,3 +42,4 @@ export default function Footer() {
     </footer>
   );
 }
+
