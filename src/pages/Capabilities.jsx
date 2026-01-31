@@ -3,9 +3,9 @@ import ToolStack from "../components/ToolStack";
 
 export default function Capabilities() {
   return (
-    <section className="max-w-7xl mx-auto px-6 pt-12 pb-24">
+    <main className="max-w-7xl mx-auto px-6 pt-6 pb-24">
       {/* Page header */}
-      <header className="mb-14">
+      <section className="mb-12">
         <h1 className="text-4xl font-semibold tracking-tight mb-4">
           Capabilities
         </h1>
@@ -15,10 +15,10 @@ export default function Capabilities() {
           privileged access, and identity threat detection—designed for
           regulated, high-risk environments.
         </p>
-      </header>
+      </section>
 
       {/* Core capability areas */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-10 mt-12">
         <div>
           <h3 className="text-xl font-semibold mb-2">
             Identity & Access Management
@@ -61,12 +61,10 @@ export default function Capabilities() {
       </section>
 
       {/* VaultIAM engagement model */}
-      <section className="mt-24">
-        <VaultIAMModel />
-      </section>
+      <VaultIAMModel />
 
       {/* CTA */}
-      <section className="mt-20 text-center">
+      <section className="mt-16 text-center">
         <a
           href="/contact"
           className="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors"
@@ -76,9 +74,7 @@ export default function Capabilities() {
       </section>
 
       {/* Tool stack */}
-      <section className="mt-24">
-        <ToolStack />
-      </section>
-    </section>
+      <ToolStack />
+    </main>
   );
 }
