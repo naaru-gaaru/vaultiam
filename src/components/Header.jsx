@@ -13,9 +13,7 @@ export default function Header() {
               alt="VaultIAM"
               className="h-8 w-auto"
             />
-            <span className="text-xs text-slate-500 mt-1">
-              Identity-first security
-            </span>
+            
           </Link>
 
           {/* Navigation */}
@@ -58,3 +56,4 @@ export default function Header() {
     </header>
   );
 }
+
