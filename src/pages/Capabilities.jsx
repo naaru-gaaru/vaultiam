@@ -3,9 +3,9 @@ import ToolStack from "../components/ToolStack";
 
 export default function Capabilities() {
   return (
-    <main className="max-w-7xl mx-auto px-6 pt-10 pb-24">
+    <section className="max-w-7xl mx-auto px-6 pt-12 pb-24">
       {/* Page header */}
-      <section className="mb-16">
+      <header className="mb-14">
         <h1 className="text-4xl font-semibold tracking-tight mb-4">
           Capabilities
         </h1>
@@ -15,7 +15,7 @@ export default function Capabilities() {
           privileged access, and identity threat detection—designed for
           regulated, high-risk environments.
         </p>
-      </section>
+      </header>
 
       {/* Core capability areas */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
@@ -61,7 +61,9 @@ export default function Capabilities() {
       </section>
 
       {/* VaultIAM engagement model */}
-      <VaultIAMModel />
+      <section className="mt-24">
+        <VaultIAMModel />
+      </section>
 
       {/* CTA */}
       <section className="mt-20 text-center">
@@ -74,10 +76,9 @@ export default function Capabilities() {
       </section>
 
       {/* Tool stack */}
-     
-      <ToolStack />
-     
-    </main>
+      <section className="mt-24">
+        <ToolStack />
+      </section>
+    </section>
   );
 }
-
