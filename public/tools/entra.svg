@@ -1,0 +1,37 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 520 120"
+  role="img"
+  aria-label="Microsoft Entra ID"
+>
+  <!-- Icon -->
+  <g transform="translate(0,10)">
+    <path
+      d="M60 0 L120 60 L60 120 L0 60 Z"
+      fill="#0078D4"
+    />
+    <path
+      d="M60 0 L120 60 L60 60 Z"
+      fill="#50E6FF"
+    />
+    <path
+      d="M60 60 L120 60 L60 120 Z"
+      fill="#005A9E"
+    />
+    <path
+      d="M60 30 L90 60 L60 90 L30 60 Z"
+      fill="#C7E0F4"
+    />
+  </g>
+
+  <!-- Text -->
+  <text
+    x="160"
+    y="78"
+    font-family="Segoe UI, Inter, system-ui, -apple-system, BlinkMacSystemFont"
+    font-size="56"
+    fill="#4A4A4A"
+  >
+    Microsoft Entra ID
+  </text>
+</svg>
