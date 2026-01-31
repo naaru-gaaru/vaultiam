@@ -6,7 +6,7 @@ export default function Capabilities() {
     <>
       <Header />
 
-      <main className="max-w-7xl mx-auto px-6 py-20">
+      <main className="max-w-7xl mx-auto px-6 pt-12 pb-20">
         {/* Page intro */}
         <section className="max-w-3xl">
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">
@@ -100,3 +100,4 @@ export default function Capabilities() {
     </>
   );
 }
+
