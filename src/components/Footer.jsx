@@ -1,46 +1,44 @@
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-300 mt-32">
-      <div className="max-w-7xl mx-auto px-6 py-16 grid gap-10 md:grid-cols-3">
+    <footer className="bg-slate-900 text-slate-300">
+      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+        
         {/* Brand */}
         <div>
           <img
-            src="/vaultiam-logo-no-tag.svg"
+            src="/vaultiam-logo.svg"
             alt="VaultIAM"
             className="h-8 w-auto opacity-90"
           />
-          <p className="mt-4 text-sm text-slate-400 max-w-xs">
-            Identity-first security services for regulated FinTech and Healthcare
-            environments.
+          <p className="mt-4 text-sm text-slate-400 max-w-sm">
+            Identity-first security services for regulated FinTech and Healthcare environments.
           </p>
         </div>
 
         {/* Navigation */}
         <div>
-          <h4 className="text-sm font-semibold text-white">Navigate</h4>
-          <ul className="mt-4 space-y-2 text-sm">
+          <h4 className="text-sm font-semibold text-white mb-4">Navigate</h4>
+          <ul className="space-y-2 text-sm">
             <li><a href="/capabilities" className="hover:text-white">Capabilities</a></li>
             <li><a href="/case-studies" className="hover:text-white">Case Studies</a></li>
             <li><a href="/contact" className="hover:text-white">Contact</a></li>
           </ul>
         </div>
 
-        {/* Compliance / Trust */}
+        {/* Focus */}
         <div>
-          <h4 className="text-sm font-semibold text-white">Focus</h4>
-          <ul className="mt-4 space-y-2 text-sm text-slate-400">
-            <li>FinTech & Healthcare</li>
-            <li>SOC 2, PCI-DSS, HIPAA, ISO 27001</li>
-            <li>IAM · CIAM · PAM · ITDR</li>
-          </ul>
+          <h4 className="text-sm font-semibold text-white mb-4">Focus</h4>
+          <p className="text-sm text-slate-400">
+            FinTech & Healthcare<br />
+            SOC 2 · PCI-DSS · HIPAA · ISO 27001<br />
+            IAM · CIAM · PAM · ITDR
+          </p>
         </div>
       </div>
 
-      <div className="border-t border-slate-800 text-center text-xs text-slate-500 py-6">
+      <div className="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
         © {new Date().getFullYear()} VaultIAM. All rights reserved.
       </div>
     </footer>
   );
 }
-
-
