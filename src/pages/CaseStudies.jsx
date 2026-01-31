@@ -1,58 +1,44 @@
 export default function CaseStudies() {
   return (
-    <section className="max-w-7xl mx-auto px-6 pt-12 pb-24">
-      <header className="mb-14">
+    <main className="max-w-7xl mx-auto px-6 pt-12 pb-24">
+      {/* Page header */}
+      <section className="mb-12">
         <h1 className="text-4xl font-semibold tracking-tight mb-4">
-          Customer Stories
+          Case Studies
         </h1>
 
         <p className="text-lg text-slate-600 max-w-3xl">
-          Real-world identity security engagements across FinTech and
-          Healthcare—focused on modern threats, regulatory pressure, and
-          measurable outcomes.
+          Real-world identity security engagements addressing modern IAM,
+          CIAM, privileged access, and identity threat detection challenges
+          in regulated environments.
         </p>
-      </header>
-
-      <section className="space-y-8 max-w-3xl">
-        <div>
-          <h3 className="text-xl font-semibold mb-2">
-            Modern IAM & Identity Threat Detection
-          </h3>
-          <p className="text-slate-600">
-            Securing workforce and non-human identities against lateral
-            movement, privilege escalation, and AI-driven abuse paths.
-          </p>
-        </div>
-
-        <div>
-          <h3 className="text-xl font-semibold mb-2">
-            CIAM & Fraud Prevention in FinTech
-          </h3>
-          <p className="text-slate-600">
-            Preventing synthetic identity fraud, deepfake onboarding attacks,
-            and account takeover in high-scale customer environments.
-          </p>
-        </div>
-
-        <div>
-          <h3 className="text-xl font-semibold mb-2">
-            Privileged Access & Cloud-Native PAM
-          </h3>
-          <p className="text-slate-600">
-            Just-in-time access, zero standing privilege, and audit-ready PAM
-            for human and AI-driven workloads.
-          </p>
-        </div>
       </section>
 
-      <section className="mt-20 text-center">
+      {/* Placeholder / intro */}
+      <section className="max-w-3xl">
+        <p className="text-slate-600">
+          VaultIAM case studies demonstrate how identity-first security
+          principles are applied to emerging threats such as AI agents,
+          non-human identities, deepfake fraud, and cloud-native privilege
+          escalation.
+        </p>
+
+        <p className="mt-4 text-slate-600">
+          Each engagement highlights the threat scenario, the identity control
+          gaps, the tools involved, and the measurable security and compliance
+          outcomes delivered.
+        </p>
+      </section>
+
+      {/* CTA */}
+      <section className="mt-16">
         <a
           href="/contact"
           className="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors"
         >
-          Discuss a relevant use case
+          Discuss a similar challenge
         </a>
       </section>
-    </section>
+    </main>
   );
 }
