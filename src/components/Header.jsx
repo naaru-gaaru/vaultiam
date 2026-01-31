@@ -8,7 +8,7 @@ export default function Header() {
           {/* Logo + Tagline */}
           <Link to="/" className="flex flex-col justify-center">
             <img
-              src="/vaultiam-logo.svg"
+              src="/vaultiam-logo-no-tag.svg"
               alt="VaultIAM"
               className="h-13 w-auto"
             />
@@ -65,3 +65,4 @@ export default function Header() {
     </header>
   );
 }
+
