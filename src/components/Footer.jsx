@@ -8,7 +8,7 @@ export default function Footer() {
           <img
             src="/vaultiam-invert-logo.svg"
             alt="VaultIAM"
-            className="h-9 opacity-100"
+            className="h-9 opacity-0"
           />
 
           <p className="mt-4 text-sm text-slate-400 max-w-sm">
@@ -43,6 +43,7 @@ export default function Footer() {
     </footer>
   );
 }
+
 
 
 
