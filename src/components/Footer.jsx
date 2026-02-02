@@ -73,11 +73,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-6 border-t border-slate-800 pt-3 text-xs text-slate-500">
-        </div>
           © 2026 VaultIAM. All rights reserved.
         </div>
       </div>
     </footer>
   );
 }
+
 
