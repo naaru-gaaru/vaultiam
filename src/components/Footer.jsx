@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-slate-300">
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
@@ -72,10 +72,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-slate-800 pt-4 text-xs text-slate-500">
+        <div className="mt-6 border-t border-slate-800 pt-3 text-xs text-slate-500">
+        </div>
           © 2026 VaultIAM. All rights reserved.
         </div>
       </div>
     </footer>
   );
 }
+
