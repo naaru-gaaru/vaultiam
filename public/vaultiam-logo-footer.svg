@@ -43,8 +43,8 @@
      id="text1">Vault</text>
   <!-- IAM background box (tighter) -->
   <rect
-     x="124.54092"
-     y="11.613085"
+     x="128.54092"
+     y="13.613085"
      width="68.831894"
      height="33.051327"
      rx="4.7901864"
@@ -54,8 +54,8 @@
      ry="4.7901864" />
   <!-- IAM text (optically centered, black) -->
   <text
-     x="159.34656"
-     y="41.167606"
+     x="163.34656"
+     y="43.167606"
      text-anchor="middle"
      font-family="Inter, system-ui, '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif"
      font-size="36px"
