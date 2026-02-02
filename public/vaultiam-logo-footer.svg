@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="220"
+   height="60"
+   viewBox="0 0 220 60"
+   fill="none"
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="vaultiam-logo-footer-tight-black-iam.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="5.6172955"
+     inkscape:cx="106.45692"
+     inkscape:cy="40.85596"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <!-- Vault text -->
+  <text
+     x="29.116751"
+     y="44"
+     font-family="Inter, system-ui, '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif"
+     font-size="38px"
+     font-weight="600"
+     fill="#ffffff"
+     id="text1">Vault</text>
+  <!-- IAM background box (tighter) -->
+  <rect
+     x="118.54092"
+     y="11.613085"
+     width="68.831894"
+     height="33.051327"
+     rx="4.7901864"
+     fill="#2563eb"
+     id="rect1"
+     style="stroke-width:0.812204"
+     ry="4.7901864" />
+  <!-- IAM text (optically centered, black) -->
+  <text
+     x="153.34656"
+     y="41.167606"
+     text-anchor="middle"
+     font-family="Inter, system-ui, '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif"
+     font-size="36px"
+     font-weight="600"
+     fill="#000000"
+     id="text2">IAM</text>
+</svg>
