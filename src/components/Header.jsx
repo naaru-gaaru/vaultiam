@@ -2,27 +2,33 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="border-b border-slate-200">
+    <header className="border-b border-slate-200 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between py-3">
+        {/* 
+          Key fixes:
+          - py-2 instead of py-4/6 (major height reduction)
+          - mobile-first flex column
+          - logo + tagline centered as one unit
+        */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between py-2">
 
-          {/* Logo + tagline (CENTERED AS A UNIT) */}
+          {/* Logo + tagline */}
           <Link
             to="/"
-            className="flex flex-col items-start md:items-start"
+            className="flex flex-col items-center md:items-start leading-none"
           >
             <img
-              src="/vaultiam-logo-no-tag.svg"
+              src="/vaultiam-logo.svg"
               alt="VaultIAM"
-              className="h-12 w-auto"
+              className="h-10 w-auto"
             />
-            <span className="mt-1 text-xs text-slate-500">
+            <span className="mt-0.5 text-[11px] text-slate-500 text-center md:text-left">
               Identity-first security
             </span>
           </Link>
 
           {/* Navigation */}
-          <nav className="mt-3 md:mt-0 flex items-center gap-6 text-sm font-medium">
+          <nav className="mt-2 md:mt-0 flex flex-wrap justify-center md:justify-start items-center gap-4 text-sm font-medium">
             <NavLink
               to="/capabilities"
               className={({ isActive }) =>
@@ -56,10 +62,10 @@ export default function Header() {
               Contact
             </NavLink>
 
-            {/* CTA */}
+            {/* CTA (desktop only) */}
             <Link
               to="/contact"
-              className="ml-4 hidden md:inline-flex rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition"
+              className="hidden md:inline-flex ml-4 rounded-md bg-blue-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-blue-700 transition"
             >
               Book Risk Review
             </Link>
