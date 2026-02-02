@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="canonical" href="https://www.vaultiam.com/" />
       </Helmet>
 
-      <section className="max-w-7xl mx-auto px-6 py-20">
+      <section className="max-w-7xl mx-auto px-6 pt-12 md:pt-20 pb-24">
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
           Identity is the primary attack surface.
         </h1>
@@ -25,3 +25,4 @@ export default function Home() {
     </>
   );
 }
+
