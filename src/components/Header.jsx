@@ -4,36 +4,27 @@ export default function Header() {
   return (
     <header className="border-b border-slate-200 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        {/* 
-          Key fixes:
-          - py-2 instead of py-4/6 (major height reduction)
-          - mobile-first flex column
-          - logo + tagline centered as one unit
-        */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between py-2">
-
-          {/* Logo + tagline */}
-          <Link
-            to="/"
-            className="flex flex-col items-center md:items-start leading-none"
-          >
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Logo + Tagline (centered as a unit) */}
+          <Link to="/" className="flex flex-col justify-center">
             <img
               src="/vaultiam-logo-no-tag.svg"
               alt="VaultIAM"
               className="h-12 w-auto"
             />
-            <span className="mt-0.5 text-[11px] text-slate-500 text-center md:text-left">
+            <span className="text-xs text-slate-500 text-center mt-0.5">
               Identity-first security
             </span>
           </Link>
 
           {/* Navigation */}
-          <nav className="mt-2 md:mt-0 flex flex-wrap justify-center md:justify-start items-center gap-4 text-sm font-medium">
+          <nav className="hidden md:flex items-center space-x-8 text-sm">
             <NavLink
               to="/capabilities"
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-600"
+                  ? "text-blue-600 font-medium"
                   : "text-slate-700 hover:text-blue-600"
               }
             >
@@ -44,7 +35,7 @@ export default function Header() {
               to="/customer-stories"
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-600"
+                  ? "text-blue-600 font-medium"
                   : "text-slate-700 hover:text-blue-600"
               }
             >
@@ -55,24 +46,25 @@ export default function Header() {
               to="/contact"
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-600"
+                  ? "text-blue-600 font-medium"
                   : "text-slate-700 hover:text-blue-600"
               }
             >
               Contact
             </NavLink>
+          </nav>
 
-            {/* CTA (desktop only) */}
+          {/* CTA */}
+          <div className="hidden md:block">
             <Link
               to="/contact"
-              className="hidden md:inline-flex ml-4 rounded-md bg-blue-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-blue-700 transition"
+              className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors"
             >
               Book Risk Review
             </Link>
-          </nav>
+          </div>
         </div>
       </div>
     </header>
   );
 }
-
