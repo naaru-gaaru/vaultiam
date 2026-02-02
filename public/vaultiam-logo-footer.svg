@@ -6,7 +6,7 @@
    fill="none"
    version="1.1"
    id="svg2"
-   sodipodi:docname="vaultiam-logo-footer-tight-black-iam.svg"
+   sodipodi:docname="vaultiam-logo-footer.svg"
    inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -43,7 +43,7 @@
      id="text1">Vault</text>
   <!-- IAM background box (tighter) -->
   <rect
-     x="118.54092"
+     x="124.54092"
      y="11.613085"
      width="68.831894"
      height="33.051327"
@@ -54,7 +54,7 @@
      ry="4.7901864" />
   <!-- IAM text (optically centered, black) -->
   <text
-     x="153.34656"
+     x="159.34656"
      y="41.167606"
      text-anchor="middle"
      font-family="Inter, system-ui, '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif"
