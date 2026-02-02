@@ -9,11 +9,12 @@ import Contact from "./pages/Contact";
 export default function App() {
   return (
     <Routes>
+      {/* Layout wraps all pages */}
       <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/capabilities" element={<Capabilities />} />
-        <Route path="/case-studies" element={<CaseStudies />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route index element={<Home />} />
+        <Route path="capabilities" element={<Capabilities />} />
+        <Route path="case-studies" element={<CaseStudies />} />
+        <Route path="contact" element={<Contact />} />
       </Route>
     </Routes>
   );
