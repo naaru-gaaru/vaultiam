@@ -1,8 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+
+  const navLinkClass =
+    "relative text-sm font-medium text-slate-700 transition-colors duration-200 hover:text-blue-600";
+
+  const navLinkActive =
+    "text-blue-600 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-blue-600 after:rounded-full";
 
   return (
     <header className="border-b border-slate-200 bg-white">
@@ -14,10 +20,14 @@ export default function Header() {
             to="/"
             className="flex flex-col items-start leading-tight"
           >
+            {/* 
+              Slight negative translateX visually centers the logo
+              above the tagline (logos often have optical imbalance)
+            */}
             <img
               src="/vaultiam-logo-no-tag.svg"
               alt="VaultIAM"
-              className="h-12 w-auto"
+              className="h-12 w-auto -translate-x-1"
             />
             <span className="text-xs text-slate-500 mt-0.5">
               Identity-first security
@@ -26,24 +36,33 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link
+            <NavLink
               to="/capabilities"
-              className="text-sm font-medium text-slate-700 hover:text-slate-900"
+              className={({ isActive }) =>
+                `${navLinkClass} ${isActive ? navLinkActive : ""}`
+              }
             >
               Capabilities
-            </Link>
-            <Link
+            </NavLink>
+
+            <NavLink
               to="/customer-stories"
-              className="text-sm font-medium text-slate-700 hover:text-slate-900"
+              className={({ isActive }) =>
+                `${navLinkClass} ${isActive ? navLinkActive : ""}`
+              }
             >
               Customer Stories
-            </Link>
-            <Link
+            </NavLink>
+
+            <NavLink
               to="/contact"
-              className="text-sm font-medium text-slate-700 hover:text-slate-900"
+              className={({ isActive }) =>
+                `${navLinkClass} ${isActive ? navLinkActive : ""}`
+              }
             >
               Contact
-            </Link>
+            </NavLink>
+
             <Link
               to="/contact"
               className="ml-4 inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition"
@@ -83,31 +102,45 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu panel */}
+      {/* Mobile menu */}
       {open && (
         <div className="md:hidden border-t border-slate-200 bg-white">
           <div className="px-6 py-4 space-y-4">
-            <Link
+            <NavLink
               to="/capabilities"
               onClick={() => setOpen(false)}
-              className="block text-sm font-medium text-slate-700"
+              className={({ isActive }) =>
+                `block text-sm font-medium ${
+                  isActive ? "text-blue-600" : "text-slate-700"
+                }`
+              }
             >
               Capabilities
-            </Link>
-            <Link
+            </NavLink>
+
+            <NavLink
               to="/customer-stories"
               onClick={() => setOpen(false)}
-              className="block text-sm font-medium text-slate-700"
+              className={({ isActive }) =>
+                `block text-sm font-medium ${
+                  isActive ? "text-blue-600" : "text-slate-700"
+                }`
+              }
             >
               Customer Stories
-            </Link>
-            <Link
+            </NavLink>
+
+            <NavLink
               to="/contact"
               onClick={() => setOpen(false)}
-              className="block text-sm font-medium text-slate-700"
+              className={({ isActive }) =>
+                `block text-sm font-medium ${
+                  isActive ? "text-blue-600" : "text-slate-700"
+                }`
+              }
             >
               Contact
-            </Link>
+            </NavLink>
 
             <Link
               to="/contact"
