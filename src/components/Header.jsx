@@ -18,9 +18,9 @@ export default function Header() {
             className="flex flex-col items-center md:items-start leading-none"
           >
             <img
-              src="/vaultiam-logo.svg"
+              src="/vaultiam-logo-no-tag.svg"
               alt="VaultIAM"
-              className="h-10 w-auto"
+              className="h-12 w-auto"
             />
             <span className="mt-0.5 text-[11px] text-slate-500 text-center md:text-left">
               Identity-first security
@@ -75,3 +75,4 @@ export default function Header() {
     </header>
   );
 }
+
