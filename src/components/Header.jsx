@@ -24,13 +24,13 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex h-16 items-left justify-between">
+        <div className="flex h-17 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex flex-col leading-tight">
             <img
               src="/vaultiam-logo-no-tag.svg"
               alt="VaultIAM"
-              className="h-12 w-auto -translate-x-1"
+              className="h-13 w-auto -translate-x-1"
             />
             <span className="text-xs text-slate-500 mt-0.5">
               Identity-first security
@@ -130,4 +130,5 @@ export default function Header() {
     </header>
   );
 }
+
 
