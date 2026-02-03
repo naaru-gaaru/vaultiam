@@ -24,7 +24,7 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 items-left justify-between">
           {/* Logo */}
           <Link to="/" className="flex flex-col leading-tight">
             <img
@@ -130,3 +130,4 @@ export default function Header() {
     </header>
   );
 }
+
