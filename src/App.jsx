@@ -6,13 +6,18 @@ import Capabilities from "./pages/Capabilities";
 import CustomerStories from "./pages/CustomerStories";
 import Contact from "./pages/Contact";
 
+// Import the 4 case study pages
+import AIWorkloadIdentitiesCase from "./pages/AIWorkloadIdentitiesCase";
+import SyntheticIdentityFraudCase from "./pages/SyntheticIdentityFraudCase";
+import JITPrivilegedAccessCase from "./pages/JITPrivilegedAccessCase";
+import ShadowAICase from "./pages/ShadowAICase";
+
 export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="capabilities" element={<Capabilities />} />
-        <Route path="customer-stories" element={<CustomerStories />} />
         <Route path="customer-stories" element={<CustomerStories />} />
         <Route path="customer-stories/ai-workload-identities-healthcare" element={<AIWorkloadIdentitiesCase />} />
         <Route path="customer-stories/synthetic-identity-fraud-fintech" element={<SyntheticIdentityFraudCase />} />
