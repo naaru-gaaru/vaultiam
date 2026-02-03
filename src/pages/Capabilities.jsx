@@ -1,32 +1,61 @@
-import { Helmet } from "react-helmet-async";
+import VaultIAMModel from "../components/VaultIAMModel";
+import ToolStack from "../components/ToolStack";
 
 export default function Capabilities() {
   return (
-    <>
-      <Helmet>
-        <title>Identity Security Capabilities | VaultIAM</title>
-        <meta
-          name="description"
-          content="Explore VaultIAM’s identity security capabilities across IAM, CIAM, PAM, and Identity Threat Detection & Response."
-        />
-        <link
-          rel="canonical"
-          href="https://www.vaultiam.com/capabilities"
-        />
-      </Helmet>
-
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <h1 className="text-3xl md:text-4xl font-semibold mb-6">
-          Identity Security Capabilities
+    <main className="max-w-7xl mx-auto px-6 pt-10 md:pt-16 pb-24">
+      {/* Header */}
+      <section className="mb-12 max-w-3xl">
+        <h1 className="text-4xl font-semibold tracking-tight mb-4">
+          Capabilities
         </h1>
 
-        <p className="text-lg text-slate-600 max-w-3xl">
-          VaultIAM delivers identity-first security outcomes across workforce,
-          customer, and non-human identities in regulated environments.
+        <p className="text-lg text-slate-600">
+          VaultIAM delivers identity-first security outcomes across IAM, CIAM,
+          privileged access, and identity threat detection—designed for
+          regulated, high-risk environments.
         </p>
-
-        {/* Existing capability sections stay below */}
       </section>
-    </>
+
+      {/* Core capabilities */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10 mb-20">
+        {[
+          [
+            "Identity & Access Management",
+            "Architecture, modernization, and operational support for workforce IAM, non-human identities, and cloud-native access models.",
+          ],
+          [
+            "Customer Identity (CIAM)",
+            "Secure onboarding, authentication, and fraud-aware identity flows for FinTech and digital health platforms.",
+          ],
+          [
+            "Privileged Access (PAM)",
+            "Zero standing privilege, just-in-time access, and session controls for human and AI-driven workloads.",
+          ],
+          [
+            "ITDR & Identity Security",
+            "Detection and response for identity-based attacks, abuse paths, lateral movement, and anomalous behavior.",
+          ],
+        ].map(([title, desc]) => (
+          <div key={title}>
+            <h3 className="text-xl font-semibold mb-2">{title}</h3>
+            <p className="text-slate-600">{desc}</p>
+          </div>
+        ))}
+      </section>
+
+      <VaultIAMModel />
+
+      <section className="mt-20 text-center">
+        <a
+          href="/contact"
+          className="inline-block rounded-md bg-blue-600 px-8 py-3 text-sm font-medium text-white hover:bg-blue-700 transition"
+        >
+          Talk to an identity specialist
+        </a>
+      </section>
+
+      <ToolStack />
+    </main>
   );
 }
