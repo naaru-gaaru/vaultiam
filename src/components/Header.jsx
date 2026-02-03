@@ -4,8 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 const NAV_LINKS = [
   { label: "Capabilities", href: "/capabilities" },
   { label: "The VaultIAM Way", href: "/the-vaultiam-way" },
-  { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
 ];
 
 export default function Header() {
@@ -20,7 +18,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // close mobile menu on route change
   useEffect(() => { setMenuOpen(false); }, [location]);
 
   return (
@@ -35,34 +32,14 @@ export default function Header() {
     >
       <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
 
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2.5 group">
-          {/* shield mark */}
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <path
-              d="M14 2L4 7v7c0 6.5 4.3 12.4 10 14 5.7-1.6 10-7.5 10-14V7L14 2z"
-              fill="#1e293b"
-              stroke="none"
-            />
-            <path
-              d="M14 2L4 7v7c0 6.5 4.3 12.4 10 14 5.7-1.6 10-7.5 10-14V7L14 2z"
-              fill="url(#logoGrad)"
-              opacity="0.85"
-            />
-            <path d="M10 14.5l3 3 5-6" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-            <defs>
-              <linearGradient id="logoGrad" x1="4" y1="2" x2="24" y2="28" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#2563eb" />
-                <stop offset="100%" stopColor="#1e40af" />
-              </linearGradient>
-            </defs>
-          </svg>
-          <span className="text-[17px] font-700 tracking-[-0.02em] text-slate-900" style={{ fontWeight: 700 }}>
-            Vault<span className="text-blue-600">IAM</span>
-          </span>
+        <Link to="/" className="flex items-center group">
+          <img 
+            src="/vaultiam-logo.svg" 
+            alt="VaultIAM" 
+            className="h-8 w-auto"
+          />
         </Link>
 
-        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map(({ label, href }) => {
             const active = location.pathname === href || location.pathname.startsWith(href + "/");
@@ -86,7 +63,6 @@ export default function Header() {
             );
           })}
 
-          {/* CTA */}
           <Link
             to="/contact"
             className="ml-4 px-5 py-2 rounded-lg text-[13px] font-600 text-white transition-all duration-200"
@@ -102,7 +78,6 @@ export default function Header() {
           </Link>
         </nav>
 
-        {/* Mobile hamburger */}
         <button
           className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px] group"
           onClick={() => setMenuOpen(prev => !prev)}
@@ -114,11 +89,10 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
       <div
         className="md:hidden overflow-hidden transition-all duration-300 ease-out"
         style={{
-          maxHeight: menuOpen ? "320px" : "0",
+          maxHeight: menuOpen ? "240px" : "0",
           opacity: menuOpen ? 1 : 0,
         }}
       >
