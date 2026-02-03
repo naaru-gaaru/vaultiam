@@ -94,7 +94,7 @@ export default function AIWorkloadIdentitiesCase() {
             {[
               { num: "01", text: "Classified AI agents as workload identities in Microsoft Entra" },
               { num: "02", text: "Enabled Microsoft Entra ID Protection policies tuned for non-human behavior" },
-              { num: "03", text: "Defined "behavioral baselines" for agent access patterns" },
+              { num: "03", text: "Defined \"behavioral baselines\" for agent access patterns" },
               { num: "04", text: "Integrated Microsoft Purview to enforce data-level access controls even if identity trust degraded" },
             ].map(step => (
               <div key={step.num} className="flex gap-4 items-start">
@@ -129,7 +129,7 @@ export default function AIWorkloadIdentitiesCase() {
           <h2 className="text-slate-900 mb-4" style={{ fontSize: 22, fontWeight: 700, letterSpacing: "-0.02em" }}>Outcome & Impact</h2>
           <div className="space-y-3">
             {[
-              "Real-time detection of anomalous AI behavior ("vibe-shift" events)",
+              "Real-time detection of anomalous AI behavior (\"vibe-shift\" events)",
               "Zero standing access to sensitive patient data",
               "Demonstrable HIPAA-aligned access controls for audits",
             ].map(outcome => (
