@@ -1,135 +1,154 @@
-import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+
+const NAV_LINKS = [
+  { label: "Capabilities", href: "/capabilities" },
+  { label: "The VaultIAM Way", href: "/the-vaultiam-way" },
+  { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
+];
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const baseLink =
-    "relative text-sm font-medium text-slate-700 transition-colors duration-200 hover:text-blue-600";
-
-  const activeLink =
-    "text-blue-600 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-blue-600 after:rounded-full after:transition-all";
+  // close mobile menu on route change
+  useEffect(() => { setMenuOpen(false); }, [location]);
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-white transition-shadow ${
-        scrolled ? "shadow-sm" : ""
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.92)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        boxShadow: scrolled ? "0 1px 0 #e2e8f0" : "none",
+      }}
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex h-17 items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex flex-col leading-tight">
-            <img
-              src="/vaultiam-logo-no-tag.svg"
-              alt="VaultIAM"
-              className="h-12 w-auto -translate-x-1"
-            />
-            <span className="text-xs text-slate-500 mt-0.5">
-              Identity-first security
-            </span>
-          </Link>
+      <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {[
-              ["Capabilities", "/capabilities"],
-              ["Customer Stories", "/customer-stories"],
-              ["Contact", "/contact"],
-            ].map(([label, path]) => (
-              <NavLink
-                key={path}
-                to={path}
-                className={({ isActive }) =>
-                  `${baseLink} ${isActive ? activeLink : ""}`
-                }
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2.5 group">
+          {/* shield mark */}
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path
+              d="M14 2L4 7v7c0 6.5 4.3 12.4 10 14 5.7-1.6 10-7.5 10-14V7L14 2z"
+              fill="#1e293b"
+              stroke="none"
+            />
+            <path
+              d="M14 2L4 7v7c0 6.5 4.3 12.4 10 14 5.7-1.6 10-7.5 10-14V7L14 2z"
+              fill="url(#logoGrad)"
+              opacity="0.85"
+            />
+            <path d="M10 14.5l3 3 5-6" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="4" y1="2" x2="24" y2="28" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#2563eb" />
+                <stop offset="100%" stopColor="#1e40af" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span className="text-[17px] font-700 tracking-[-0.02em] text-slate-900" style={{ fontWeight: 700 }}>
+            Vault<span className="text-blue-600">IAM</span>
+          </span>
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-1">
+          {NAV_LINKS.map(({ label, href }) => {
+            const active = location.pathname === href || location.pathname.startsWith(href + "/");
+            return (
+              <Link
+                key={label}
+                to={href}
+                className="relative px-4 py-2 text-[13.5px] font-500 transition-colors duration-200"
+                style={{
+                  fontWeight: 500,
+                  color: active ? "#1e40af" : "#475569",
+                }}
+                onMouseEnter={e => { if (!active) e.currentTarget.style.color = "#0f172a"; }}
+                onMouseLeave={e => { if (!active) e.currentTarget.style.color = "#475569"; }}
               >
                 {label}
-              </NavLink>
-            ))}
+                {active && (
+                  <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-blue-600 rounded-full" />
+                )}
+              </Link>
+            );
+          })}
 
-            <Link
-              to="/contact"
-              className="ml-4 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition"
-            >
-              Book Risk Review
-            </Link>
-          </nav>
-
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden p-2 rounded-md hover:bg-slate-100"
-            aria-label="Toggle menu"
+          {/* CTA */}
+          <Link
+            to="/contact"
+            className="ml-4 px-5 py-2 rounded-lg text-[13px] font-600 text-white transition-all duration-200"
+            style={{
+              fontWeight: 600,
+              background: "linear-gradient(135deg, #2563eb, #1d4ed8)",
+              boxShadow: "0 2px 10px rgba(37,99,235,0.3)",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 4px 16px rgba(37,99,235,0.4)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 2px 10px rgba(37,99,235,0.3)"; e.currentTarget.style.transform = "translateY(0)"; }}
           >
-            <svg
-              className="h-6 w-6 text-slate-700"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              {open ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
-        </div>
+            Get in touch
+          </Link>
+        </nav>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px] group"
+          onClick={() => setMenuOpen(prev => !prev)}
+          aria-label="Toggle menu"
+        >
+          <span className={`block h-[1.5px] bg-slate-700 rounded-full transition-all duration-300 ${menuOpen ? "w-5 rotate-45 translate-y-[6.5px]" : "w-5"}`} />
+          <span className={`block h-[1.5px] bg-slate-700 rounded-full transition-all duration-300 ${menuOpen ? "opacity-0 w-5" : "w-4"}`} />
+          <span className={`block h-[1.5px] bg-slate-700 rounded-full transition-all duration-300 ${menuOpen ? "w-5 -rotate-45 -translate-y-[6.5px]" : "w-5"}`} />
+        </button>
       </div>
 
-      {/* Mobile Menu */}
-      {open && (
-        <div className="md:hidden border-t border-slate-200 bg-white">
-          <div className="px-6 py-4 space-y-4">
-            {[
-              ["Capabilities", "/capabilities"],
-              ["Customer Stories", "/customer-stories"],
-              ["Contact", "/contact"],
-            ].map(([label, path]) => (
-              <NavLink
-                key={path}
-                to={path}
-                onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `block text-sm font-medium ${
-                    isActive ? "text-blue-600" : "text-slate-700"
-                  }`
-                }
+      {/* Mobile dropdown */}
+      <div
+        className="md:hidden overflow-hidden transition-all duration-300 ease-out"
+        style={{
+          maxHeight: menuOpen ? "320px" : "0",
+          opacity: menuOpen ? 1 : 0,
+        }}
+      >
+        <div className="border-t border-slate-100 bg-white px-5 py-4 flex flex-col gap-1">
+          {NAV_LINKS.map(({ label, href }) => {
+            const active = location.pathname === href;
+            return (
+              <Link
+                key={label}
+                to={href}
+                className="px-3 py-2.5 rounded-lg text-[14px] transition-colors"
+                style={{
+                  fontWeight: active ? 600 : 500,
+                  color: active ? "#1e40af" : "#475569",
+                  background: active ? "#eff6ff" : "transparent",
+                }}
               >
                 {label}
-              </NavLink>
-            ))}
-
-            <Link
-              to="/contact"
-              onClick={() => setOpen(false)}
-              className="block rounded-md bg-blue-600 px-4 py-2 text-center text-sm font-medium text-white"
-            >
-              Book Risk Review
-            </Link>
-          </div>
+              </Link>
+            );
+          })}
+          <Link
+            to="/contact"
+            className="mt-2 mx-1 px-4 py-2.5 rounded-lg text-center text-[14px] font-600 text-white"
+            style={{ fontWeight: 600, background: "linear-gradient(135deg, #2563eb, #1d4ed8)" }}
+          >
+            Get in touch
+          </Link>
         </div>
-      )}
+      </div>
     </header>
   );
 }
-
-
-

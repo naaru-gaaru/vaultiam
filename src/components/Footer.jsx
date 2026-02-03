@@ -1,93 +1,110 @@
+import { Link } from "react-router-dom";
+
+const FOOTER_COLS = [
+  {
+    heading: "Company",
+    links: [
+      { label: "About Us",            to: "/about" },
+      { label: "The VaultIAM Way",    to: "/the-vaultiam-way" },
+      { label: "Blog",                to: "/blog" },
+    ],
+  },
+  {
+    heading: "Services",
+    links: [
+      { label: "Capabilities",        to: "/capabilities" },
+      { label: "IAM",                 to: "/capabilities/iam" },
+      { label: "CIAM",                to: "/capabilities/ciam" },
+      { label: "PAM",                 to: "/capabilities/pam" },
+      { label: "ITDR",                to: "/capabilities/itdr" },
+    ],
+  },
+  {
+    heading: "Resources",
+    links: [
+      { label: "Contact Us",          to: "/contact" },
+      { label: "IAM Assessment Guide",to: "/assessment-guide" },
+    ],
+  },
+];
+
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-slate-300">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          
-          {/* Brand */}
-          <div>
-            <img
-              src="/vaultiam-logo-footer.svg"
-              alt="VaultIAM"
-              className="h-10 w-auto mb-4"
-            />
-            <p className="text-sm text-slate-400 max-w-xs">
-              Identity-first security services for regulated FinTech and
-              Healthcare environments.
-            </p>
+    <footer className="bg-white border-t border-slate-200">
+      {/* main grid */}
+      <div className="max-w-6xl mx-auto px-5 pt-12 pb-8 grid grid-cols-12 gap-8">
 
-            {/* Social */}
-            <div className="flex items-center gap-4 mt-4">
-              <a
-                href="https://www.linkedin.com/company/vaultiam"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-white"
-                aria-label="LinkedIn"
-              >
-                {/* LinkedIn SVG */}
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.05 0 6 3.32 6 7.64V24h-5v-7.92c0-1.89-.03-4.32-2.63-4.32-2.63 0-3.04 2.05-3.04 4.18V24h-5V8z"/>
-                </svg>
-              </a>
-
-              <a
-                href="#"
-                className="hover:text-white"
-                aria-label="X"
-              >
-                {/* X SVG */}
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.24 2.25h3.37l-7.36 8.41L23 21.75h-6.78l-5.3-6.48-5.67 6.48H1.88l7.88-9.01L1 2.25h6.94l4.8 5.86 5.5-5.86z"/>
-                </svg>
-              </a>
-
-              <a
-                href="#"
-                className="hover:text-white"
-                aria-label="YouTube"
-              >
-                {/* YouTube SVG */}
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M23.5 6.2s-.2-1.6-.8-2.3c-.8-.9-1.7-.9-2.1-1C16.9 2.5 12 2.5 12 2.5h-.1s-4.9 0-8.6.4c-.5.1-1.4.1-2.2 1-.6.7-.8 2.3-.8 2.3S0 8.1 0 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.8 2.3c.8.9 1.9.9 2.4 1 1.7.2 7.6.4 7.6.4s4.9 0 8.6-.4c.5-.1 1.4-.1 2.2-1 .6-.7.8-2.3.8-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.75 14.5V7.5l6.5 3.5-6.5 3.5z"/>
-                </svg>
-              </a>
-            </div>
+        {/* brand column — wider */}
+        <div className="col-span-12 md:col-span-5">
+          {/* logo repeat */}
+          <div className="flex items-center gap-2.5 mb-4">
+            <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+              <path d="M14 2L4 7v7c0 6.5 4.3 12.4 10 14 5.7-1.6 10-7.5 10-14V7L14 2z" fill="#1e293b"/>
+              <path d="M14 2L4 7v7c0 6.5 4.3 12.4 10 14 5.7-1.6 10-7.5 10-14V7L14 2z" fill="url(#fLogoGrad)" opacity="0.85"/>
+              <path d="M10 14.5l3 3 5-6" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              <defs>
+                <linearGradient id="fLogoGrad" x1="4" y1="2" x2="24" y2="28" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#2563eb"/>
+                  <stop offset="100%" stopColor="#1e40af"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span className="text-[16px] font-700 text-slate-900" style={{ fontWeight: 700 }}>
+              Vault<span className="text-blue-600">IAM</span>
+            </span>
           </div>
 
-          {/* Navigate */}
-          <div>
-            <h4 className="text-white font-medium mb-3">Navigate</h4>
-            <ul className="space-y-2 text-sm">
-              <li><a href="/capabilities" className="hover:text-white">Capabilities</a></li>
-              <li><a href="/customer-stories" className="hover:text-white">Customer Stories</a></li>
-              <li><a href="/contact" className="hover:text-white">Contact</a></li>
-            </ul>
-          </div>
-
-          {/* Learn */}
-          <div>
-            <h4 className="text-white font-medium mb-3">Learn</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="text-slate-400">Blog (coming soon)</li>
-              <li className="text-slate-400">The VaultIAM Way</li>
-            </ul>
-          </div>
-
-          {/* Focus */}
-          <div>
-            <h4 className="text-white font-medium mb-3">Focus</h4>
-            <p className="text-sm text-slate-400">
-              FinTech & Healthcare<br />
-              SOC 2 · PCI-DSS · HIPAA · ISO 27001<br />
-              IAM · CIAM · PAM · ITDR
-            </p>
-          </div>
+          <p className="text-[13.5px] text-slate-500 leading-relaxed max-w-xs">
+            Identity-first IAM security services for FinTech, healthcare, and regulated enterprises across North America. We architect, deploy, and operate the identity controls that keep your business secure.
+          </p>
         </div>
 
-        <div className="border-t border-slate-800 mt-10 pt-6 text-xs text-slate-500">
-          © 2026 VaultIAM. All rights reserved.
+        {/* link columns */}
+        {FOOTER_COLS.map(col => (
+          <div key={col.heading} className="col-span-12 md:col-span-2">
+            <h4 className="text-[11px] font-600 text-slate-500 uppercase tracking-wider mb-4" style={{ fontWeight: 600 }}>
+              {col.heading}
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              {col.links.map(({ label, to }) => (
+                <li key={label}>
+                  <Link
+                    to={to}
+                    className="text-[13.5px] text-slate-600 transition-colors duration-150"
+                    style={{ fontWeight: 500 }}
+                    onMouseEnter={e => e.currentTarget.style.color = "#2563eb"}
+                    onMouseLeave={e => e.currentTarget.style.color = "#475569"}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      {/* bottom bar */}
+      <div className="max-w-6xl mx-auto px-5 pb-6">
+        <div className="border-t border-slate-200 pt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <span className="text-[12px] text-slate-400">
+            © {year} VaultIAM. All rights reserved.
+          </span>
+          <div className="flex items-center gap-5">
+            {["Privacy Policy", "Terms of Service"].map(label => (
+              <Link
+                key={label}
+                to={label === "Privacy Policy" ? "/privacy" : "/terms"}
+                className="text-[12px] text-slate-400 transition-colors duration-150"
+                onMouseEnter={e => e.currentTarget.style.color = "#2563eb"}
+                onMouseLeave={e => e.currentTarget.style.color = "#94a3b8"}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
