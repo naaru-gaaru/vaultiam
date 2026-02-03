@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-/* ─── scroll-reveal hook ─── */
 function useReveal(threshold = 0.15) {
   const ref = useRef(null);
   const [on, setOn] = useState(false);
@@ -18,98 +17,17 @@ function useReveal(threshold = 0.15) {
   return [ref, on];
 }
 
-/* ──────────────────────────────────
-   INLINE LOGO SVGs — these map to the
-   SVG files that live in public/logos/
-   in the repo. Inline here so the ticker
-   renders without <img> path issues in
-   any deploy context.
-   ────────────────────────────────── */
-const LogoSVGs = {
-  Okta: () => (
-    <svg viewBox="0 0 60 24" width="60" height="24" fill="none">
-      <circle cx="12" cy="12" r="7" stroke="#007DC1" strokeWidth="2.2" fill="none"/>
-      <circle cx="12" cy="12" r="3" fill="#007DC1"/>
-      <text x="22" y="17" fontSize="13" fontWeight="600" fill="#1a1a1a" fontFamily="Inter,sans-serif">okta</text>
-    </svg>
-  ),
-  MicrosoftEntra: () => (
-    <svg viewBox="0 0 88 24" width="88" height="24" fill="none">
-      <rect x="1" y="4" width="16" height="16" rx="3" fill="#0078D4"/>
-      <path d="M4 18V8l4 5 4-5v10" stroke="#fff" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-      <text x="22" y="17" fontSize="12" fontWeight="600" fill="#1a1a1a" fontFamily="Inter,sans-serif">Microsoft Entra</text>
-    </svg>
-  ),
-  SailPoint: () => (
-    <svg viewBox="0 0 84 24" width="84" height="24" fill="none">
-      <polygon points="2,20 10,4 18,20" fill="#003865"/>
-      <polygon points="10,20 16,8 22,20" fill="#00A3E0" opacity="0.7"/>
-      <text x="27" y="17" fontSize="12" fontWeight="600" fill="#1a1a1a" fontFamily="Inter,sans-serif">SailPoint</text>
-    </svg>
-  ),
-  CyberArk: () => (
-    <svg viewBox="0 0 82 24" width="82" height="24" fill="none">
-      <circle cx="10" cy="12" r="6" stroke="#C8102E" strokeWidth="2" fill="none"/>
-      <circle cx="10" cy="12" r="2.5" fill="#C8102E"/>
-      <line x1="15" y1="12" x2="21" y2="12" stroke="#C8102E" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="19" y1="12" x2="19" y2="15" stroke="#C8102E" strokeWidth="2" strokeLinecap="round"/>
-      <text x="25" y="17" fontSize="12" fontWeight="600" fill="#1a1a1a" fontFamily="Inter,sans-serif">CyberArk</text>
-    </svg>
-  ),
-  PingIdentity: () => (
-    <svg viewBox="0 0 90 24" width="90" height="24" fill="none">
-      <circle cx="10" cy="12" r="7" fill="#E8263D"/>
-      <circle cx="10" cy="12" r="3.5" fill="#fff"/>
-      <text x="22" y="17" fontSize="12" fontWeight="600" fill="#1a1a1a" fontFamily="Inter,sans-serif">Ping Identity</text>
-    </svg>
-  ),
-  AWSIAM: () => (
-    <svg viewBox="0 0 72 24" width="72" height="24" fill="none">
-      <rect x="1" y="5" width="18" height="14" rx="2" fill="#232F3E"/>
-      <text x="4" y="16" fontSize="9" fontWeight="700" fill="#FF9900" fontFamily="Inter,sans-serif">AWS</text>
-      <text x="23" y="17" fontSize="12" fontWeight="600" fill="#1a1a1a" fontFamily="Inter,sans-serif">IAM</text>
-    </svg>
-  ),
-  GoogleCloudIAM: () => (
-    <svg viewBox="0 0 104 24" width="104" height="24" fill="none">
-      <circle cx="10" cy="12" r="7" fill="#fff" stroke="#dadce0" strokeWidth="1"/>
-      <path d="M10 6a6 6 0 1 1-3.46 10.9" fill="none" stroke="#4285F4" strokeWidth="2.2" strokeLinecap="round"/>
-      <path d="M6.54 16.9a6 6 0 0 1 0-9.8" fill="none" stroke="#34A853" strokeWidth="2.2" strokeLinecap="round"/>
-      <path d="M6.54 7.1a6 6 0 0 1 6.92 0" fill="none" stroke="#FBBC05" strokeWidth="2.2" strokeLinecap="round"/>
-      <path d="M13.46 16.9a6 6 0 0 1-6.92 0" fill="none" stroke="#EA4335" strokeWidth="2.2" strokeLinecap="round"/>
-      <text x="21" y="17" fontSize="12" fontWeight="600" fill="#1a1a1a" fontFamily="Inter,sans-serif">Google Cloud IAM</text>
-    </svg>
-  ),
-  ForgeRock: () => (
-    <svg viewBox="0 0 82 24" width="82" height="24" fill="none">
-      <rect x="2" y="6" width="12" height="12" rx="3" fill="#E8263D"/>
-      <rect x="8" y="6" width="12" height="12" rx="3" fill="#2563EB" opacity="0.85"/>
-      <text x="24" y="17" fontSize="12" fontWeight="600" fill="#1a1a1a" fontFamily="Inter,sans-serif">ForgeRock</text>
-    </svg>
-  ),
-  IBMVerify: () => (
-    <svg viewBox="0 0 78 24" width="78" height="24" fill="none">
-      {[0,1,2,3,4,5,6,7].map((i) => (
-        <rect key={i} x="2" y={5 + i * 1.7} width="14" height="1.1" rx="0.5" fill="#052BA9"/>
-      ))}
-      <text x="20" y="17" fontSize="12" fontWeight="600" fill="#1a1a1a" fontFamily="Inter,sans-serif">IBM Verify</text>
-    </svg>
-  ),
-};
-
 const PLATFORMS = [
-  { key: "Okta",             Logo: LogoSVGs.Okta,            site: "https://www.okta.com" },
-  { key: "Microsoft Entra", Logo: LogoSVGs.MicrosoftEntra,  site: "https://entra.microsoft.com" },
-  { key: "SailPoint",        Logo: LogoSVGs.SailPoint,       site: "https://www.sailpoint.com" },
-  { key: "CyberArk",         Logo: LogoSVGs.CyberArk,        site: "https://www.cyberark.com" },
-  { key: "Ping Identity",    Logo: LogoSVGs.PingIdentity,    site: "https://www.pingidentity.com" },
-  { key: "AWS IAM",          Logo: LogoSVGs.AWSIAM,          site: "https://aws.amazon.com/iam/" },
-  { key: "Google Cloud IAM", Logo: LogoSVGs.GoogleCloudIAM,  site: "https://cloud.google.com/iam" },
-  { key: "ForgeRock",        Logo: LogoSVGs.ForgeRock,       site: "https://www.thales.com" },
-  { key: "IBM Verify",       Logo: LogoSVGs.IBMVerify,       site: "https://www.ibm.com/products/verify" },
+  { name: "Okta",             file: "okta.svg",       site: "https://www.okta.com" },
+  { name: "Microsoft Entra",  file: "entra.svg",      site: "https://entra.microsoft.com" },
+  { name: "SailPoint",        file: "sailpoint.svg",  site: "https://www.sailpoint.com" },
+  { name: "CyberArk",         file: "cyberark.svg",   site: "https://www.cyberark.com" },
+  { name: "Ping Identity",    file: "ping.svg",       site: "https://www.pingidentity.com" },
+  { name: "AWS IAM",          file: "aws.svg",        site: "https://aws.amazon.com/iam/" },
+  { name: "Azure AD",         file: "azure.svg",      site: "https://azure.microsoft.com/en-us/products/active-directory" },
+  { name: "HashiCorp Vault",  file: "hashicorp.svg",  site: "https://www.hashicorp.com/products/vault" },
 ];
 
-/* ─── data ─── */
 const STATS = [
   { value: "$42.6B",  label: "IAM market by 2030",                  src: "MarketsandMarkets" },
   { value: "93%",     label: "of breaches involve identity",       src: "Verizon DBIR 2024" },
@@ -201,10 +119,6 @@ const ENGAGE_STEPS = [
   },
 ];
 
-/* ──────────────────────────────────
-   SUB-COMPONENTS
-   ────────────────────────────────── */
-
 function PillarCard({ title, copy, idx }) {
   const [ref, vis] = useReveal(0.18);
   return (
@@ -278,7 +192,7 @@ function CapCard({ icon, title, slug, desc, outcome, idx }) {
   );
 }
 
-function TickerItem({ Logo, site }) {
+function TickerItem({ name, file, site }) {
   const [hov, setHov] = useState(false);
   return (
     <a
@@ -289,18 +203,23 @@ function TickerItem({ Logo, site }) {
       onMouseLeave={() => setHov(false)}
       className="inline-flex items-center justify-center flex-shrink-0"
       style={{
-        width: 148,
-        height: 54,
+        width: 156,
+        height: 56,
         borderRadius: 10,
         border: `1px solid ${hov ? "#2563eb" : "#e2e8f0"}`,
         background: hov ? "#eff6ff" : "#fff",
         boxShadow: hov ? "0 2px 12px rgba(37,99,235,0.12)" : "none",
-        opacity: hov ? 1 : 0.72,
+        opacity: hov ? 1 : 0.75,
         marginRight: 14,
         transition: "all 0.2s",
+        padding: "0 16px",
       }}
     >
-      <Logo />
+      <img 
+        src={`/tools/${file}`} 
+        alt={name}
+        style={{ maxWidth: "100%", maxHeight: "32px", width: "auto", height: "auto" }}
+      />
     </a>
   );
 }
@@ -334,14 +253,10 @@ function EngageNode({ num, title, copy, icon, isLast, idx }) {
   );
 }
 
-/* ──────────────────────────────────
-   PAGE
-   ────────────────────────────────── */
 export default function Capabilities() {
   return (
     <div className="min-h-screen" style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#f8fafc" }}>
 
-      {/* ═══ DARK SUB-HEADER (page-specific, sits below global white Header) ═══ */}
       <div
         className="relative overflow-hidden"
         style={{ background: "linear-gradient(155deg, #1e293b 0%, #334155 60%, #1e3a4a 100%)", paddingTop: 104, paddingBottom: 64 }}
@@ -369,14 +284,12 @@ export default function Capabilities() {
         </div>
       </div>
 
-      {/* ═══ THREE PILLARS — tight 3-col grid, no phantom gap ═══ */}
       <section className="max-w-5xl mx-auto px-5" style={{ paddingTop: 60, paddingBottom: 48 }}>
         <div className="grid grid-cols-3 gap-10">
           {PILLARS.map((p, i) => <PillarCard key={p.title} {...p} idx={i} />)}
         </div>
       </section>
 
-      {/* ═══ CORE CAPABILITIES — no tags ═══ */}
       <section className="max-w-5xl mx-auto px-5" style={{ paddingBottom: 72 }}>
         <div style={{ marginBottom: 32 }}>
           <h2 className="text-slate-900" style={{ fontSize: 24, fontWeight: 700, letterSpacing: "-0.02em", marginBottom: 4 }}>
@@ -389,7 +302,6 @@ export default function Capabilities() {
         </div>
       </section>
 
-      {/* ═══ COMPLIANCE EXPERTISE STRIP ═══ */}
       <section className="bg-white border-t border-b border-slate-200" style={{ padding: "26px 20px" }}>
         <div className="max-w-5xl mx-auto flex items-center justify-center gap-5 flex-wrap">
           <span className="text-slate-500 uppercase tracking-wider whitespace-nowrap" style={{ fontSize: 12, fontWeight: 600 }}>
@@ -405,7 +317,6 @@ export default function Capabilities() {
         </div>
       </section>
 
-      {/* ═══ HOW WE ENGAGE ═══ */}
       <section className="max-w-5xl mx-auto px-5" style={{ paddingTop: 64, paddingBottom: 60 }}>
         <div className="text-center" style={{ marginBottom: 40 }}>
           <h2 className="text-slate-900" style={{ fontSize: 22, fontWeight: 700, letterSpacing: "-0.02em", marginBottom: 5 }}>How we engage</h2>
@@ -434,7 +345,6 @@ export default function Capabilities() {
         </div>
       </section>
 
-      {/* ═══ PLATFORMS TICKER ═══ */}
       <section className="bg-white border-t border-b border-slate-200" style={{ padding: "48px 20px" }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center" style={{ marginBottom: 28 }}>
@@ -453,7 +363,7 @@ export default function Capabilities() {
             }
             .viam-ticker-track {
               display: inline-flex;
-              animation: viam-ticker 35s linear infinite;
+              animation: viam-ticker 40s linear infinite;
             }
             .viam-ticker-track:hover {
               animation-play-state: paused;
@@ -463,14 +373,13 @@ export default function Capabilities() {
           <div className="overflow-hidden rounded-xl border border-slate-200" style={{ background: "#f8fafc" }}>
             <div className="viam-ticker-track" style={{ padding: "12px 0" }}>
               {[...PLATFORMS, ...PLATFORMS].map((p, i) => (
-                <TickerItem key={i} Logo={p.Logo} site={p.site} />
+                <TickerItem key={i} name={p.name} file={p.file} site={p.site} />
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ DARK PRE-FOOTER CTA ═══ */}
       <section className="relative overflow-hidden" style={{ background: "linear-gradient(155deg, #1e293b 0%, #334155 100%)", padding: "64px 20px" }}>
         <div className="absolute" style={{ top: -60, right: -100, width: 320, height: 320, borderRadius: "50%", background: "radial-gradient(circle, rgba(37,99,235,0.13) 0%, transparent 70%)", pointerEvents: "none" }} />
         <div className="max-w-2xl mx-auto text-center relative z-10">
@@ -504,7 +413,6 @@ export default function Capabilities() {
         </div>
       </section>
 
-      {/* <Footer /> rendered by layout wrapper — not duplicated here */}
     </div>
   );
 }
