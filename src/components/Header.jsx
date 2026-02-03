@@ -37,7 +37,7 @@ export default function Header() {
           <img 
             src="/vaultiam-logo.svg" 
             alt="VaultIAM" 
-            className="h-8 w-auto"
+            className="h-11 w-auto"
           />
         </Link>
 

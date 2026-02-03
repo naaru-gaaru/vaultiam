@@ -34,12 +34,12 @@ export default function Footer() {
 
   return (
     <footer className="bg-white border-t border-slate-200">
-      <div className="max-w-6xl mx-auto px-5 pt-12 pb-8 grid grid-cols-12 gap-8">
+      <div className="max-w-6xl mx-auto px-5 pt-10 pb-6 grid grid-cols-12 gap-8">
 
         <div className="col-span-12 md:col-span-5">
           <div className="flex items-center mb-4">
             <img 
-              src="/vaultiam-logo-footer.svg" 
+              src="/vaultiam-logo-no-tag.svg" 
               alt="VaultIAM" 
               className="h-6 w-auto"
             />
@@ -52,7 +52,7 @@ export default function Footer() {
 
         {FOOTER_COLS.map(col => (
           <div key={col.heading} className="col-span-12 md:col-span-2">
-            <h4 className="text-[11px] font-600 text-slate-500 uppercase tracking-wider mb-4" style={{ fontWeight: 600 }}>
+            <h4 className="text-[11px] font-600 text-slate-500 uppercase tracking-wider mb-3.5" style={{ fontWeight: 600 }}>
               {col.heading}
             </h4>
             <ul className="flex flex-col gap-2.5">
