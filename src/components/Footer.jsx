@@ -34,28 +34,28 @@ export default function Footer() {
 
   return (
     <footer className="bg-white border-t border-slate-200">
-      <div className="max-w-6xl mx-auto px-5 pt-6 pb-4 grid grid-cols-12 gap-6">
+      <div className="max-w-6xl mx-auto px-5 pt-5 pb-3 grid grid-cols-12 gap-6">
 
         <div className="col-span-12 md:col-span-5">
-          <div className="flex items-center mb-2">
+          <div className="flex items-center mb-1.5">
             <img 
               src="/vaultiam-logo-no-tag.svg" 
               alt="VaultIAM" 
-              className="h-8 w-auto"
+              className="h-9 w-auto"
             />
           </div>
 
-          <p className="text-[13.5px] text-slate-500 leading-relaxed max-w-xs">
+          <p className="text-[13.5px] text-slate-500 leading-snug max-w-xs">
             Identity-first IAM security services for FinTech, healthcare, and regulated enterprises across North America. We architect, deploy, and operate the identity controls that keep your business secure.
           </p>
         </div>
 
         {FOOTER_COLS.map(col => (
           <div key={col.heading} className="col-span-12 md:col-span-2">
-            <h4 className="text-[11px] font-600 text-slate-500 uppercase tracking-wider mb-2" style={{ fontWeight: 600 }}>
+            <h4 className="text-[11px] font-600 text-slate-500 uppercase tracking-wider mb-1.5" style={{ fontWeight: 600 }}>
               {col.heading}
             </h4>
-            <ul className="flex flex-col gap-1.5">
+            <ul className="flex flex-col gap-1">
               {col.links.map(({ label, to }) => (
                 <li key={label}>
                   <Link
@@ -74,8 +74,8 @@ export default function Footer() {
         ))}
       </div>
 
-      <div className="max-w-6xl mx-auto px-5 pb-3">
-        <div className="border-t border-slate-200 pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <div className="max-w-6xl mx-auto px-5 pb-2.5">
+        <div className="border-t border-slate-200 pt-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <span className="text-[12px] text-slate-400">
             © {year} VaultIAM. All rights reserved.
           </span>

@@ -35,9 +35,9 @@ export default function Header() {
           <img 
             src="/vaultiam-logo-no-tag.svg" 
             alt="VaultIAM" 
-            className="h-8 w-auto mb-0.5"
+            className="h-10 w-auto mb-0.5"
           />
-          <span className="text-[9px] text-slate-500 tracking-wide" style={{ fontWeight: 500, letterSpacing: "0.08em" }}>
+          <span className="text-[9px] text-slate-500 tracking-wide" style={{ fontWeight: 500, letterSpacing: "0.08em", fontFamily: "'Inter', sans-serif" }}>
             Identity-first security
           </span>
         </Link>
