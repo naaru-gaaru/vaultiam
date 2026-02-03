@@ -31,12 +31,15 @@ export default function Header() {
     >
       <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
 
-        <Link to="/" className="flex items-center group">
+        <Link to="/" className="flex flex-col group">
           <img 
-            src="/vaultiam-logo.svg" 
+            src="/vaultiam-logo-no-tag.svg" 
             alt="VaultIAM" 
-            className="h-14 w-auto"
+            className="h-8 w-auto mb-0.5"
           />
+          <span className="text-[9px] text-slate-500 tracking-wide" style={{ fontWeight: 500, letterSpacing: "0.08em" }}>
+            Identity-first security
+          </span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
