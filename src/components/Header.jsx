@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const NAV_LINKS = [
   { label: "Capabilities", href: "/capabilities" },
+  { label: "Customer Stories", href: "/customer-stories" },
   { label: "The VaultIAM Way", href: "/the-vaultiam-way" },
 ];
 
@@ -92,7 +93,7 @@ export default function Header() {
       <div
         className="md:hidden overflow-hidden transition-all duration-300 ease-out"
         style={{
-          maxHeight: menuOpen ? "240px" : "0",
+          maxHeight: menuOpen ? "280px" : "0",
           opacity: menuOpen ? 1 : 0,
         }}
       >

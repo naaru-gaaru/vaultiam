@@ -5,6 +5,7 @@ const FOOTER_COLS = [
     heading: "Company",
     links: [
       { label: "About Us", to: "/about" },
+      { label: "Customer Stories", to: "/customer-stories" },
       { label: "The VaultIAM Way", to: "/the-vaultiam-way" },
       { label: "Blog", to: "/blog" },
     ],
