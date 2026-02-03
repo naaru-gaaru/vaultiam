@@ -86,26 +86,26 @@ function StoryCard({ story, idx }) {
       ref={ref}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      className="bg-white rounded-[14px] flex flex-col group"
+      className="flex flex-col group"
       style={{
+        background: "#f8fafc",
+        borderRadius: 14,
         opacity: vis ? 1 : 0,
-        transform: vis ? "translateY(0)" : "translateY(24px)",
+        transform: vis ? "translateY(0) scale(1)" : "translateY(24px) scale(0.98)",
         transition: `opacity 0.5s ease ${idx * 0.12}s, transform 0.5s ease ${idx * 0.12}s, box-shadow 0.3s, border-color 0.3s`,
         border: `1px solid ${hov ? "#2563eb" : "#e2e8f0"}`,
-        boxShadow: hov ? "0 8px 28px rgba(37,99,235,0.18)" : "0 1px 3px rgba(15,23,42,0.06)",
+        boxShadow: hov ? "0 12px 32px rgba(37,99,235,0.2)" : "0 1px 3px rgba(15,23,42,0.06)",
         overflow: "hidden",
       }}
     >
-      {/* accent stripe */}
       <div className="h-[3px] bg-gradient-to-r from-blue-600 to-blue-500" />
 
       <div className="p-6 flex flex-col flex-grow">
-        {/* icon + sector */}
         <div className="flex items-start justify-between mb-4">
           <div
             className="w-11 h-11 rounded-lg flex items-center justify-center transition-all duration-200"
             style={{
-              background: hov ? "#eff6ff" : "#f1f5f9",
+              background: hov ? "#eff6ff" : "#fff",
               color: hov ? "#1d4ed8" : "#475569",
             }}
           >
@@ -116,34 +116,29 @@ function StoryCard({ story, idx }) {
           </span>
         </div>
 
-        {/* title */}
         <h3 className="text-slate-900 mb-3" style={{ fontSize: 17, fontWeight: 600, lineHeight: 1.3 }}>
           {story.title}
         </h3>
 
-        {/* challenge */}
         <div className="mb-4">
           <div className="text-[11px] font-600 text-slate-400 uppercase tracking-wider mb-1.5" style={{ fontWeight: 600 }}>Challenge</div>
           <p className="text-slate-600" style={{ fontSize: 13, lineHeight: 1.55 }}>{story.challenge}</p>
         </div>
 
-        {/* outcome */}
         <div className="mb-5 flex-grow">
           <div className="text-[11px] font-600 text-slate-400 uppercase tracking-wider mb-1.5" style={{ fontWeight: 600 }}>Outcome</div>
           <p className="text-slate-700" style={{ fontSize: 13.5, lineHeight: 1.6, fontWeight: 500 }}>{story.outcome}</p>
         </div>
 
-        {/* focus areas pills */}
         <div className="flex flex-wrap gap-1.5 mb-4">
           {story.focusAreas.map(area => (
-            <span key={area} className="text-[11px] font-600 text-slate-600 bg-slate-100 px-2 py-1 rounded" style={{ fontWeight: 600 }}>
+            <span key={area} className="text-[11px] font-600 text-slate-600 bg-white px-2 py-1 rounded" style={{ fontWeight: 600 }}>
               {area}
             </span>
           ))}
         </div>
 
-        {/* tools row */}
-        <div className="pt-4 border-t border-slate-100">
+        <div className="pt-4 border-t border-slate-200">
           <div className="text-[10px] font-600 text-slate-400 uppercase tracking-wider mb-2" style={{ fontWeight: 600 }}>Stack</div>
           <div className="flex flex-wrap gap-1.5">
             {story.tools.map(tool => (
@@ -158,9 +153,8 @@ function StoryCard({ story, idx }) {
           </div>
         </div>
 
-        {/* read case study link */}
         <div className="flex items-center gap-1.5 mt-5 text-blue-600" style={{ fontSize: 13, fontWeight: 600 }}>
-          Read case study
+          View client spotlight
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover:translate-x-1">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
           </svg>
@@ -172,9 +166,9 @@ function StoryCard({ story, idx }) {
 
 export default function CustomerStories() {
   return (
-    <div className="min-h-screen" style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#f8fafc" }}>
+    <div className="min-h-screen" style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#fff" }}>
 
-      {/* dark sub-header */}
+      {/* dark sub-header with blue highlight */}
       <div
         className="relative overflow-hidden"
         style={{ background: "linear-gradient(155deg, #1e293b 0%, #334155 60%, #1e3a4a 100%)", paddingTop: 104, paddingBottom: 64 }}
@@ -187,22 +181,22 @@ export default function CustomerStories() {
             Customer stories
           </h1>
           <p className="text-slate-400" style={{ fontSize: 15, maxWidth: 540, lineHeight: 1.7 }}>
-            Real-world identity security outcomes for FinTech, healthcare, and regulated enterprises. Each engagement demonstrates how we architect, deploy, and operate IAM controls that measurably reduce risk while enabling business velocity.
+            Proven outcomes for <span style={{ color: "#3b82f6", fontWeight: 600 }}>regulated enterprises</span>. Each engagement demonstrates how we architect, deploy, and operate IAM controls that measurably reduce risk while enabling business velocity.
           </p>
 
-          {/* stats row */}
+          {/* updated metrics */}
           <div className="flex gap-10 flex-wrap mt-8 pt-6" style={{ borderTop: "1px solid rgba(148,163,184,0.2)" }}>
             <div className="text-center">
-              <div className="text-white" style={{ fontSize: 24, fontWeight: 700, letterSpacing: "-0.02em" }}>4</div>
-              <div className="text-slate-400" style={{ fontSize: 12, fontWeight: 500, marginTop: 3 }}>Case studies</div>
+              <div className="text-white" style={{ fontSize: 24, fontWeight: 700, letterSpacing: "-0.02em" }}>2 Sectors</div>
+              <div className="text-slate-400" style={{ fontSize: 12, fontWeight: 500, marginTop: 3 }}>FinTech + Healthcare</div>
             </div>
             <div className="text-center">
               <div className="text-white" style={{ fontSize: 24, fontWeight: 700, letterSpacing: "-0.02em" }}>100%</div>
               <div className="text-slate-400" style={{ fontSize: 12, fontWeight: 500, marginTop: 3 }}>Compliance-first</div>
             </div>
             <div className="text-center">
-              <div className="text-white" style={{ fontSize: 24, fontWeight: 700, letterSpacing: "-0.02em" }}>Measurable</div>
-              <div className="text-slate-400" style={{ fontSize: 12, fontWeight: 500, marginTop: 3 }}>Risk reduction</div>
+              <div className="text-white" style={{ fontSize: 24, fontWeight: 700, letterSpacing: "-0.02em" }}>90-day</div>
+              <div className="text-slate-400" style={{ fontSize: 12, fontWeight: 500, marginTop: 3 }}>Avg. delivery</div>
             </div>
           </div>
         </div>
