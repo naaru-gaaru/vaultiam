@@ -75,6 +75,14 @@ export default function Footer() {
       </div>
 
       <div className="max-w-6xl mx-auto px-5 pb-2.5">
+        {/* Trademark disclaimer */}
+        <div className="border-t border-slate-200 pt-4 pb-3">
+          <p className="text-[11px] text-slate-400 text-center leading-relaxed max-w-4xl mx-auto">
+            All product names, logos, and brands are property of their respective owners. All company, product, and service names used in this website are for identification purposes only. Use of these names, logos, and brands does not imply endorsement.
+          </p>
+        </div>
+        
+        {/* Copyright line */}
         <div className="border-t border-slate-200 pt-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <span className="text-[12px] text-slate-400">
             © {year} VaultIAM. All rights reserved.

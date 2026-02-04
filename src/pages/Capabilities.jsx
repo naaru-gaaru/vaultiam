@@ -19,74 +19,87 @@ function useReveal(threshold = 0.15) {
 
 function IdentityMeshGraphic() {
   return (
-    <svg width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-25">
-      {/* Central hub node */}
-      <circle cx="130" cy="130" r="8" fill="#1e40af" opacity="0.8" />
+    <svg width="280" height="280" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-35">
+      {/* Central hub node - brighter */}
+      <circle cx="140" cy="140" r="10" fill="#2563eb" opacity="0.9" />
+      <circle cx="140" cy="140" r="10" fill="#60a5fa" opacity="0.5" />
       
-      {/* Inner ring nodes (6 nodes) */}
-      <circle cx="130" cy="70" r="5" fill="#2563eb" opacity="0.6" />
-      <circle cx="182" cy="98" r="5" fill="#2563eb" opacity="0.6" />
-      <circle cx="182" cy="162" r="5" fill="#2563eb" opacity="0.6" />
-      <circle cx="130" cy="190" r="5" fill="#2563eb" opacity="0.6" />
-      <circle cx="78" cy="162" r="5" fill="#2563eb" opacity="0.6" />
-      <circle cx="78" cy="98" r="5" fill="#2563eb" opacity="0.6" />
+      {/* Inner ring nodes (6 nodes) - enhanced visibility */}
+      <circle cx="140" cy="75" r="6" fill="#3b82f6" opacity="0.8" />
+      <circle cx="140" cy="75" r="6" fill="#60a5fa" opacity="0.4" />
       
-      {/* Outer ring nodes (12 nodes) */}
-      <circle cx="130" cy="30" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="165" cy="42" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="195" cy="65" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="218" cy="95" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="230" cy="130" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="218" cy="165" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="195" cy="195" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="165" cy="218" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="130" cy="230" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="95" cy="218" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="65" cy="195" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="42" cy="165" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="30" cy="130" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="42" cy="95" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="65" cy="65" r="3" fill="#3b82f6" opacity="0.4" />
-      <circle cx="95" cy="42" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="198" cy="105" r="6" fill="#3b82f6" opacity="0.8" />
+      <circle cx="198" cy="105" r="6" fill="#60a5fa" opacity="0.4" />
       
-      {/* Central to inner ring connections */}
-      <line x1="130" y1="130" x2="130" y2="70" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
-      <line x1="130" y1="130" x2="182" y2="98" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
-      <line x1="130" y1="130" x2="182" y2="162" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
-      <line x1="130" y1="130" x2="130" y2="190" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
-      <line x1="130" y1="130" x2="78" y2="162" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
-      <line x1="130" y1="130" x2="78" y2="98" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
+      <circle cx="198" cy="175" r="6" fill="#3b82f6" opacity="0.8" />
+      <circle cx="198" cy="175" r="6" fill="#60a5fa" opacity="0.4" />
       
-      {/* Inner ring to outer ring connections (select connections for cleaner look) */}
-      <line x1="130" y1="70" x2="130" y2="30" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="130" y1="70" x2="165" y2="42" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="130" y1="70" x2="95" y2="42" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      <circle cx="140" cy="205" r="6" fill="#3b82f6" opacity="0.8" />
+      <circle cx="140" cy="205" r="6" fill="#60a5fa" opacity="0.4" />
       
-      <line x1="182" y1="98" x2="218" y2="95" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="182" y1="98" x2="195" y2="65" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      <circle cx="82" cy="175" r="6" fill="#3b82f6" opacity="0.8" />
+      <circle cx="82" cy="175" r="6" fill="#60a5fa" opacity="0.4" />
       
-      <line x1="182" y1="162" x2="218" y2="165" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="182" y1="162" x2="230" y2="130" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      <circle cx="82" cy="105" r="6" fill="#3b82f6" opacity="0.8" />
+      <circle cx="82" cy="105" r="6" fill="#60a5fa" opacity="0.4" />
       
-      <line x1="130" y1="190" x2="130" y2="230" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="130" y1="190" x2="165" y2="218" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="130" y1="190" x2="95" y2="218" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      {/* Outer ring nodes (12 nodes) - brighter */}
+      <circle cx="140" cy="30" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="175" cy="42" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="210" cy="70" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="238" cy="105" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="250" cy="140" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="238" cy="175" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="210" cy="210" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="175" cy="238" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="140" cy="250" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="105" cy="238" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="70" cy="210" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="42" cy="175" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="30" cy="140" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="42" cy="105" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="70" cy="70" r="4" fill="#60a5fa" opacity="0.6" />
+      <circle cx="105" cy="42" r="4" fill="#60a5fa" opacity="0.6" />
       
-      <line x1="78" y1="162" x2="42" y2="165" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="78" y1="162" x2="65" y2="195" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      {/* Central to inner ring connections - brighter */}
+      <line x1="140" y1="140" x2="140" y2="75" stroke="#3b82f6" strokeWidth="1.5" opacity="0.5" />
+      <line x1="140" y1="140" x2="198" y2="105" stroke="#3b82f6" strokeWidth="1.5" opacity="0.5" />
+      <line x1="140" y1="140" x2="198" y2="175" stroke="#3b82f6" strokeWidth="1.5" opacity="0.5" />
+      <line x1="140" y1="140" x2="140" y2="205" stroke="#3b82f6" strokeWidth="1.5" opacity="0.5" />
+      <line x1="140" y1="140" x2="82" y2="175" stroke="#3b82f6" strokeWidth="1.5" opacity="0.5" />
+      <line x1="140" y1="140" x2="82" y2="105" stroke="#3b82f6" strokeWidth="1.5" opacity="0.5" />
       
-      <line x1="78" y1="98" x2="42" y2="95" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="78" y1="98" x2="30" y2="130" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      {/* Inner ring to outer ring connections - more visible */}
+      <line x1="140" y1="75" x2="140" y2="30" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      <line x1="140" y1="75" x2="175" y2="42" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      <line x1="140" y1="75" x2="105" y2="42" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
       
-      {/* Cross connections for network effect */}
-      <line x1="182" y1="98" x2="182" y2="162" stroke="#3b82f6" strokeWidth="0.5" opacity="0.15" />
-      <line x1="78" y1="98" x2="78" y2="162" stroke="#3b82f6" strokeWidth="0.5" opacity="0.15" />
-      <line x1="130" y1="70" x2="182" y2="98" stroke="#3b82f6" strokeWidth="0.5" opacity="0.15" />
-      <line x1="182" y1="98" x2="130" y2="70" stroke="#3b82f6" strokeWidth="0.5" opacity="0.15" />
+      <line x1="198" y1="105" x2="238" y2="105" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      <line x1="198" y1="105" x2="210" y2="70" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
       
-      {/* Subtle glow circles */}
-      <circle cx="130" cy="130" r="30" stroke="#3b82f6" strokeWidth="0.5" opacity="0.1" fill="none" />
-      <circle cx="130" cy="130" r="45" stroke="#3b82f6" strokeWidth="0.5" opacity="0.05" fill="none" />
+      <line x1="198" y1="175" x2="238" y2="175" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      <line x1="198" y1="175" x2="250" y2="140" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      
+      <line x1="140" y1="205" x2="140" y2="250" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      <line x1="140" y1="205" x2="175" y2="238" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      <line x1="140" y1="205" x2="105" y2="238" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      
+      <line x1="82" y1="175" x2="42" y2="175" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      <line x1="82" y1="175" x2="70" y2="210" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      
+      <line x1="82" y1="105" x2="42" y2="105" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      <line x1="82" y1="105" x2="30" y2="140" stroke="#60a5fa" strokeWidth="1" opacity="0.35" />
+      
+      {/* Cross connections for network effect - enhanced */}
+      <line x1="198" y1="105" x2="198" y2="175" stroke="#60a5fa" strokeWidth="1" opacity="0.25" />
+      <line x1="82" y1="105" x2="82" y2="175" stroke="#60a5fa" strokeWidth="1" opacity="0.25" />
+      <line x1="140" y1="75" x2="198" y2="105" stroke="#60a5fa" strokeWidth="1" opacity="0.25" />
+      <line x1="198" y1="175" x2="140" y2="205" stroke="#60a5fa" strokeWidth="1" opacity="0.25" />
+      
+      {/* Glow circles - brighter */}
+      <circle cx="140" cy="140" r="35" stroke="#60a5fa" strokeWidth="1" opacity="0.2" fill="none" />
+      <circle cx="140" cy="140" r="50" stroke="#60a5fa" strokeWidth="1" opacity="0.12" fill="none" />
+      <circle cx="140" cy="140" r="70" stroke="#60a5fa" strokeWidth="0.5" opacity="0.08" fill="none" />
     </svg>
   );
 }
@@ -159,6 +172,10 @@ const PLATFORMS = [
   { name: "AWS IAM", logo: "/tools/aws.svg" },
   { name: "Azure AD", logo: "/tools/azure.svg" },
   { name: "HashiCorp", logo: "/tools/hashicorp.svg" },
+  { name: "Wiz", logo: "/tools/wiz.svg" },
+  { name: "Socure", logo: "/tools/socure.svg" },
+  { name: "Auth0", logo: "/tools/auth0.jpg" },
+  { name: "Microsoft Purview", logo: "/tools/purview.webp" },
 ];
 
 function CapabilityCard({ cap, idx }) {
@@ -309,30 +326,76 @@ export default function Capabilities() {
           </p>
         </div>
 
-        <div className="relative flex items-center justify-center gap-6 max-w-3xl mx-auto" style={{ padding: "20px 0" }}>
-          {[
-            { num: "01", label: "Assess", desc: "Identity risk & gap analysis" },
-            { num: "02", label: "Architect", desc: "Design & implementation" },
-            { num: "03", label: "Operate", desc: "Transfer & optimization" },
-          ].map((phase, i) => (
-            <div key={phase.num} className="relative z-10 flex items-center" style={{ flex: "0 0 auto" }}>
-              <div className="flex flex-col items-center">
+        {/* Circular flow diagram */}
+        <div className="relative flex items-center justify-center max-w-2xl mx-auto" style={{ padding: "40px 0", minHeight: "420px" }}>
+          {/* Return arrow path */}
+          <svg className="absolute" width="280" height="380" viewBox="0 0 280 380" style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}>
+            {/* Main flow path */}
+            <path
+              d="M 140 50 L 140 120"
+              stroke="#3b82f6"
+              strokeWidth="2"
+              fill="none"
+              opacity="0.4"
+            />
+            <path
+              d="M 140 180 L 140 250"
+              stroke="#3b82f6"
+              strokeWidth="2"
+              fill="none"
+              opacity="0.4"
+            />
+            
+            {/* Return arrow - curved back to top */}
+            <path
+              d="M 140 310 C 240 310, 240 50, 140 50"
+              stroke="#3b82f6"
+              strokeWidth="2"
+              fill="none"
+              strokeDasharray="4 4"
+              opacity="0.3"
+            />
+            
+            {/* Arrow heads */}
+            <polygon points="140,125 135,115 145,115" fill="#3b82f6" opacity="0.4" />
+            <polygon points="140,255 135,245 145,245" fill="#3b82f6" opacity="0.4" />
+            <polygon points="145,55 140,45 150,50" fill="#3b82f6" opacity="0.3" />
+          </svg>
+
+          {/* Phase boxes positioned in circular flow */}
+          <div className="relative z-10 flex flex-col items-center gap-12">
+            {[
+              { num: "01", label: "Assess", desc: "Identity risk & gap analysis", top: 0 },
+              { num: "02", label: "Architect", desc: "Design & implementation", top: 130 },
+              { num: "03", label: "Operate", desc: "Transfer & optimization", top: 260 },
+            ].map((phase, i) => (
+              <div
+                key={phase.num}
+                className="flex flex-col items-center"
+                style={{
+                  position: i === 0 ? "relative" : "absolute",
+                  top: i > 0 ? `${phase.top}px` : "auto",
+                }}
+              >
                 <div
-                  className="w-16 h-16 rounded-lg bg-white border-2 border-blue-600 flex items-center justify-center mb-3"
+                  className="w-28 h-28 rounded-xl bg-white border-2 border-blue-600 flex flex-col items-center justify-center mb-3 transition-all duration-200 hover:shadow-lg"
                   style={{ boxShadow: "0 2px 12px rgba(37,99,235,0.2)" }}
                 >
-                  <span className="text-blue-600" style={{ fontSize: 15, fontWeight: 700 }}>{phase.num}</span>
+                  <span className="text-blue-600 mb-1" style={{ fontSize: 16, fontWeight: 700 }}>{phase.num}</span>
+                  <span className="text-slate-900" style={{ fontSize: 15, fontWeight: 600 }}>{phase.label}</span>
                 </div>
-                <div className="text-slate-900 mb-1" style={{ fontSize: 15, fontWeight: 600 }}>{phase.label}</div>
-                <div className="text-slate-500 text-center" style={{ fontSize: 12, maxWidth: 120 }}>{phase.desc}</div>
+                <div className="text-slate-500 text-center" style={{ fontSize: 12, maxWidth: 140 }}>{phase.desc}</div>
               </div>
-              {i < 2 && (
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mx-4" style={{ marginTop: -40 }}>
-                  <polyline points="9 18 15 12 9 6"/>
-                </svg>
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Cycle label */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 text-slate-400 flex items-center gap-2" style={{ fontSize: 11, fontWeight: 500 }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+            </svg>
+            Continuous
+          </div>
         </div>
 
         <div className="text-center mt-8">
@@ -365,23 +428,23 @@ export default function Capabilities() {
         <div
           className="relative overflow-hidden"
           style={{
-            WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-            maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+            WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+            maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
           }}
         >
           <div
-            className="flex items-center gap-12"
+            className="flex items-center gap-16"
             style={{
-              animation: "marquee 25s linear infinite",
-              paddingLeft: "100%",
+              animation: "scroll-ticker 30s linear infinite",
+              width: "fit-content",
             }}
           >
-            {[...PLATFORMS, ...PLATFORMS, ...PLATFORMS].map((platform, i) => (
+            {[...PLATFORMS, ...PLATFORMS].map((platform, i) => (
               <div key={`${platform.name}-${i}`} className="flex-shrink-0">
                 <img
                   src={platform.logo}
                   alt={platform.name}
-                  className="h-10 w-auto opacity-60 hover:opacity-100 transition-opacity duration-200"
+                  className="h-9 w-auto opacity-60 hover:opacity-100 transition-opacity duration-200"
                   style={{ mixBlendMode: "darken" }}
                 />
               </div>
@@ -390,9 +453,13 @@ export default function Capabilities() {
         </div>
 
         <style>{`
-          @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-66.67%); }
+          @keyframes scroll-ticker {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
           }
         `}</style>
       </section>
