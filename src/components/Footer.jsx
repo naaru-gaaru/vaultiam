@@ -77,8 +77,8 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-5 pb-2.5">
         {/* Trademark disclaimer */}
         <div className="border-t border-slate-200 pt-4 pb-3">
-          <p className="text-[11px] text-slate-400 text-center leading-relaxed max-w-4xl mx-auto">
-            All product names, logos, and brands are property of their respective owners. All company, product, and service names used in this website are for identification purposes only. Use of these names, logos, and brands does not imply endorsement.
+          <p className="text-[10px] text-slate-400 text-center leading-relaxed max-w-4xl mx-auto">
+            Company logos are trademarks or registered trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
           </p>
         </div>
         

@@ -326,59 +326,30 @@ export default function Capabilities() {
           </p>
         </div>
 
-        {/* Circular flow diagram */}
-        <div className="relative flex items-center justify-center max-w-2xl mx-auto" style={{ padding: "40px 0", minHeight: "420px" }}>
-          {/* Return arrow path */}
-          <svg className="absolute" width="280" height="380" viewBox="0 0 280 380" style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}>
-            {/* Main flow path */}
+        <div className="relative flex items-center justify-center max-w-4xl mx-auto" style={{ padding: "30px 0" }}>
+          {/* Pulse/heartbeat connection line */}
+          <svg className="absolute" width="100%" height="80" style={{ top: "50%", left: 0, transform: "translateY(-50%)", zIndex: 0 }}>
             <path
-              d="M 140 50 L 140 120"
+              d="M 0 40 L 180 40 Q 200 20, 220 40 T 260 40 L 440 40 Q 460 20, 480 40 T 520 40 L 700 40"
               stroke="#3b82f6"
               strokeWidth="2"
               fill="none"
               opacity="0.4"
             />
-            <path
-              d="M 140 180 L 140 250"
-              stroke="#3b82f6"
-              strokeWidth="2"
-              fill="none"
-              opacity="0.4"
-            />
-            
-            {/* Return arrow - curved back to top */}
-            <path
-              d="M 140 310 C 240 310, 240 50, 140 50"
-              stroke="#3b82f6"
-              strokeWidth="2"
-              fill="none"
-              strokeDasharray="4 4"
-              opacity="0.3"
-            />
-            
-            {/* Arrow heads */}
-            <polygon points="140,125 135,115 145,115" fill="#3b82f6" opacity="0.4" />
-            <polygon points="140,255 135,245 145,245" fill="#3b82f6" opacity="0.4" />
-            <polygon points="145,55 140,45 150,50" fill="#3b82f6" opacity="0.3" />
+            {/* Arrow head at end */}
+            <polygon points="695,35 705,40 695,45" fill="#3b82f6" opacity="0.4" />
           </svg>
 
-          {/* Phase boxes positioned in circular flow */}
-          <div className="relative z-10 flex flex-col items-center gap-12">
+          {/* Phase cards */}
+          <div className="relative z-10 flex items-center justify-between w-full max-w-3xl">
             {[
-              { num: "01", label: "Assess", desc: "Identity risk & gap analysis", top: 0 },
-              { num: "02", label: "Architect", desc: "Design & implementation", top: 130 },
-              { num: "03", label: "Operate", desc: "Transfer & optimization", top: 260 },
+              { num: "01", label: "Assess", desc: "Identity risk & gap analysis" },
+              { num: "02", label: "Architect", desc: "Design & implementation" },
+              { num: "03", label: "Operate", desc: "Transfer & optimization" },
             ].map((phase, i) => (
-              <div
-                key={phase.num}
-                className="flex flex-col items-center"
-                style={{
-                  position: i === 0 ? "relative" : "absolute",
-                  top: i > 0 ? `${phase.top}px` : "auto",
-                }}
-              >
+              <div key={phase.num} className="flex flex-col items-center" style={{ flex: "0 0 auto" }}>
                 <div
-                  className="w-28 h-28 rounded-xl bg-white border-2 border-blue-600 flex flex-col items-center justify-center mb-3 transition-all duration-200 hover:shadow-lg"
+                  className="w-32 h-24 rounded-xl bg-white border-2 border-blue-600 flex flex-col items-center justify-center mb-3 transition-all duration-200 hover:shadow-lg"
                   style={{ boxShadow: "0 2px 12px rgba(37,99,235,0.2)" }}
                 >
                   <span className="text-blue-600 mb-1" style={{ fontSize: 16, fontWeight: 700 }}>{phase.num}</span>
@@ -387,14 +358,6 @@ export default function Capabilities() {
                 <div className="text-slate-500 text-center" style={{ fontSize: 12, maxWidth: 140 }}>{phase.desc}</div>
               </div>
             ))}
-          </div>
-
-          {/* Cycle label */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 text-slate-400 flex items-center gap-2" style={{ fontSize: 11, fontWeight: 500 }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
-            </svg>
-            Continuous
           </div>
         </div>
 
