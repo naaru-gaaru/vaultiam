@@ -640,9 +640,9 @@ export default function VaultIAMWay() {
           <DifferentiationMatrix />
 
           <div className="grid md:grid-cols-2 gap-8 mt-12">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 pb-6">
-              <h3 className="text-slate-900 mb-6" style={{ fontSize: 20, fontWeight: 700 }}>What Sets Us Apart</h3>
-              <div className="space-y-4">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6">
+              <h3 className="text-slate-900 mb-5" style={{ fontSize: 20, fontWeight: 700 }}>What Sets Us Apart</h3>
+              <div className="space-y-3.5">
                 {[
                   { text: "100% dedicated to identity security (not a service line)", icon: <><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></> },
                   { text: "FinTech & Healthcare sector expertise (not all industries)", icon: <><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></> },
@@ -657,55 +657,55 @@ export default function VaultIAMWay() {
                         {item.icon}
                       </svg>
                     </div>
-                    <span className="text-slate-700" style={{ fontSize: 15, lineHeight: 1.6, fontWeight: 500 }}>{item.text}</span>
+                    <span className="text-slate-700" style={{ fontSize: 14, lineHeight: 1.5, fontWeight: 500 }}>{item.text}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="space-y-6">
-              <div className="bg-white rounded-xl p-6 border-2 border-blue-200 h-full flex flex-col justify-center">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <div className="space-y-4">
+              <div className="bg-white rounded-xl p-5 border-2 border-blue-200">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/>
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-slate-900 mb-1" style={{ fontSize: 16, fontWeight: 700 }}>No Vendor Lock-In</h4>
-                    <p className="text-slate-600" style={{ fontSize: 14, lineHeight: 1.6 }}>
+                    <h4 className="text-slate-900 mb-1" style={{ fontSize: 15, fontWeight: 700 }}>No Vendor Lock-In</h4>
+                    <p className="text-slate-600" style={{ fontSize: 13, lineHeight: 1.6 }}>
                       We empower you with knowledge and operational controls. You're not dependent on us after engagement ends.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-6 border-2 border-green-200 h-full flex flex-col justify-center">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="bg-white rounded-xl p-5 border-2 border-green-200">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-slate-900 mb-1" style={{ fontSize: 16, fontWeight: 700 }}>Tangible Outcomes</h4>
-                    <p className="text-slate-600" style={{ fontSize: 14, lineHeight: 1.6 }}>
+                    <h4 className="text-slate-900 mb-1" style={{ fontSize: 15, fontWeight: 700 }}>Tangible Outcomes</h4>
+                    <p className="text-slate-600" style={{ fontSize: 13, lineHeight: 1.6 }}>
                       Near-zero standing privileges. Full NHI visibility. SOC2/PCI/HIPAA alignment. Quantifiable risk reduction.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-6 border-2 border-purple-200 h-full flex flex-col justify-center">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="bg-white rounded-xl p-5 border-2 border-purple-200">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-purple-50 flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/>
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-slate-900 mb-1" style={{ fontSize: 16, fontWeight: 700 }}>Future-Ready</h4>
-                    <p className="text-slate-600" style={{ fontSize: 14, lineHeight: 1.6 }}>
+                    <h4 className="text-slate-900 mb-1" style={{ fontSize: 15, fontWeight: 700 }}>Future-Ready</h4>
+                    <p className="text-slate-600" style={{ fontSize: 13, lineHeight: 1.6 }}>
                       We track emerging threats: post-quantum crypto, decentralized identity, agentic AI. You'll be ready.
                     </p>
                   </div>
@@ -722,8 +722,8 @@ export default function VaultIAMWay() {
         className="relative overflow-hidden"
         style={{
           background: "linear-gradient(155deg, #1e293b 0%, #334155 60%, #1e3a4a 100%)",
-          paddingTop: 104,
-          paddingBottom: 64,
+          paddingTop: 80,
+          paddingBottom: 50,
           opacity: whyVis ? 1 : 0,
           transform: whyVis ? "translateY(0)" : "translateY(30px)",
           transition: "opacity 0.8s ease, transform 0.8s ease",
@@ -731,34 +731,32 @@ export default function VaultIAMWay() {
       >
         <div className="absolute" style={{ top: -100, right: -140, width: 460, height: 460, borderRadius: "50%", background: "radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 68%)", pointerEvents: "none" }} />
         
-        <div className="relative z-10 max-w-6xl mx-auto px-5">
-          <div className="max-w-3xl">
-            <h2 className="text-white mb-4" style={{ fontSize: "clamp(28px, 4.5vw, 42px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.15 }}>
-              Identity is the New Perimeter
-            </h2>
-            <p className="text-slate-300 mb-8" style={{ fontSize: 15, lineHeight: 1.7, maxWidth: 620 }}>
-              The IAM market is projected to grow from <strong>$26B in 2025 to $42B by 2030</strong>. Organizations are scrambling to secure identities before the next breach. The question isn't if you'll invest in identity security — it's whether you'll do it proactively or after an incident.
-            </p>
+        <div className="relative z-10 max-w-4xl mx-auto px-5 text-center">
+          <h2 className="text-white mb-4" style={{ fontSize: "clamp(28px, 4.5vw, 42px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.15 }}>
+            Identity is the New Perimeter
+          </h2>
+          <p className="text-slate-300 mb-6 max-w-2xl mx-auto" style={{ fontSize: 15, lineHeight: 1.7 }}>
+            The IAM market is projected to grow from <strong>$26B in 2025 to $42B by 2030</strong>. Organizations are scrambling to secure identities before the next breach. The question isn't if you'll invest in identity security — it's whether you'll do it proactively or after an incident.
+          </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-slate-600">
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors"
-                style={{ fontSize: 14, fontWeight: 600 }}
-              >
-                Start a Conversation
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-                </svg>
-              </Link>
-              <Link
-                to="/customer-stories"
-                className="inline-flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-lg transition-colors"
-                style={{ fontSize: 14, fontWeight: 600 }}
-              >
-                See Client Results
-              </Link>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors"
+              style={{ fontSize: 14, fontWeight: 600 }}
+            >
+              Start a Conversation
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </Link>
+            <Link
+              to="/customer-stories"
+              className="inline-flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-lg transition-colors"
+              style={{ fontSize: 14, fontWeight: 600 }}
+            >
+              See Client Results
+            </Link>
           </div>
         </div>
       </section>

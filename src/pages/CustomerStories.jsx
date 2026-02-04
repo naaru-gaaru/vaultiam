@@ -222,32 +222,38 @@ export default function CustomerStories() {
         <div className="absolute" style={{ top: -100, right: -140, width: 460, height: 460, borderRadius: "50%", background: "radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 68%)", pointerEvents: "none" }} />
         <div className="absolute" style={{ bottom: -70, left: -60, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-        {/* Success pattern diagram - positioned right */}
+        {/* Customer success journey diagram - positioned right */}
         <div className="absolute right-10 top-1/2 -translate-y-1/2 hidden lg:block">
-          <svg width="280" height="140" viewBox="0 0 280 140" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-30">
-            {/* Challenge node (left - red) */}
-            <circle cx="40" cy="70" r="20" fill="none" stroke="#ef4444" strokeWidth="2" opacity="0.6" />
-            <path d="M 40 60 L 40 80 M 30 70 L 50 70" stroke="#ef4444" strokeWidth="2" opacity="0.6" />
+          <svg width="300" height="180" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-30">
+            {/* 4 customer success nodes arranged in arc */}
+            {[
+              { x: 60, y: 120, sector: "FT" },
+              { x: 120, y: 60, sector: "HC" },
+              { x: 180, y: 60, sector: "FT" },
+              { x: 240, y: 120, sector: "HC" }
+            ].map((node, i) => (
+              <g key={i}>
+                <circle cx={node.x} cy={node.y} r="18" fill="#1e40af" opacity="0.6" />
+                <circle cx={node.x} cy={node.y} r="18" fill="#3b82f6" opacity="0.3" />
+                <text x={node.x} y={node.y + 4} textAnchor="middle" fill="#fff" fontSize="10" fontWeight="600">{node.sector}</text>
+                {/* Checkmark */}
+                <circle cx={node.x + 12} cy={node.y - 12} r="6" fill="#60a5fa" opacity="0.8" />
+                <polyline points={`${node.x + 9},${node.y - 12} ${node.x + 11},${node.y - 10} ${node.x + 15},${node.y - 14}`} stroke="#fff" strokeWidth="1.5" fill="none" />
+              </g>
+            ))}
             
-            {/* Arrow 1 */}
-            <path d="M 65 70 L 105 70" stroke="#60a5fa" strokeWidth="2" opacity="0.5" />
-            <polygon points="105,65 115,70 105,75" fill="#60a5fa" opacity="0.5" />
+            {/* Connection lines showing network */}
+            <path d="M 78 115 L 102 65" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
+            <path d="M 138 65 L 162 65" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
+            <path d="M 198 65 L 222 115" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
+            <path d="M 78 125 L 222 125" stroke="#3b82f6" strokeWidth="1" opacity="0.3" strokeDasharray="3 3" />
             
-            {/* VaultIAM node (center - blue) */}
-            <circle cx="140" cy="70" r="24" fill="#2563eb" opacity="0.7" />
-            <circle cx="140" cy="70" r="24" fill="#60a5fa" opacity="0.3" />
-            <text x="140" y="75" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="600">IAM</text>
+            {/* Central "VaultIAM" node */}
+            <circle cx="150" cy="90" r="12" fill="#2563eb" opacity="0.7" />
+            <circle cx="150" cy="90" r="20" stroke="#60a5fa" strokeWidth="1" opacity="0.2" fill="none" />
             
-            {/* Arrow 2 */}
-            <path d="M 165 70 L 205 70" stroke="#60a5fa" strokeWidth="2" opacity="0.5" />
-            <polygon points="205,65 215,70 205,75" fill="#60a5fa" opacity="0.5" />
-            
-            {/* Outcome node (right - green) */}
-            <circle cx="240" cy="70" r="20" fill="none" stroke="#10b981" strokeWidth="2" opacity="0.6" />
-            <polyline points="230,70 236,76 250,62" stroke="#10b981" strokeWidth="2.5" fill="none" opacity="0.6" />
-            
-            {/* Glow effects */}
-            <circle cx="140" cy="70" r="35" stroke="#60a5fa" strokeWidth="0.5" opacity="0.15" fill="none" />
+            {/* Glow effect */}
+            <circle cx="150" cy="90" r="50" stroke="#60a5fa" strokeWidth="0.5" opacity="0.1" fill="none" />
           </svg>
         </div>
 
