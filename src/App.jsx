@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Capabilities from "./pages/Capabilities";
 import CustomerStories from "./pages/CustomerStories";
+import VaultIAMWay from "./pages/VaultIAMWay";
 import Contact from "./pages/Contact";
 
 // Import the 4 case study pages
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="customer-stories/synthetic-identity-fraud-fintech" element={<SyntheticIdentityFraudCase />} />
         <Route path="customer-stories/jit-privileged-access-fintech" element={<JITPrivilegedAccessCase />} />
         <Route path="customer-stories/shadow-ai-api-keys-healthtech" element={<ShadowAICase />} />
+        <Route path="/the-vaultiam-way" element={<VaultIAMWay />} />
         <Route path="contact" element={<Contact />} />
       </Route>
     </Routes>
