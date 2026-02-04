@@ -139,8 +139,8 @@ export default function SyntheticIdentityFraudCase() {
           <h2 className="text-slate-900 mb-4" style={{ fontSize: 22, fontWeight: 700, letterSpacing: "-0.02em" }}>The Stack</h2>
           <div className="grid sm:grid-cols-3 gap-4">
             {[
-              { name: "Okta Customer Identity", desc: "Auth0 CIAM", logo: "/tools/okta.svg" },
-              { name: "Socure", desc: "Identity verification", logo: "/tools/okta.svg" },
+              { name: "Okta Customer Identity", desc: "Auth0 CIAM", logo: "/tools/auth0.jpg" },
+              { name: "Socure", desc: "Identity verification", logo: "/tools/socure.svg" },
               { name: "Okta Actions", desc: "Orchestration", logo: "/tools/okta.svg" },
             ].map(tool => (
               <div key={tool.name} className="bg-slate-50 rounded-lg p-4 border border-slate-200 flex flex-col items-center text-center">

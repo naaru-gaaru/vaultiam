@@ -149,7 +149,7 @@ export default function AIWorkloadIdentitiesCase() {
             {[
               { name: "Microsoft Entra ID", desc: "Workload Identities", logo: "/tools/entra.svg" },
               { name: "Entra ID Protection", desc: "ITDR", logo: "/tools/entra.svg" },
-              { name: "Microsoft Purview", desc: "Data governance", logo: "/tools/azure.svg" },
+              { name: "Microsoft Purview", desc: "Data governance", logo: "/tools/purview.webp" },
             ].map(tool => (
               <div key={tool.name} className="bg-slate-50 rounded-lg p-4 border border-slate-200 flex flex-col items-center text-center">
                 <img src={tool.logo} alt={tool.name} className="h-8 w-auto mb-3 opacity-70" style={{ mixBlendMode: "darken" }} />

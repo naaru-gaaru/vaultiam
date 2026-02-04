@@ -178,10 +178,10 @@ export default function CustomerStories() {
 
         <div className="max-w-5xl mx-auto px-5 relative z-10">
           <h1 className="text-white" style={{ fontSize: "clamp(28px, 4.5vw, 42px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.15, maxWidth: 580, marginBottom: 16 }}>
-            Customer stories
+            Proven outcomes for <span style={{ color: "#3b82f6" }}>regulated enterprises</span>
           </h1>
           <p className="text-slate-400" style={{ fontSize: 15, maxWidth: 540, lineHeight: 1.7 }}>
-            Proven outcomes for <span style={{ color: "#3b82f6", fontWeight: 600 }}>regulated enterprises</span>. Each engagement demonstrates how we architect, deploy, and operate IAM controls that measurably reduce risk while enabling business velocity.
+            Real-world identity security outcomes for FinTech, healthcare, and regulated enterprises. Each engagement demonstrates how we architect, deploy, and operate IAM controls that measurably reduce risk while enabling business velocity.
           </p>
 
           {/* updated metrics */}

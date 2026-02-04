@@ -141,7 +141,7 @@ export default function ShadowAICase() {
             {[
               { name: "CyberArk Privilege Cloud", desc: "Secrets vault", logo: "/tools/cyberark.svg" },
               { name: "CyberArk Secrets Manager", desc: "Secure injection", logo: "/tools/cyberark.svg" },
-              { name: "Wiz", desc: "CIEM discovery", logo: "/tools/cyberark.svg" },
+              { name: "Wiz", desc: "CIEM discovery", logo: "/tools/wiz.svg" },
             ].map(tool => (
               <div key={tool.name} className="bg-slate-50 rounded-lg p-4 border border-slate-200 flex flex-col items-center text-center">
                 <img src={tool.logo} alt={tool.name} className="h-8 w-auto mb-3 opacity-70" style={{ mixBlendMode: "darken" }} />

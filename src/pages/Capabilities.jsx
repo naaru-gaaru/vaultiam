@@ -19,39 +19,74 @@ function useReveal(threshold = 0.15) {
 
 function IdentityMeshGraphic() {
   return (
-    <svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-30">
-      {/* Central node */}
-      <circle cx="120" cy="120" r="6" fill="#1e40af" />
+    <svg width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-25">
+      {/* Central hub node */}
+      <circle cx="130" cy="130" r="8" fill="#1e40af" opacity="0.8" />
       
-      {/* Orbital nodes */}
-      <circle cx="80" cy="60" r="4" fill="#2563eb" />
-      <circle cx="160" cy="60" r="4" fill="#2563eb" />
-      <circle cx="180" cy="120" r="4" fill="#2563eb" />
-      <circle cx="160" cy="180" r="4" fill="#2563eb" />
-      <circle cx="80" cy="180" r="4" fill="#2563eb" />
-      <circle cx="40" cy="120" r="4" fill="#2563eb" />
+      {/* Inner ring nodes (6 nodes) */}
+      <circle cx="130" cy="70" r="5" fill="#2563eb" opacity="0.6" />
+      <circle cx="182" cy="98" r="5" fill="#2563eb" opacity="0.6" />
+      <circle cx="182" cy="162" r="5" fill="#2563eb" opacity="0.6" />
+      <circle cx="130" cy="190" r="5" fill="#2563eb" opacity="0.6" />
+      <circle cx="78" cy="162" r="5" fill="#2563eb" opacity="0.6" />
+      <circle cx="78" cy="98" r="5" fill="#2563eb" opacity="0.6" />
       
-      {/* Connection lines */}
-      <line x1="120" y1="120" x2="80" y2="60" stroke="#3b82f6" strokeWidth="1" opacity="0.4" />
-      <line x1="120" y1="120" x2="160" y2="60" stroke="#3b82f6" strokeWidth="1" opacity="0.4" />
-      <line x1="120" y1="120" x2="180" y2="120" stroke="#3b82f6" strokeWidth="1" opacity="0.4" />
-      <line x1="120" y1="120" x2="160" y2="180" stroke="#3b82f6" strokeWidth="1" opacity="0.4" />
-      <line x1="120" y1="120" x2="80" y2="180" stroke="#3b82f6" strokeWidth="1" opacity="0.4" />
-      <line x1="120" y1="120" x2="40" y2="120" stroke="#3b82f6" strokeWidth="1" opacity="0.4" />
+      {/* Outer ring nodes (12 nodes) */}
+      <circle cx="130" cy="30" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="165" cy="42" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="195" cy="65" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="218" cy="95" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="230" cy="130" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="218" cy="165" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="195" cy="195" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="165" cy="218" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="130" cy="230" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="95" cy="218" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="65" cy="195" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="42" cy="165" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="30" cy="130" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="42" cy="95" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="65" cy="65" r="3" fill="#3b82f6" opacity="0.4" />
+      <circle cx="95" cy="42" r="3" fill="#3b82f6" opacity="0.4" />
       
-      {/* Outer ring connections */}
-      <line x1="80" y1="60" x2="160" y2="60" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="160" y1="60" x2="180" y2="120" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="180" y1="120" x2="160" y2="180" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="160" y1="180" x2="80" y2="180" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="80" y1="180" x2="40" y2="120" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
-      <line x1="40" y1="120" x2="80" y2="60" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      {/* Central to inner ring connections */}
+      <line x1="130" y1="130" x2="130" y2="70" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
+      <line x1="130" y1="130" x2="182" y2="98" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
+      <line x1="130" y1="130" x2="182" y2="162" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
+      <line x1="130" y1="130" x2="130" y2="190" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
+      <line x1="130" y1="130" x2="78" y2="162" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
+      <line x1="130" y1="130" x2="78" y2="98" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
       
-      {/* Subtle pulse animation circles */}
-      <circle cx="120" cy="120" r="20" stroke="#3b82f6" strokeWidth="0.5" opacity="0.15" fill="none">
-        <animate attributeName="r" from="20" to="40" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="opacity" from="0.15" to="0" dur="3s" repeatCount="indefinite" />
-      </circle>
+      {/* Inner ring to outer ring connections (select connections for cleaner look) */}
+      <line x1="130" y1="70" x2="130" y2="30" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      <line x1="130" y1="70" x2="165" y2="42" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      <line x1="130" y1="70" x2="95" y2="42" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      
+      <line x1="182" y1="98" x2="218" y2="95" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      <line x1="182" y1="98" x2="195" y2="65" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      
+      <line x1="182" y1="162" x2="218" y2="165" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      <line x1="182" y1="162" x2="230" y2="130" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      
+      <line x1="130" y1="190" x2="130" y2="230" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      <line x1="130" y1="190" x2="165" y2="218" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      <line x1="130" y1="190" x2="95" y2="218" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      
+      <line x1="78" y1="162" x2="42" y2="165" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      <line x1="78" y1="162" x2="65" y2="195" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      
+      <line x1="78" y1="98" x2="42" y2="95" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      <line x1="78" y1="98" x2="30" y2="130" stroke="#3b82f6" strokeWidth="0.5" opacity="0.2" />
+      
+      {/* Cross connections for network effect */}
+      <line x1="182" y1="98" x2="182" y2="162" stroke="#3b82f6" strokeWidth="0.5" opacity="0.15" />
+      <line x1="78" y1="98" x2="78" y2="162" stroke="#3b82f6" strokeWidth="0.5" opacity="0.15" />
+      <line x1="130" y1="70" x2="182" y2="98" stroke="#3b82f6" strokeWidth="0.5" opacity="0.15" />
+      <line x1="182" y1="98" x2="130" y2="70" stroke="#3b82f6" strokeWidth="0.5" opacity="0.15" />
+      
+      {/* Subtle glow circles */}
+      <circle cx="130" cy="130" r="30" stroke="#3b82f6" strokeWidth="0.5" opacity="0.1" fill="none" />
+      <circle cx="130" cy="130" r="45" stroke="#3b82f6" strokeWidth="0.5" opacity="0.05" fill="none" />
     </svg>
   );
 }
@@ -210,7 +245,7 @@ export default function Capabilities() {
 
         <div className="max-w-5xl mx-auto px-5 relative z-10">
           <h1 className="text-white" style={{ fontSize: "clamp(28px, 4.5vw, 42px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.15, maxWidth: 580, marginBottom: 16 }}>
-            IAM security services built for identity-first outcomes
+            IAM security services built for <span style={{ color: "#3b82f6" }}>identity-first</span> outcomes
           </h1>
           <p className="text-slate-400" style={{ fontSize: 15, maxWidth: 540, lineHeight: 1.7 }}>
             We architect, deploy, and operate the identity controls that protect FinTech and healthcare organizations across North America — without vendor lock-in or infrastructure bloat.
@@ -222,11 +257,11 @@ export default function Capabilities() {
               <div className="text-slate-400" style={{ fontSize: 12, fontWeight: 500, marginTop: 3 }}>Core services</div>
             </div>
             <div className="text-center">
-              <div className="text-white" style={{ fontSize: 24, fontWeight: 700, letterSpacing: "-0.02em" }}>Proven</div>
-              <div className="text-slate-400" style={{ fontSize: 12, fontWeight: 500, marginTop: 3 }}>Frameworks</div>
+              <div className="text-white" style={{ fontSize: 24, fontWeight: 700, letterSpacing: "-0.02em" }}>15+ years</div>
+              <div className="text-slate-400" style={{ fontSize: 12, fontWeight: 500, marginTop: 3 }}>Combined expertise</div>
             </div>
             <div className="text-center">
-              <div className="text-white" style={{ fontSize: 24, fontWeight: 700, letterSpacing: "-0.02em" }}>US / Canada</div>
+              <div className="text-white" style={{ fontSize: 24, fontWeight: 700, letterSpacing: "-0.02em" }}>US & Canada</div>
               <div className="text-slate-400" style={{ fontSize: 12, fontWeight: 500, marginTop: 3 }}>Focus regions</div>
             </div>
           </div>
@@ -274,23 +309,28 @@ export default function Capabilities() {
           </p>
         </div>
 
-        <div className="relative flex items-center justify-between max-w-2xl mx-auto" style={{ padding: "20px 0" }}>
-          <div className="absolute left-0 right-0 top-1/2 h-[2px] bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600" style={{ zIndex: 0 }} />
-
+        <div className="relative flex items-center justify-center gap-6 max-w-3xl mx-auto" style={{ padding: "20px 0" }}>
           {[
             { num: "01", label: "Assess", desc: "Identity risk & gap analysis" },
             { num: "02", label: "Architect", desc: "Design & implementation" },
             { num: "03", label: "Operate", desc: "Transfer & optimization" },
           ].map((phase, i) => (
-            <div key={phase.num} className="relative z-10 flex flex-col items-center" style={{ flex: "0 0 auto" }}>
-              <div
-                className="w-14 h-14 rounded-full bg-white border-2 border-blue-600 flex items-center justify-center mb-3"
-                style={{ boxShadow: "0 2px 12px rgba(37,99,235,0.2)" }}
-              >
-                <span className="text-blue-600" style={{ fontSize: 15, fontWeight: 700 }}>{phase.num}</span>
+            <div key={phase.num} className="relative z-10 flex items-center" style={{ flex: "0 0 auto" }}>
+              <div className="flex flex-col items-center">
+                <div
+                  className="w-16 h-16 rounded-lg bg-white border-2 border-blue-600 flex items-center justify-center mb-3"
+                  style={{ boxShadow: "0 2px 12px rgba(37,99,235,0.2)" }}
+                >
+                  <span className="text-blue-600" style={{ fontSize: 15, fontWeight: 700 }}>{phase.num}</span>
+                </div>
+                <div className="text-slate-900 mb-1" style={{ fontSize: 15, fontWeight: 600 }}>{phase.label}</div>
+                <div className="text-slate-500 text-center" style={{ fontSize: 12, maxWidth: 120 }}>{phase.desc}</div>
               </div>
-              <div className="text-slate-900 mb-1" style={{ fontSize: 15, fontWeight: 600 }}>{phase.label}</div>
-              <div className="text-slate-500 text-center" style={{ fontSize: 12, maxWidth: 120 }}>{phase.desc}</div>
+              {i < 2 && (
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mx-4" style={{ marginTop: -40 }}>
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              )}
             </div>
           ))}
         </div>
@@ -332,11 +372,11 @@ export default function Capabilities() {
           <div
             className="flex items-center gap-12"
             style={{
-              animation: "marquee 40s linear infinite",
+              animation: "marquee 25s linear infinite",
               paddingLeft: "100%",
             }}
           >
-            {[...PLATFORMS, ...PLATFORMS].map((platform, i) => (
+            {[...PLATFORMS, ...PLATFORMS, ...PLATFORMS].map((platform, i) => (
               <div key={`${platform.name}-${i}`} className="flex-shrink-0">
                 <img
                   src={platform.logo}
@@ -352,7 +392,7 @@ export default function Capabilities() {
         <style>{`
           @keyframes marquee {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-66.67%); }
           }
         `}</style>
       </section>
