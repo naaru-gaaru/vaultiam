@@ -24,6 +24,9 @@ const STORIES = [
     sector: "Healthcare / HealthTech",
     challenge: "AI agent abuse, indirect prompt injection, lateral movement",
     outcome: "Real-time detection of anomalous AI behavior with zero standing access to patient data",
+    metrics: { before: "48hr manual reviews", after: "< 5min detection", improvement: "98% faster" },
+    timeline: "8-week delivery",
+    impact: "High",
     focusAreas: ["IAM", "ITDR", "Non-Human Identities"],
     tools: ["Microsoft Entra ID", "Entra ID Protection", "Microsoft Purview"],
     icon: (
@@ -38,6 +41,9 @@ const STORIES = [
     sector: "FinTech / Neobank",
     challenge: "Deepfake-driven synthetic identity onboarding bypassing basic KYC",
     outcome: "Significant reduction in synthetic fraud while accelerating onboarding for legitimate users",
+    metrics: { before: "67% detection rate", after: "94% detection rate", improvement: "40% improvement" },
+    timeline: "6-week delivery",
+    impact: "High",
     focusAreas: ["CIAM", "Fraud Prevention", "Identity Verification"],
     tools: ["Okta Customer Identity Cloud", "Socure", "Okta Actions"],
     icon: (
@@ -52,6 +58,9 @@ const STORIES = [
     sector: "FinTech",
     challenge: "Long-lived credentials and overprivileged service accounts in cloud environments",
     outcome: "Credentials expired automatically within minutes, all privileged sessions auditable",
+    metrics: { before: "90+ day credentials", after: "< 15min expiry", improvement: "99.7% reduction" },
+    timeline: "10-week delivery",
+    impact: "High",
     focusAreas: ["PAM", "Non-Human Identity Governance", "Cloud Security"],
     tools: ["HashiCorp Vault", "HashiCorp Boundary", "AWS IAM"],
     icon: (
@@ -66,6 +75,9 @@ const STORIES = [
     sector: "HealthTech R&D",
     challenge: "Unmanaged API keys and shadow AI agents in LLM-based research workflows",
     outcome: "Full visibility into non-human identities with automated secret rotation",
+    metrics: { before: "~30% NHI visibility", after: "100% visibility", improvement: "47 agents discovered" },
+    timeline: "7-week delivery",
+    impact: "Medium-High",
     focusAreas: ["Non-Human Identity", "Secrets Management", "AI Governance"],
     tools: ["CyberArk Privilege Cloud", "CyberArk Secrets Manager", "Wiz CIEM"],
     icon: (
@@ -79,22 +91,23 @@ const STORIES = [
 function StoryCard({ story, idx }) {
   const [ref, vis] = useReveal(0.1);
   const [hov, setHov] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <Link
-      to={`/customer-stories/${story.slug}`}
+    <div
       ref={ref}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      className="flex flex-col group"
+      onClick={() => setExpanded(!expanded)}
+      className="flex flex-col cursor-pointer group"
       style={{
-        background: "#f8fafc",
+        background: expanded ? "#fff" : "#f8fafc",
         borderRadius: 14,
         opacity: vis ? 1 : 0,
         transform: vis ? "translateY(0) scale(1)" : "translateY(24px) scale(0.98)",
-        transition: `opacity 0.5s ease ${idx * 0.12}s, transform 0.5s ease ${idx * 0.12}s, box-shadow 0.3s, border-color 0.3s`,
-        border: `1px solid ${hov ? "#2563eb" : "#e2e8f0"}`,
-        boxShadow: hov ? "0 12px 32px rgba(37,99,235,0.2)" : "0 1px 3px rgba(15,23,42,0.06)",
+        transition: `opacity 0.5s ease ${idx * 0.12}s, transform 0.5s ease ${idx * 0.12}s, box-shadow 0.3s, border-color 0.3s, background 0.3s`,
+        border: `2px solid ${expanded ? "#2563eb" : (hov ? "#2563eb" : "#e2e8f0")}`,
+        boxShadow: expanded ? "0 16px 40px rgba(37,99,235,0.25)" : (hov ? "0 12px 32px rgba(37,99,235,0.2)" : "0 1px 3px rgba(15,23,42,0.06)"),
         overflow: "hidden",
       }}
     >
@@ -105,8 +118,8 @@ function StoryCard({ story, idx }) {
           <div
             className="w-11 h-11 rounded-lg flex items-center justify-center transition-all duration-200"
             style={{
-              background: hov ? "#eff6ff" : "#fff",
-              color: hov ? "#1d4ed8" : "#475569",
+              background: expanded || hov ? "#eff6ff" : "#fff",
+              color: expanded || hov ? "#1d4ed8" : "#475569",
             }}
           >
             {story.icon}
@@ -127,7 +140,35 @@ function StoryCard({ story, idx }) {
 
         <div className="mb-5 flex-grow">
           <div className="text-[11px] font-600 text-slate-400 uppercase tracking-wider mb-1.5" style={{ fontWeight: 600 }}>Outcome</div>
-          <p className="text-slate-700" style={{ fontSize: 13.5, lineHeight: 1.6, fontWeight: 500 }}>{story.outcome}</p>
+          <p className="text-slate-700 mb-3" style={{ fontSize: 13.5, lineHeight: 1.6, fontWeight: 500 }}>{story.outcome}</p>
+          
+          {/* Metrics display */}
+          {expanded && story.metrics && (
+            <div className="grid grid-cols-3 gap-2 p-3 bg-slate-50 rounded-lg border border-slate-200 mt-3">
+              <div className="text-center">
+                <div className="text-[10px] text-red-600 font-600 uppercase mb-0.5" style={{ fontWeight: 600 }}>Before</div>
+                <div className="text-[12px] text-slate-700" style={{ fontWeight: 600 }}>{story.metrics.before}</div>
+              </div>
+              <div className="text-center">
+                <div className="text-[10px] text-blue-600 font-600 uppercase mb-0.5" style={{ fontWeight: 600 }}>Impact</div>
+                <div className="text-[12px] text-blue-600" style={{ fontWeight: 700 }}>{story.metrics.improvement}</div>
+              </div>
+              <div className="text-center">
+                <div className="text-[10px] text-green-600 font-600 uppercase mb-0.5" style={{ fontWeight: 600 }}>After</div>
+                <div className="text-[12px] text-slate-700" style={{ fontWeight: 600 }}>{story.metrics.after}</div>
+              </div>
+            </div>
+          )}
+        </div>
+        
+        {/* Timeline and Impact badges */}
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-[10px] font-600 text-slate-600 bg-slate-100 px-2 py-1 rounded" style={{ fontWeight: 600 }}>
+            {story.timeline}
+          </span>
+          <span className={`text-[10px] font-600 px-2 py-1 rounded ${story.impact === 'High' ? 'text-green-700 bg-green-50' : 'text-blue-700 bg-blue-50'}`} style={{ fontWeight: 600 }}>
+            {story.impact} Impact
+          </span>
         </div>
 
         <div className="flex flex-wrap gap-1.5 mb-4">
@@ -153,14 +194,19 @@ function StoryCard({ story, idx }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5 mt-5 text-blue-600" style={{ fontSize: 13, fontWeight: 600 }}>
+        <Link
+          to={`/customer-stories/${story.slug}`}
+          onClick={(e) => e.stopPropagation()}
+          className="flex items-center gap-1.5 mt-5 text-blue-600 hover:text-blue-700 transition-colors"
+          style={{ fontSize: 13, fontWeight: 600 }}
+        >
           View client spotlight
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover:translate-x-1">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
           </svg>
-        </div>
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -175,6 +221,35 @@ export default function CustomerStories() {
       >
         <div className="absolute" style={{ top: -100, right: -140, width: 460, height: 460, borderRadius: "50%", background: "radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 68%)", pointerEvents: "none" }} />
         <div className="absolute" style={{ bottom: -70, left: -60, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
+
+        {/* Success pattern diagram - positioned right */}
+        <div className="absolute right-10 top-1/2 -translate-y-1/2 hidden lg:block">
+          <svg width="280" height="140" viewBox="0 0 280 140" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-30">
+            {/* Challenge node (left - red) */}
+            <circle cx="40" cy="70" r="20" fill="none" stroke="#ef4444" strokeWidth="2" opacity="0.6" />
+            <path d="M 40 60 L 40 80 M 30 70 L 50 70" stroke="#ef4444" strokeWidth="2" opacity="0.6" />
+            
+            {/* Arrow 1 */}
+            <path d="M 65 70 L 105 70" stroke="#60a5fa" strokeWidth="2" opacity="0.5" />
+            <polygon points="105,65 115,70 105,75" fill="#60a5fa" opacity="0.5" />
+            
+            {/* VaultIAM node (center - blue) */}
+            <circle cx="140" cy="70" r="24" fill="#2563eb" opacity="0.7" />
+            <circle cx="140" cy="70" r="24" fill="#60a5fa" opacity="0.3" />
+            <text x="140" y="75" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="600">IAM</text>
+            
+            {/* Arrow 2 */}
+            <path d="M 165 70 L 205 70" stroke="#60a5fa" strokeWidth="2" opacity="0.5" />
+            <polygon points="205,65 215,70 205,75" fill="#60a5fa" opacity="0.5" />
+            
+            {/* Outcome node (right - green) */}
+            <circle cx="240" cy="70" r="20" fill="none" stroke="#10b981" strokeWidth="2" opacity="0.6" />
+            <polyline points="230,70 236,76 250,62" stroke="#10b981" strokeWidth="2.5" fill="none" opacity="0.6" />
+            
+            {/* Glow effects */}
+            <circle cx="140" cy="70" r="35" stroke="#60a5fa" strokeWidth="0.5" opacity="0.15" fill="none" />
+          </svg>
+        </div>
 
         <div className="max-w-5xl mx-auto px-5 relative z-10">
           <h1 className="text-white" style={{ fontSize: "clamp(28px, 4.5vw, 42px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.15, maxWidth: 580, marginBottom: 16 }}>

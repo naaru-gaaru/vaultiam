@@ -157,21 +157,63 @@ export default function JITPrivilegedAccessCase() {
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 flex-shrink-0" style={{ marginTop: 2 }}>
               <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
             </svg>
-            <h3 className="text-slate-900" style={{ fontSize: 18, fontWeight: 700 }}>Key Outcomes</h3>
+            <h3 className="text-slate-900" style={{ fontSize: 18, fontWeight: 700 }}>Measurable Impact</h3>
           </div>
-          <div className="space-y-3">
-            {[
-              "Credentials expired automatically within minutes",
-              "All privileged sessions logged and auditable",
-              "Reduced blast radius for compromised identities",
-            ].map(outcome => (
-              <div key={outcome} className="flex gap-3 items-start">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 flex-shrink-0" style={{ marginTop: 2 }}>
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                <span className="text-slate-700" style={{ fontSize: 14.5, lineHeight: 1.6, fontWeight: 500 }}>{outcome}</span>
+          
+          <div className="grid md:grid-cols-2 gap-6 mb-4">
+            <div>
+              <div className="text-[11px] font-600 text-red-600 uppercase tracking-wider mb-2.5" style={{ fontWeight: 600 }}>Before VaultIAM</div>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2">
+                  <span className="text-red-500 mt-0.5">✗</span>
+                  <span className="text-slate-700" style={{ fontSize: 13, lineHeight: 1.5 }}>Credential lifetime: <strong>90+ days</strong></span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-red-500 mt-0.5">✗</span>
+                  <span className="text-slate-700" style={{ fontSize: 13, lineHeight: 1.5 }}><strong>240+</strong> long-lived service accounts</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-red-500 mt-0.5">✗</span>
+                  <span className="text-slate-700" style={{ fontSize: 13, lineHeight: 1.5 }}>Session audit coverage: <strong>~40%</strong></span>
+                </div>
               </div>
-            ))}
+            </div>
+            
+            <div>
+              <div className="text-[11px] font-600 text-green-600 uppercase tracking-wider mb-2.5" style={{ fontWeight: 600 }}>After VaultIAM</div>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2">
+                  <span className="text-green-600 mt-0.5">✓</span>
+                  <span className="text-slate-700" style={{ fontSize: 13, lineHeight: 1.5 }}>Credential lifetime: <strong>&lt;15 min</strong></span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-green-600 mt-0.5">✓</span>
+                  <span className="text-slate-700" style={{ fontSize: 13, lineHeight: 1.5 }}><strong>Zero</strong> standing credentials</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-green-600 mt-0.5">✓</span>
+                  <span className="text-slate-700" style={{ fontSize: 13, lineHeight: 1.5 }}>Session audit coverage: <strong>100%</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="pt-4 border-t border-blue-200">
+            <div className="text-[11px] font-600 text-slate-500 uppercase tracking-wider mb-2" style={{ fontWeight: 600 }}>Key Outcomes</div>
+            <div className="space-y-2">
+              {[
+                "Credentials expired automatically within minutes",
+                "All privileged sessions logged and auditable",
+                "Reduced blast radius for compromised identities",
+              ].map(outcome => (
+                <div key={outcome} className="flex gap-2 items-start">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 flex-shrink-0" style={{ marginTop: 2 }}>
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span className="text-slate-700" style={{ fontSize: 13.5, lineHeight: 1.6, fontWeight: 500 }}>{outcome}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
