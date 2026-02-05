@@ -169,8 +169,9 @@ function DifferentiationMatrix() {
   ];
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200">
-      <table className="w-full">
+    <div className="overflow-x-auto -mx-5 px-5">
+      <div className="overflow-hidden rounded-xl border border-slate-200 min-w-[600px]">
+        <table className="w-full">
         <thead>
           <tr className="bg-slate-50">
             <th className="text-left py-3 px-4 text-slate-600" style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.05em" }}>CAPABILITY</th>
@@ -195,6 +196,7 @@ function DifferentiationMatrix() {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
@@ -217,8 +219,8 @@ export default function VaultIAMWay() {
         className="relative overflow-hidden"
         style={{
           background: "linear-gradient(155deg, #1e293b 0%, #334155 60%, #1e3a4a 100%)",
-          paddingTop: 104,
-          paddingBottom: 64,
+          paddingTop: "clamp(70px, 15vw, 104px)",
+          paddingBottom: "clamp(40px, 10vw, 64px)",
           opacity: heroVis ? 1 : 0,
           transform: heroVis ? "translateY(0)" : "translateY(30px)",
           transition: "opacity 0.8s ease, transform 0.8s ease",
@@ -276,17 +278,17 @@ export default function VaultIAMWay() {
             </p>
             
             {/* Key stats */}
-            <div className="flex flex-wrap gap-8 pt-6 border-t border-slate-600">
-              <div>
-                <div className="text-white mb-1" style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em" }}>$42B</div>
+            <div className="flex flex-wrap gap-4 sm:gap-8 pt-6 border-t border-slate-600">
+              <div className="min-w-[80px]">
+                <div className="text-white mb-1" style={{ fontSize: "clamp(24px, 5vw, 32px)", fontWeight: 700, letterSpacing: "-0.02em" }}>$42B</div>
                 <div className="text-slate-400" style={{ fontSize: 13 }}>IAM market by 2030</div>
               </div>
-              <div>
-                <div className="text-white mb-1" style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em" }}>144:1</div>
+              <div className="min-w-[80px]">
+                <div className="text-white mb-1" style={{ fontSize: "clamp(24px, 5vw, 32px)", fontWeight: 700, letterSpacing: "-0.02em" }}>144:1</div>
                 <div className="text-slate-400" style={{ fontSize: 13 }}>Machine to human ratio</div>
               </div>
-              <div>
-                <div className="text-white mb-1" style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em" }}>97%</div>
+              <div className="min-w-[80px]">
+                <div className="text-white mb-1" style={{ fontSize: "clamp(24px, 5vw, 32px)", fontWeight: 700, letterSpacing: "-0.02em" }}>97%</div>
                 <div className="text-slate-400" style={{ fontSize: 13 }}>NHIs over-privileged</div>
               </div>
             </div>
@@ -494,7 +496,7 @@ export default function VaultIAMWay() {
             </p>
           </div>
 
-          <div className="flex items-center justify-center gap-6 mb-12">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-6 mb-8 sm:mb-12">
             {[
               { num: "01", label: "Assess", icon: <><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></> },
               { num: "02", label: "Architect", icon: <><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></> },
@@ -503,7 +505,7 @@ export default function VaultIAMWay() {
               <button
                 key={phase.num}
                 onClick={() => setActivePhase(i)}
-                className={`flex-1 max-w-xs rounded-xl p-6 transition-all duration-300 ${
+                className={`flex-1 sm:max-w-xs rounded-xl p-4 sm:p-6 transition-all duration-300 ${
                   activePhase === i
                     ? "bg-white border-2 border-blue-600 shadow-lg"
                     : "bg-white border border-slate-200 hover:border-blue-300"
@@ -547,7 +549,7 @@ export default function VaultIAMWay() {
             ))}
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mt-6 sm:mt-8">
             {[
               {
                 phase: "01 — Assess",
@@ -585,12 +587,11 @@ export default function VaultIAMWay() {
             ].map((phase, i) => (
               <div
                 key={i}
-                className={`bg-white rounded-xl p-6 border-2 transition-all duration-300 ${
-                  activePhase === i ? "border-blue-600 shadow-lg" : "border-slate-200"
+                className={`bg-white rounded-xl p-5 sm:p-6 border-2 transition-all duration-300 ${
+                  activePhase === i ? "border-blue-600 shadow-lg" : "border-slate-200 md:opacity-40"
                 }`}
                 style={{
-                  opacity: activePhase === i ? 1 : 0.4,
-                  transform: activePhase === i ? "scale(1)" : "scale(0.98)",
+                  transform: activePhase === i ? "scale(1)" : "scale(1)",
                 }}
               >
                 <div className="text-blue-600 mb-2" style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em" }}>{phase.phase}</div>
@@ -639,7 +640,7 @@ export default function VaultIAMWay() {
 
           <DifferentiationMatrix />
 
-          <div className="grid md:grid-cols-2 gap-8 mt-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mt-8 sm:mt-12">
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6">
               <h3 className="text-slate-900 mb-5" style={{ fontSize: 20, fontWeight: 700 }}>What Sets Us Apart</h3>
               <div className="space-y-3.5">

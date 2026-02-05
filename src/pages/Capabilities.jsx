@@ -326,9 +326,9 @@ export default function Capabilities() {
           </p>
         </div>
 
-        <div className="relative flex items-center justify-center max-w-4xl mx-auto" style={{ padding: "30px 0" }}>
-          {/* Pulse/heartbeat connection line */}
-          <svg className="absolute" width="100%" height="80" style={{ top: "50%", left: 0, transform: "translateY(-50%)", zIndex: 0 }}>
+        <div className="relative flex flex-col sm:flex-row items-center justify-center max-w-4xl mx-auto gap-4 sm:gap-0" style={{ padding: "30px 0" }}>
+          {/* Pulse/heartbeat connection line - hidden on mobile */}
+          <svg className="absolute hidden sm:block" width="100%" height="80" style={{ top: "50%", left: 0, transform: "translateY(-50%)", zIndex: 0 }}>
             <path
               d="M 0 40 L 180 40 Q 200 20, 220 40 T 260 40 L 440 40 Q 460 20, 480 40 T 520 40 L 700 40"
               stroke="#3b82f6"
@@ -341,16 +341,16 @@ export default function Capabilities() {
           </svg>
 
           {/* Phase cards */}
-          <div className="relative z-10 flex items-center justify-between w-full max-w-3xl">
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between w-full max-w-3xl gap-6 sm:gap-4">
             {[
               { num: "01", label: "Assess", desc: "Identity risk & gap analysis" },
               { num: "02", label: "Architect", desc: "Design & implementation" },
               { num: "03", label: "Operate", desc: "Transfer & optimization" },
             ].map((phase, i) => (
-              <div key={phase.num} className="flex flex-col items-center" style={{ flex: "0 0 auto" }}>
+              <div key={phase.num} className="flex flex-col items-center w-full sm:w-auto" style={{ flex: "0 0 auto" }}>
                 <div
-                  className="w-32 h-24 rounded-xl bg-white border-2 border-blue-600 flex flex-col items-center justify-center mb-3 transition-all duration-200 hover:shadow-lg"
-                  style={{ boxShadow: "0 2px 12px rgba(37,99,235,0.2)" }}
+                  className="w-full sm:w-32 h-20 sm:h-24 rounded-xl bg-white border-2 border-blue-600 flex flex-col items-center justify-center mb-3 transition-all duration-200 hover:shadow-lg"
+                  style={{ boxShadow: "0 2px 12px rgba(37,99,235,0.2)", maxWidth: "200px" }}
                 >
                   <span className="text-blue-600 mb-1" style={{ fontSize: 16, fontWeight: 700 }}>{phase.num}</span>
                   <span className="text-slate-900" style={{ fontSize: 15, fontWeight: 600 }}>{phase.label}</span>

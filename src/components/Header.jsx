@@ -29,9 +29,9 @@ export default function Header() {
         boxShadow: scrolled ? "0 1px 0 #e2e8f0" : "none",
       }}
     >
-      <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-3 sm:px-5 h-16 flex items-center justify-between">
 
-        <Link to="/" className="flex flex-col items-center group">
+        <Link to="/" className="flex flex-col items-start sm:items-center group">
           <img 
             src="/vaultiam-logo-no-tag.svg" 
             alt="VaultIAM" 
