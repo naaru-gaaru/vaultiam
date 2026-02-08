@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 // Consumer email domains to block
 const CONSUMER_EMAIL_DOMAINS = [
@@ -10,9 +10,6 @@ const CONSUMER_EMAIL_DOMAINS = [
 ];
 
 export default function Contact() {
-  const hcaptchaRef = useRef(null);
-  const [hcaptchaToken, setHcaptchaToken] = useState("");
-  
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -65,23 +62,10 @@ export default function Contact() {
       return;
     }
 
-    // Check if hCaptcha is completed
-    if (!hcaptchaToken) {
-      console.error("hCaptcha not completed. Token:", hcaptchaToken);
-      setStatus({ 
-        submitting: false, 
-        submitted: false, 
-        error: true,
-        errorMessage: "Please complete the captcha verification" 
-      });
-      return;
-    }
-
     setStatus({ submitting: true, submitted: false, error: false, errorMessage: "" });
 
     try {
       console.log("=== FORM SUBMISSION START ===");
-      console.log("hCaptcha token:", hcaptchaToken);
 
       const payload = {
         access_key: "f81c581f-feae-4ac7-b456-b4b4e0041597",
@@ -91,7 +75,6 @@ export default function Contact() {
         industry: formState.industry || "Not specified",
         inquiry: formState.inquiry || "General Inquiry",
         message: formState.message,
-        "h-captcha-response": hcaptchaToken,
       };
 
       console.log("Payload:", JSON.stringify(payload, null, 2));
@@ -123,12 +106,6 @@ export default function Contact() {
           message: "",
         });
         setEmailError("");
-        setHcaptchaToken("");
-        
-        // Reset hCaptcha
-        if (window.hcaptcha && hcaptchaRef.current) {
-          window.hcaptcha.reset();
-        }
       } else {
         console.error("❌ Web3Forms returned error:", result);
         throw new Error(result.message || "Submission failed");
@@ -143,51 +120,6 @@ export default function Contact() {
       });
     }
   };
-
-  // Setup hCaptcha callbacks BEFORE loading script
-  useEffect(() => {
-    console.log("Setting up hCaptcha callbacks...");
-    
-    // Setup global callback for hCaptcha BEFORE script loads
-    window.onHcaptchaSuccess = (token) => {
-      console.log("✅ hCaptcha SUCCESS - Token received:", token);
-      setHcaptchaToken(token);
-    };
-
-    window.onHcaptchaExpired = () => {
-      console.log("⚠️ hCaptcha EXPIRED");
-      setHcaptchaToken("");
-    };
-
-    window.onHcaptchaError = (error) => {
-      console.log("❌ hCaptcha ERROR:", error);
-      setHcaptchaToken("");
-    };
-
-    // Now load the script
-    const script = document.createElement("script");
-    script.src = "https://js.hcaptcha.com/1/api.js";
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-    
-    script.onload = () => {
-      console.log("✅ hCaptcha script loaded successfully");
-    };
-    
-    script.onerror = () => {
-      console.error("❌ Failed to load hCaptcha script");
-    };
-    
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-      delete window.onHcaptchaSuccess;
-      delete window.onHcaptchaExpired;
-      delete window.onHcaptchaError;
-    };
-  }, []);
 
   // Load Calendly widget
   useEffect(() => {
@@ -221,13 +153,13 @@ export default function Contact() {
         />
       </Helmet>
 
-      {/* Hero Section */}
+      {/* Hero Section - Reduced bottom padding */}
       <section
         className="relative overflow-hidden"
         style={{
           background: "linear-gradient(155deg, #1e293b 0%, #334155 60%, #1e3a5f 100%)",
           paddingTop: "clamp(70px, 15vw, 104px)",
-          paddingBottom: "clamp(40px, 10vw, 64px)",
+          paddingBottom: "clamp(28px, 7vw, 48px)",
         }}
       >
         <div
@@ -267,8 +199,8 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Form & Contact Info Section */}
-      <section className="py-12 sm:py-16" style={{ background: "#ffffff" }}>
+      {/* Form & Contact Info Section - Tighter top spacing */}
+      <section className="py-8 sm:py-12" style={{ background: "#ffffff" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             
@@ -499,18 +431,6 @@ export default function Contact() {
                       />
                     </div>
 
-                    {/* hCaptcha Widget */}
-                    <div className="flex justify-center pt-1">
-                      <div
-                        ref={hcaptchaRef}
-                        className="h-captcha"
-                        data-sitekey="900cd996-ab3c-497c-8fa6-ce1053185b2a"
-                        data-callback="onHcaptchaSuccess"
-                        data-expired-callback="onHcaptchaExpired"
-                        data-error-callback="onHcaptchaError"
-                      ></div>
-                    </div>
-
                     {status.error && (
                       <div
                         className="rounded-lg p-2.5"
@@ -522,23 +442,23 @@ export default function Contact() {
                           lineHeight: 1.4,
                         }}
                       >
-                        {status.errorMessage || "Something went wrong. Please check the console or email us directly."}
+                        {status.errorMessage || "Something went wrong. Please email us directly at hello@vaultiam.com"}
                       </div>
                     )}
 
                     <button
                       type="submit"
-                      disabled={status.submitting || emailError || !hcaptchaToken}
+                      disabled={status.submitting || emailError}
                       className="w-full px-5 py-3 rounded-xl text-white font-semibold transition-all duration-200"
                       style={{
-                        background: (status.submitting || emailError || !hcaptchaToken)
+                        background: (status.submitting || emailError)
                           ? "#94a3b8"
                           : "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
-                        boxShadow: (status.submitting || emailError || !hcaptchaToken)
+                        boxShadow: (status.submitting || emailError)
                           ? "none"
                           : "0 4px 20px rgba(37,99,235,0.4)",
                         fontSize: 14,
-                        cursor: (status.submitting || emailError || !hcaptchaToken) ? "not-allowed" : "pointer",
+                        cursor: (status.submitting || emailError) ? "not-allowed" : "pointer",
                       }}
                     >
                       {status.submitting ? "Sending..." : "Send Message"}
@@ -643,7 +563,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Calendly Widget - Reduced height to match form */}
+              {/* Calendly Widget - Smaller height to match form */}
               <div
                 className="rounded-2xl overflow-hidden flex-1"
                 style={{
@@ -663,13 +583,13 @@ export default function Contact() {
                     Or Book Instantly
                   </h3>
                   <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.4 }}>
-                    Schedule a 30-minute discovery call to discuss your identity security needs.
+                    Schedule a 30-minute discovery call.
                   </p>
                 </div>
                 <div
                   className="calendly-inline-widget"
                   data-url="https://calendly.com/hello-vaultiam/vaultiam-discovery-call?hide_event_type_details=1&hide_gdpr_banner=1&background_color=f8fafc&text_color=0f172a&primary_color=2563eb"
-                  style={{ minWidth: "320px", height: "480px" }}
+                  style={{ minWidth: "320px", height: "380px" }}
                 ></div>
               </div>
             </div>
@@ -678,8 +598,8 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Trust Section Placeholder */}
-      <section className="py-12 sm:py-16" style={{ background: "#f8fafc" }}>
+      {/* Trust Section Placeholder - Reduced spacing */}
+      <section className="py-8 sm:py-12" style={{ background: "#f8fafc" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <p style={{ color: "#64748b", fontSize: 15 }}>Trust Section with Animated Stats - Coming in Step 5</p>
         </div>
