@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 
 // Scroll reveal hook
 function useReveal(threshold = 0.15) {
@@ -486,10 +485,11 @@ export default function Contact() {
                     {/* Email */}
                     
                       href="mailto:hello@vaultiam.com"
-                      className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200 group"
+                      className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200"
                       style={{
                         background: "rgba(255,255,255,0.03)",
                         border: "1px solid transparent",
+                        display: "flex",
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background = "rgba(37,99,235,0.1)";
@@ -517,13 +517,7 @@ export default function Contact() {
                         <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 2 }}>
                           Email
                         </div>
-                        <div
-                          style={{
-                            fontSize: 15,
-                            color: "#3b82f6",
-                            fontWeight: 500,
-                          }}
-                        >
+                        <div style={{ fontSize: 15, color: "#3b82f6", fontWeight: 500 }}>
                           hello@vaultiam.com
                         </div>
                       </div>
@@ -532,10 +526,11 @@ export default function Contact() {
                     {/* Phone */}
                     
                       href="tel:+12093155453"
-                      className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200 group"
+                      className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200"
                       style={{
                         background: "rgba(255,255,255,0.03)",
                         border: "1px solid transparent",
+                        display: "flex",
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background = "rgba(37,99,235,0.1)";
@@ -563,13 +558,7 @@ export default function Contact() {
                         <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 2 }}>
                           Phone
                         </div>
-                        <div
-                          style={{
-                            fontSize: 15,
-                            color: "#3b82f6",
-                            fontWeight: 500,
-                          }}
-                        >
+                        <div style={{ fontSize: 15, color: "#3b82f6", fontWeight: 500 }}>
                           (209) 315-5453
                         </div>
                       </div>
@@ -580,10 +569,11 @@ export default function Contact() {
                       href="https://www.linkedin.com/company/vaultiam"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200 group"
+                      className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200"
                       style={{
                         background: "rgba(255,255,255,0.03)",
                         border: "1px solid transparent",
+                        display: "flex",
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background = "rgba(37,99,235,0.1)";
@@ -605,13 +595,7 @@ export default function Contact() {
                         <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 2 }}>
                           LinkedIn
                         </div>
-                        <div
-                          style={{
-                            fontSize: 15,
-                            color: "#3b82f6",
-                            fontWeight: 500,
-                          }}
-                        >
+                        <div style={{ fontSize: 15, color: "#3b82f6", fontWeight: 500 }}>
                           Follow VaultIAM
                         </div>
                       </div>
@@ -647,7 +631,7 @@ export default function Contact() {
                     className="calendly-inline-widget"
                     data-url="https://calendly.com/hello-vaultiam/vaultiam-discovery-call?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1e293b&text_color=ffffff&primary_color=2563eb"
                     style={{ minWidth: "320px", height: "700px" }}
-                  />
+                  ></div>
                 </div>
               </div>
             </div>
