@@ -136,7 +136,6 @@ export default function Contact() {
         />
       </Helmet>
 
-      {/* Hero Section */}
       <section
         className="relative overflow-hidden"
         style={{
@@ -145,7 +144,6 @@ export default function Contact() {
           paddingBottom: "clamp(60px, 12vw, 100px)",
         }}
       >
-        {/* Radial glow */}
         <div
           className="absolute top-0 right-0 w-96 h-96 opacity-20 pointer-events-none"
           style={{
@@ -155,7 +153,6 @@ export default function Contact() {
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-          {/* Header */}
           <div className="text-center mb-12 sm:mb-16">
             <h1
               className="font-bold mb-4 sm:mb-5"
@@ -182,9 +179,7 @@ export default function Contact() {
             </p>
           </div>
 
-          {/* Two-column layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* LEFT: Contact Form */}
             <div
               ref={formRef}
               style={{
@@ -453,7 +448,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* RIGHT: Direct Contact + Calendly */}
             <div
               style={{
                 opacity: formVisible ? 1 : 0,
@@ -462,7 +456,6 @@ export default function Contact() {
               }}
             >
               <div className="space-y-6">
-                {/* Direct Contact Info */}
                 <div
                   className="rounded-2xl p-6 sm:p-8"
                   style={{
@@ -482,14 +475,12 @@ export default function Contact() {
                   </h3>
 
                   <div className="space-y-4">
-                    {/* Email */}
                     
                       href="mailto:hello@vaultiam.com"
                       className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200"
                       style={{
                         background: "rgba(255,255,255,0.03)",
                         border: "1px solid transparent",
-                        display: "flex",
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background = "rgba(37,99,235,0.1)";
@@ -523,14 +514,12 @@ export default function Contact() {
                       </div>
                     </a>
 
-                    {/* Phone */}
                     
                       href="tel:+12093155453"
                       className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200"
                       style={{
                         background: "rgba(255,255,255,0.03)",
                         border: "1px solid transparent",
-                        display: "flex",
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background = "rgba(37,99,235,0.1)";
@@ -564,7 +553,6 @@ export default function Contact() {
                       </div>
                     </a>
 
-                    {/* LinkedIn */}
                     
                       href="https://www.linkedin.com/company/vaultiam"
                       target="_blank"
@@ -573,7 +561,6 @@ export default function Contact() {
                       style={{
                         background: "rgba(255,255,255,0.03)",
                         border: "1px solid transparent",
-                        display: "flex",
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background = "rgba(37,99,235,0.1)";
@@ -603,7 +590,6 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Calendly Embed */}
                 <div
                   className="rounded-2xl overflow-hidden"
                   style={{
@@ -639,7 +625,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Trust Section */}
       <section
         ref={trustRef}
         className="py-16 sm:py-20"
