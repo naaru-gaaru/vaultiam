@@ -26,6 +26,7 @@ export default function Contact() {
     submitting: false,
     submitted: false,
     error: false,
+    errorMessage: "",
   });
 
   const [emailError, setEmailError] = useState("");
@@ -66,15 +67,34 @@ export default function Contact() {
 
     // Check if hCaptcha is completed
     if (!hcaptchaToken) {
-      setStatus({ submitting: false, submitted: false, error: true });
-      alert("Please complete the captcha verification");
+      console.error("hCaptcha not completed");
+      setStatus({ 
+        submitting: false, 
+        submitted: false, 
+        error: true,
+        errorMessage: "Please complete the captcha verification" 
+      });
       return;
     }
 
-    setStatus({ submitting: true, submitted: false, error: false });
+    setStatus({ submitting: true, submitted: false, error: false, errorMessage: "" });
 
     try {
       console.log("Submitting form to Web3Forms...");
+      console.log("hCaptcha token:", hcaptchaToken);
+
+      const payload = {
+        access_key: "f81c581f-feae-4ac7-b456-b4b4e0041597",
+        name: formState.name,
+        email: formState.email,
+        company: formState.company,
+        industry: formState.industry || "Not specified",
+        inquiry: formState.inquiry || "General Inquiry",
+        message: formState.message,
+        "h-captcha-response": hcaptchaToken,
+      };
+
+      console.log("Payload:", payload);
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -82,23 +102,16 @@ export default function Contact() {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({
-          access_key: "f81c581f-feae-4ac7-b456-b4b4e0041597",
-          name: formState.name,
-          email: formState.email,
-          company: formState.company,
-          industry: formState.industry,
-          inquiry: formState.inquiry,
-          message: formState.message,
-          "h-captcha-response": hcaptchaToken,
-        }),
+        body: JSON.stringify(payload),
       });
 
+      console.log("Response status:", response.status);
       const result = await response.json();
       console.log("Web3Forms response:", result);
 
       if (result.success) {
-        setStatus({ submitting: false, submitted: true, error: false });
+        console.log("Form submitted successfully!");
+        setStatus({ submitting: false, submitted: true, error: false, errorMessage: "" });
         setFormState({
           name: "",
           email: "",
@@ -115,12 +128,17 @@ export default function Contact() {
           window.hcaptcha.reset();
         }
       } else {
-        console.error("Web3Forms error:", result);
+        console.error("Web3Forms returned error:", result);
         throw new Error(result.message || "Submission failed");
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      setStatus({ submitting: false, submitted: false, error: true });
+      setStatus({ 
+        submitting: false, 
+        submitted: false, 
+        error: true,
+        errorMessage: error.message || "Something went wrong. Please try again."
+      });
     }
   };
 
@@ -142,7 +160,7 @@ export default function Contact() {
 
     // Setup global callback for hCaptcha
     window.onHcaptchaSuccess = (token) => {
-      console.log("hCaptcha completed");
+      console.log("hCaptcha completed successfully");
       setHcaptchaToken(token);
     };
 
@@ -238,22 +256,22 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Form & Contact Info Section */}
-      <section className="py-16 sm:py-20" style={{ background: "#ffffff" }}>
+      {/* Form & Contact Info Section - Reduced spacing */}
+      <section className="py-12 sm:py-16" style={{ background: "#ffffff" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             
             {/* LEFT: Contact Form */}
             <div>
               <div
-                className="rounded-2xl p-6 sm:p-8"
+                className="rounded-2xl p-6 sm:p-7"
                 style={{
                   background: "#f8fafc",
                   border: "1px solid #e2e8f0",
                 }}
               >
                 <h2
-                  className="font-semibold mb-6"
+                  className="font-semibold mb-5"
                   style={{
                     fontSize: "clamp(20px, 3vw, 24px)",
                     color: "#0f172a",
@@ -290,17 +308,17 @@ export default function Contact() {
                     >
                       Message Sent Successfully!
                     </h3>
-                    <p style={{ fontSize: 14, color: "#64748b" }}>
+                    <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.4 }}>
                       We'll get back to you within 24 hours.
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-3.5">
                     <div>
                       <label
                         htmlFor="name"
-                        className="block mb-2"
-                        style={{ fontSize: 14, color: "#475569", fontWeight: 500 }}
+                        className="block mb-1.5"
+                        style={{ fontSize: 13, color: "#475569", fontWeight: 500 }}
                       >
                         Full Name *
                       </label>
@@ -311,12 +329,13 @@ export default function Contact() {
                         required
                         value={formState.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg"
+                        className="w-full px-3.5 py-2.5 rounded-lg"
                         style={{
                           background: "#ffffff",
                           border: "1px solid #e2e8f0",
                           color: "#0f172a",
-                          fontSize: 15,
+                          fontSize: 14,
+                          lineHeight: 1.3,
                         }}
                         placeholder="John Smith"
                       />
@@ -325,8 +344,8 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="email"
-                        className="block mb-2"
-                        style={{ fontSize: 14, color: "#475569", fontWeight: 500 }}
+                        className="block mb-1.5"
+                        style={{ fontSize: 13, color: "#475569", fontWeight: 500 }}
                       >
                         Work Email *
                       </label>
@@ -337,17 +356,18 @@ export default function Contact() {
                         required
                         value={formState.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg"
+                        className="w-full px-3.5 py-2.5 rounded-lg"
                         style={{
                           background: "#ffffff",
                           border: emailError ? "1px solid #ef4444" : "1px solid #e2e8f0",
                           color: "#0f172a",
-                          fontSize: 15,
+                          fontSize: 14,
+                          lineHeight: 1.3,
                         }}
                         placeholder="john@company.com"
                       />
                       {emailError && (
-                        <p style={{ fontSize: 13, color: "#ef4444", marginTop: 4 }}>
+                        <p style={{ fontSize: 12, color: "#ef4444", marginTop: 3, lineHeight: 1.3 }}>
                           {emailError}
                         </p>
                       )}
@@ -356,8 +376,8 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="company"
-                        className="block mb-2"
-                        style={{ fontSize: 14, color: "#475569", fontWeight: 500 }}
+                        className="block mb-1.5"
+                        style={{ fontSize: 13, color: "#475569", fontWeight: 500 }}
                       >
                         Company Name *
                       </label>
@@ -368,12 +388,13 @@ export default function Contact() {
                         required
                         value={formState.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg"
+                        className="w-full px-3.5 py-2.5 rounded-lg"
                         style={{
                           background: "#ffffff",
                           border: "1px solid #e2e8f0",
                           color: "#0f172a",
-                          fontSize: 15,
+                          fontSize: 14,
+                          lineHeight: 1.3,
                         }}
                         placeholder="Acme Financial"
                       />
@@ -382,8 +403,8 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="industry"
-                        className="block mb-2"
-                        style={{ fontSize: 14, color: "#475569", fontWeight: 500 }}
+                        className="block mb-1.5"
+                        style={{ fontSize: 13, color: "#475569", fontWeight: 500 }}
                       >
                         Industry
                       </label>
@@ -392,12 +413,13 @@ export default function Contact() {
                         name="industry"
                         value={formState.industry}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg"
+                        className="w-full px-3.5 py-2.5 rounded-lg"
                         style={{
                           background: "#ffffff",
                           border: "1px solid #e2e8f0",
                           color: formState.industry ? "#0f172a" : "#94a3b8",
-                          fontSize: 15,
+                          fontSize: 14,
+                          lineHeight: 1.3,
                         }}
                       >
                         <option value="">Select industry</option>
@@ -410,8 +432,8 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="inquiry"
-                        className="block mb-2"
-                        style={{ fontSize: 14, color: "#475569", fontWeight: 500 }}
+                        className="block mb-1.5"
+                        style={{ fontSize: 13, color: "#475569", fontWeight: 500 }}
                       >
                         I'm Interested In
                       </label>
@@ -420,12 +442,13 @@ export default function Contact() {
                         name="inquiry"
                         value={formState.inquiry}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg"
+                        className="w-full px-3.5 py-2.5 rounded-lg"
                         style={{
                           background: "#ffffff",
                           border: "1px solid #e2e8f0",
                           color: formState.inquiry ? "#0f172a" : "#94a3b8",
-                          fontSize: 15,
+                          fontSize: 14,
+                          lineHeight: 1.3,
                         }}
                       >
                         <option value="">Select inquiry type</option>
@@ -441,8 +464,8 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="message"
-                        className="block mb-2"
-                        style={{ fontSize: 14, color: "#475569", fontWeight: 500 }}
+                        className="block mb-1.5"
+                        style={{ fontSize: 13, color: "#475569", fontWeight: 500 }}
                       >
                         Message *
                       </label>
@@ -450,22 +473,23 @@ export default function Contact() {
                         id="message"
                         name="message"
                         required
-                        rows="4"
+                        rows="3"
                         value={formState.message}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg resize-none"
+                        className="w-full px-3.5 py-2.5 rounded-lg resize-none"
                         style={{
                           background: "#ffffff",
                           border: "1px solid #e2e8f0",
                           color: "#0f172a",
-                          fontSize: 15,
+                          fontSize: 14,
+                          lineHeight: 1.4,
                         }}
                         placeholder="Tell us about your identity security challenges..."
                       />
                     </div>
 
                     {/* hCaptcha Widget */}
-                    <div className="flex justify-center">
+                    <div className="flex justify-center pt-1">
                       <div
                         ref={hcaptchaRef}
                         className="h-captcha"
@@ -477,22 +501,23 @@ export default function Contact() {
 
                     {status.error && (
                       <div
-                        className="rounded-lg p-3"
+                        className="rounded-lg p-2.5"
                         style={{
                           background: "rgba(239,68,68,0.1)",
                           border: "1px solid rgba(239,68,68,0.3)",
                           color: "#dc2626",
-                          fontSize: 14,
+                          fontSize: 13,
+                          lineHeight: 1.4,
                         }}
                       >
-                        Something went wrong. Please try again or email us directly at hello@vaultiam.com
+                        {status.errorMessage || "Something went wrong. Please check the console or email us directly."}
                       </div>
                     )}
 
                     <button
                       type="submit"
                       disabled={status.submitting || emailError || !hcaptchaToken}
-                      className="w-full px-6 py-3.5 rounded-xl text-white font-semibold transition-all duration-200"
+                      className="w-full px-5 py-3 rounded-xl text-white font-semibold transition-all duration-200"
                       style={{
                         background: (status.submitting || emailError || !hcaptchaToken)
                           ? "#94a3b8"
@@ -500,7 +525,7 @@ export default function Contact() {
                         boxShadow: (status.submitting || emailError || !hcaptchaToken)
                           ? "none"
                           : "0 4px 20px rgba(37,99,235,0.4)",
-                        fontSize: 15,
+                        fontSize: 14,
                         cursor: (status.submitting || emailError || !hcaptchaToken) ? "not-allowed" : "pointer",
                       }}
                     >
@@ -509,7 +534,7 @@ export default function Contact() {
 
                     <p
                       className="text-center"
-                      style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5 }}
+                      style={{ fontSize: 12, color: "#64748b", lineHeight: 1.4 }}
                     >
                       Your data is protected with enterprise-grade security. Never shared.
                     </p>
@@ -518,18 +543,18 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* RIGHT: Contact Info & Calendly */}
-            <div>
+            {/* RIGHT: Contact Info & Calendly - Aligned height */}
+            <div className="flex flex-col gap-6">
               {/* Contact Info */}
               <div
-                className="rounded-2xl p-6 sm:p-8 mb-6"
+                className="rounded-2xl p-6 sm:p-7"
                 style={{
                   background: "#f8fafc",
                   border: "1px solid #e2e8f0",
                 }}
               >
                 <h3
-                  className="font-semibold mb-6"
+                  className="font-semibold mb-5"
                   style={{
                     fontSize: "clamp(18px, 2.5vw, 22px)",
                     color: "#0f172a",
@@ -539,11 +564,11 @@ export default function Contact() {
                   Get in Touch Directly
                 </h3>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {/* Email */}
                   <a
                     href="mailto:hello@vaultiam.com"
-                    className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-blue-50 hover:border-blue-200"
+                    className="flex items-start gap-2.5 p-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 hover:border-blue-200"
                     style={{
                       background: "#ffffff",
                       border: "1px solid #e2e8f0",
@@ -563,10 +588,10 @@ export default function Contact() {
                       />
                     </svg>
                     <div>
-                      <div style={{ fontSize: 13, color: "#64748b", marginBottom: 2 }}>
+                      <div style={{ fontSize: 12, color: "#64748b", marginBottom: 2, lineHeight: 1.3 }}>
                         Email
                       </div>
-                      <div style={{ fontSize: 15, color: "#2563eb", fontWeight: 500 }}>
+                      <div style={{ fontSize: 14, color: "#2563eb", fontWeight: 500, lineHeight: 1.3 }}>
                         hello@vaultiam.com
                       </div>
                     </div>
@@ -575,7 +600,7 @@ export default function Contact() {
                   {/* Phone */}
                   <a
                     href="tel:+12093155453"
-                    className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-blue-50 hover:border-blue-200"
+                    className="flex items-start gap-2.5 p-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 hover:border-blue-200"
                     style={{
                       background: "#ffffff",
                       border: "1px solid #e2e8f0",
@@ -595,67 +620,28 @@ export default function Contact() {
                       />
                     </svg>
                     <div>
-                      <div style={{ fontSize: 13, color: "#64748b", marginBottom: 2 }}>
+                      <div style={{ fontSize: 12, color: "#64748b", marginBottom: 2, lineHeight: 1.3 }}>
                         Phone
                       </div>
-                      <div style={{ fontSize: 15, color: "#2563eb", fontWeight: 500 }}>
+                      <div style={{ fontSize: 14, color: "#2563eb", fontWeight: 500, lineHeight: 1.3 }}>
                         (209) 315-5453
                       </div>
                     </div>
                   </a>
-
-                  {/* Location */}
-                  <div
-                    className="flex items-start gap-3 p-3 rounded-lg"
-                    style={{
-                      background: "#ffffff",
-                      border: "1px solid #e2e8f0",
-                    }}
-                  >
-                    <svg
-                      className="w-5 h-5 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="#3b82f6"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                    <div>
-                      <div style={{ fontSize: 13, color: "#64748b", marginBottom: 2 }}>
-                        Location
-                      </div>
-                      <div style={{ fontSize: 15, color: "#475569", fontWeight: 500, lineHeight: 1.4 }}>
-                        Based in Toronto & Silicon Valley
-                        <br />
-                        <span style={{ fontSize: 13, color: "#64748b" }}>Serving North America</span>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
 
-              {/* Calendly Widget */}
+              {/* Calendly Widget - Fills remaining height */}
               <div
-                className="rounded-2xl overflow-hidden"
+                className="rounded-2xl overflow-hidden flex-1"
                 style={{
                   background: "#f8fafc",
                   border: "1px solid #e2e8f0",
                 }}
               >
-                <div className="p-6 sm:p-8 pb-4">
+                <div className="p-6 sm:p-7 pb-3">
                   <h3
-                    className="font-semibold mb-2"
+                    className="font-semibold mb-1.5"
                     style={{
                       fontSize: "clamp(18px, 2.5vw, 22px)",
                       color: "#0f172a",
@@ -664,14 +650,14 @@ export default function Contact() {
                   >
                     Or Book Instantly
                   </h3>
-                  <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.6 }}>
+                  <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.4 }}>
                     Schedule a 30-minute discovery call to discuss your identity security needs.
                   </p>
                 </div>
                 <div
                   className="calendly-inline-widget"
                   data-url="https://calendly.com/hello-vaultiam/vaultiam-discovery-call?hide_event_type_details=1&hide_gdpr_banner=1&background_color=f8fafc&text_color=0f172a&primary_color=2563eb"
-                  style={{ minWidth: "320px", height: "700px" }}
+                  style={{ minWidth: "320px", height: "630px" }}
                 ></div>
               </div>
             </div>
@@ -680,10 +666,10 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Trust Section Placeholder */}
-      <section className="py-16 sm:py-20" style={{ background: "#f8fafc" }}>
+      {/* Trust Section Placeholder - Reduced spacing */}
+      <section className="py-12 sm:py-16" style={{ background: "#f8fafc" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-          <p style={{ color: "#64748b", fontSize: 16 }}>Trust Section with Animated Stats - Coming in Step 5</p>
+          <p style={{ color: "#64748b", fontSize: 15 }}>Trust Section with Animated Stats - Coming in Step 5</p>
         </div>
       </section>
     </>
