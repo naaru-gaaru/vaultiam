@@ -67,7 +67,7 @@ export default function Contact() {
 
     // Check if hCaptcha is completed
     if (!hcaptchaToken) {
-      console.error("hCaptcha not completed");
+      console.error("hCaptcha not completed. Token:", hcaptchaToken);
       setStatus({ 
         submitting: false, 
         submitted: false, 
@@ -80,7 +80,7 @@ export default function Contact() {
     setStatus({ submitting: true, submitted: false, error: false, errorMessage: "" });
 
     try {
-      console.log("Submitting form to Web3Forms...");
+      console.log("=== FORM SUBMISSION START ===");
       console.log("hCaptcha token:", hcaptchaToken);
 
       const payload = {
@@ -94,7 +94,7 @@ export default function Contact() {
         "h-captcha-response": hcaptchaToken,
       };
 
-      console.log("Payload:", payload);
+      console.log("Payload:", JSON.stringify(payload, null, 2));
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -106,11 +106,13 @@ export default function Contact() {
       });
 
       console.log("Response status:", response.status);
+      console.log("Response ok:", response.ok);
+      
       const result = await response.json();
-      console.log("Web3Forms response:", result);
+      console.log("Web3Forms response:", JSON.stringify(result, null, 2));
 
       if (result.success) {
-        console.log("Form submitted successfully!");
+        console.log("✅ Form submitted successfully!");
         setStatus({ submitting: false, submitted: true, error: false, errorMessage: "" });
         setFormState({
           name: "",
@@ -128,11 +130,11 @@ export default function Contact() {
           window.hcaptcha.reset();
         }
       } else {
-        console.error("Web3Forms returned error:", result);
+        console.error("❌ Web3Forms returned error:", result);
         throw new Error(result.message || "Submission failed");
       }
     } catch (error) {
-      console.error("Form submission error:", error);
+      console.error("❌ Form submission error:", error);
       setStatus({ 
         submitting: false, 
         submitted: false, 
@@ -142,8 +144,27 @@ export default function Contact() {
     }
   };
 
-  // Load hCaptcha script
+  // Setup hCaptcha callbacks BEFORE loading script
   useEffect(() => {
+    console.log("Setting up hCaptcha callbacks...");
+    
+    // Setup global callback for hCaptcha BEFORE script loads
+    window.onHcaptchaSuccess = (token) => {
+      console.log("✅ hCaptcha SUCCESS - Token received:", token);
+      setHcaptchaToken(token);
+    };
+
+    window.onHcaptchaExpired = () => {
+      console.log("⚠️ hCaptcha EXPIRED");
+      setHcaptchaToken("");
+    };
+
+    window.onHcaptchaError = (error) => {
+      console.log("❌ hCaptcha ERROR:", error);
+      setHcaptchaToken("");
+    };
+
+    // Now load the script
     const script = document.createElement("script");
     script.src = "https://js.hcaptcha.com/1/api.js";
     script.async = true;
@@ -151,22 +172,11 @@ export default function Contact() {
     document.body.appendChild(script);
     
     script.onload = () => {
-      console.log("hCaptcha script loaded successfully");
+      console.log("✅ hCaptcha script loaded successfully");
     };
     
     script.onerror = () => {
-      console.error("Failed to load hCaptcha script");
-    };
-
-    // Setup global callback for hCaptcha
-    window.onHcaptchaSuccess = (token) => {
-      console.log("hCaptcha completed successfully");
-      setHcaptchaToken(token);
-    };
-
-    window.onHcaptchaExpired = () => {
-      console.log("hCaptcha expired");
-      setHcaptchaToken("");
+      console.error("❌ Failed to load hCaptcha script");
     };
     
     return () => {
@@ -175,6 +185,7 @@ export default function Contact() {
       }
       delete window.onHcaptchaSuccess;
       delete window.onHcaptchaExpired;
+      delete window.onHcaptchaError;
     };
   }, []);
 
@@ -256,7 +267,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Form & Contact Info Section - Reduced spacing */}
+      {/* Form & Contact Info Section */}
       <section className="py-12 sm:py-16" style={{ background: "#ffffff" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
@@ -496,6 +507,7 @@ export default function Contact() {
                         data-sitekey="900cd996-ab3c-497c-8fa6-ce1053185b2a"
                         data-callback="onHcaptchaSuccess"
                         data-expired-callback="onHcaptchaExpired"
+                        data-error-callback="onHcaptchaError"
                       ></div>
                     </div>
 
@@ -543,7 +555,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* RIGHT: Contact Info & Calendly - Aligned height */}
+            {/* RIGHT: Contact Info & Calendly */}
             <div className="flex flex-col gap-6">
               {/* Contact Info */}
               <div
@@ -631,7 +643,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Calendly Widget - Fills remaining height */}
+              {/* Calendly Widget - Reduced height to match form */}
               <div
                 className="rounded-2xl overflow-hidden flex-1"
                 style={{
@@ -657,7 +669,7 @@ export default function Contact() {
                 <div
                   className="calendly-inline-widget"
                   data-url="https://calendly.com/hello-vaultiam/vaultiam-discovery-call?hide_event_type_details=1&hide_gdpr_banner=1&background_color=f8fafc&text_color=0f172a&primary_color=2563eb"
-                  style={{ minWidth: "320px", height: "630px" }}
+                  style={{ minWidth: "320px", height: "480px" }}
                 ></div>
               </div>
             </div>
@@ -666,7 +678,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Trust Section Placeholder - Reduced spacing */}
+      {/* Trust Section Placeholder */}
       <section className="py-12 sm:py-16" style={{ background: "#f8fafc" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <p style={{ color: "#64748b", fontSize: 15 }}>Trust Section with Animated Stats - Coming in Step 5</p>
