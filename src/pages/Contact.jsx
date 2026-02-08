@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // Consumer email domains to block
 const CONSUMER_EMAIL_DOMAINS = [
@@ -10,6 +10,9 @@ const CONSUMER_EMAIL_DOMAINS = [
 ];
 
 export default function Contact() {
+  const hcaptchaRef = useRef(null);
+  const [hcaptchaToken, setHcaptchaToken] = useState("");
+  
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -61,20 +64,16 @@ export default function Contact() {
       return;
     }
 
+    // Check if hCaptcha is completed
+    if (!hcaptchaToken) {
+      setStatus({ submitting: false, submitted: false, error: true });
+      alert("Please complete the captcha verification");
+      return;
+    }
+
     setStatus({ submitting: true, submitted: false, error: false });
 
     try {
-      // Check if reCAPTCHA is loaded
-      if (!window.grecaptcha) {
-        console.error("reCAPTCHA not loaded");
-        throw new Error("reCAPTCHA not loaded. Please refresh the page.");
-      }
-
-      const token = await window.grecaptcha.execute(
-        "6LdXY2MsAAAAAMx1UObm96eFcd6X5QP8GJfqOYf2",
-        { action: "submit" }
-      );
-
       console.log("Submitting form to Web3Forms...");
 
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -91,7 +90,7 @@ export default function Contact() {
           industry: formState.industry,
           inquiry: formState.inquiry,
           message: formState.message,
-          "g-recaptcha-response": token,
+          "h-captcha-response": hcaptchaToken,
         }),
       });
 
@@ -109,6 +108,12 @@ export default function Contact() {
           message: "",
         });
         setEmailError("");
+        setHcaptchaToken("");
+        
+        // Reset hCaptcha
+        if (window.hcaptcha && hcaptchaRef.current) {
+          window.hcaptcha.reset();
+        }
       } else {
         console.error("Web3Forms error:", result);
         throw new Error(result.message || "Submission failed");
@@ -119,28 +124,43 @@ export default function Contact() {
     }
   };
 
+  // Load hCaptcha script
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js?render=6LdXY2MsAAAAAMx1UObm96eFcd6X5QP8GJfqOYf2";
+    script.src = "https://js.hcaptcha.com/1/api.js";
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
     
     script.onload = () => {
-      console.log("reCAPTCHA script loaded successfully");
+      console.log("hCaptcha script loaded successfully");
     };
     
     script.onerror = () => {
-      console.error("Failed to load reCAPTCHA script");
+      console.error("Failed to load hCaptcha script");
+    };
+
+    // Setup global callback for hCaptcha
+    window.onHcaptchaSuccess = (token) => {
+      console.log("hCaptcha completed");
+      setHcaptchaToken(token);
+    };
+
+    window.onHcaptchaExpired = () => {
+      console.log("hCaptcha expired");
+      setHcaptchaToken("");
     };
     
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
+      delete window.onHcaptchaSuccess;
+      delete window.onHcaptchaExpired;
     };
   }, []);
 
+  // Load Calendly widget
   useEffect(() => {
     const link = document.createElement("link");
     link.href = "https://assets.calendly.com/assets/external/widget.css";
@@ -444,6 +464,17 @@ export default function Contact() {
                       />
                     </div>
 
+                    {/* hCaptcha Widget */}
+                    <div className="flex justify-center">
+                      <div
+                        ref={hcaptchaRef}
+                        className="h-captcha"
+                        data-sitekey="900cd996-ab3c-497c-8fa6-ce1053185b2a"
+                        data-callback="onHcaptchaSuccess"
+                        data-expired-callback="onHcaptchaExpired"
+                      ></div>
+                    </div>
+
                     {status.error && (
                       <div
                         className="rounded-lg p-3"
@@ -454,23 +485,23 @@ export default function Contact() {
                           fontSize: 14,
                         }}
                       >
-                        Something went wrong. Please check the browser console for details or email us directly at hello@vaultiam.com
+                        Something went wrong. Please try again or email us directly at hello@vaultiam.com
                       </div>
                     )}
 
                     <button
                       type="submit"
-                      disabled={status.submitting || emailError}
+                      disabled={status.submitting || emailError || !hcaptchaToken}
                       className="w-full px-6 py-3.5 rounded-xl text-white font-semibold transition-all duration-200"
                       style={{
-                        background: (status.submitting || emailError)
+                        background: (status.submitting || emailError || !hcaptchaToken)
                           ? "#94a3b8"
                           : "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
-                        boxShadow: (status.submitting || emailError)
+                        boxShadow: (status.submitting || emailError || !hcaptchaToken)
                           ? "none"
                           : "0 4px 20px rgba(37,99,235,0.4)",
                         fontSize: 15,
-                        cursor: (status.submitting || emailError) ? "not-allowed" : "pointer",
+                        cursor: (status.submitting || emailError || !hcaptchaToken) ? "not-allowed" : "pointer",
                       }}
                     >
                       {status.submitting ? "Sending..." : "Send Message"}
