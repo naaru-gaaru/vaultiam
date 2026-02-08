@@ -6,7 +6,7 @@ const CONSUMER_EMAIL_DOMAINS = [
   'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
   'icloud.com', 'mail.com', 'protonmail.com', 'proton.me', 'tutanota.com',
   'zoho.com', 'yandex.com', 'gmx.com', 'mail.ru', 'live.com', 'msn.com',
-  'yahoo.co.uk', 'yahoo.ca', 'googlemail.com', 'me.me', 'mac.com'
+  'yahoo.co.uk', 'yahoo.ca', 'googlemail.com', 'me.com', 'mac.com'
 ];
 
 // Scroll reveal hook
@@ -531,7 +531,7 @@ export default function Contact() {
                     }}
                   >
                     <svg
-                      className="w-4.5 h-4.5 flex-shrink-0"
+                      className="w-5 h-5 flex-shrink-0"
                       fill="none"
                       stroke="#3b82f6"
                       viewBox="0 0 24 24"
@@ -558,7 +558,7 @@ export default function Contact() {
                     }}
                   >
                     <svg
-                      className="w-4.5 h-4.5 flex-shrink-0"
+                      className="w-5 h-5 flex-shrink-0"
                       fill="none"
                       stroke="#3b82f6"
                       viewBox="0 0 24 24"
@@ -615,7 +615,7 @@ export default function Contact() {
       {/* Trust Section with Animated Stats */}
       <section
         ref={trustRef}
-        className="py-12 sm:py-16"
+        className="py-10 sm:py-14"
         style={{
           background: "#f8fafc",
           opacity: trustVisible ? 1 : 0,
@@ -625,8 +625,8 @@ export default function Contact() {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
-            {/* Stat 1 */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6">
+            {/* Stat 1 - 6-10 Week Engagements */}
             <div className="text-center">
               <div
                 className="font-bold mb-1"
@@ -636,10 +636,10 @@ export default function Contact() {
                   lineHeight: 1.1,
                 }}
               >
-                <AnimatedCounter end={50} suffix="+" />
+                <AnimatedCounter end={6} suffix="-10" />
               </div>
               <div style={{ fontSize: 14, color: "#64748b", fontWeight: 500 }}>
-                Enterprises Served
+                Week Engagements
               </div>
             </div>
 
@@ -695,10 +695,10 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Privacy Commitment */}
-          <div className="text-center max-w-3xl mx-auto">
-            <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.6 }}>
-              Your information is handled with the same security standards we implement for our enterprise clients. We never sell or share your data with third parties.
+          {/* Privacy Commitment - Reduced size */}
+          <div className="text-center max-w-2xl mx-auto">
+            <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5 }}>
+              Enterprise-grade security. Your data is never sold or shared.
             </p>
           </div>
         </div>
