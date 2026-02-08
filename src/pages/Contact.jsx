@@ -47,7 +47,6 @@ export default function Contact() {
       [name]: value,
     });
 
-    // Validate email on change
     if (name === "email") {
       setEmailError(validateEmail(value));
     }
@@ -56,7 +55,6 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Final email validation
     const emailValidationError = validateEmail(formState.email);
     if (emailValidationError) {
       setEmailError(emailValidationError);
@@ -66,10 +64,18 @@ export default function Contact() {
     setStatus({ submitting: true, submitted: false, error: false });
 
     try {
+      // Check if reCAPTCHA is loaded
+      if (!window.grecaptcha) {
+        console.error("reCAPTCHA not loaded");
+        throw new Error("reCAPTCHA not loaded. Please refresh the page.");
+      }
+
       const token = await window.grecaptcha.execute(
         "6LdXY2MsAAAAAMx1UObm96eFcd6X5QP8GJfqOYf2",
         { action: "submit" }
       );
+
+      console.log("Submitting form to Web3Forms...");
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -90,6 +96,7 @@ export default function Contact() {
       });
 
       const result = await response.json();
+      console.log("Web3Forms response:", result);
 
       if (result.success) {
         setStatus({ submitting: false, submitted: true, error: false });
@@ -103,7 +110,8 @@ export default function Contact() {
         });
         setEmailError("");
       } else {
-        throw new Error("Submission failed");
+        console.error("Web3Forms error:", result);
+        throw new Error(result.message || "Submission failed");
       }
     } catch (error) {
       console.error("Form submission error:", error);
@@ -117,7 +125,37 @@ export default function Contact() {
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
+    
+    script.onload = () => {
+      console.log("reCAPTCHA script loaded successfully");
+    };
+    
+    script.onerror = () => {
+      console.error("Failed to load reCAPTCHA script");
+    };
+    
     return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.href = "https://assets.calendly.com/assets/external/widget.css";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      if (document.head.contains(link)) {
+        document.head.removeChild(link);
+      }
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
@@ -134,7 +172,7 @@ export default function Contact() {
         />
       </Helmet>
 
-      {/* Hero Section - Title Only */}
+      {/* Hero Section */}
       <section
         className="relative overflow-hidden"
         style={{
@@ -180,7 +218,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Form & Contact Info Section - White Background */}
+      {/* Form & Contact Info Section */}
       <section className="py-16 sm:py-20" style={{ background: "#ffffff" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
@@ -416,7 +454,7 @@ export default function Contact() {
                           fontSize: 14,
                         }}
                       >
-                        Something went wrong. Please try again or email us directly.
+                        Something went wrong. Please check the browser console for details or email us directly at hello@vaultiam.com
                       </div>
                     )}
 
@@ -449,8 +487,9 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* RIGHT: Contact Info */}
+            {/* RIGHT: Contact Info & Calendly */}
             <div>
+              {/* Contact Info */}
               <div
                 className="rounded-2xl p-6 sm:p-8 mb-6"
                 style={{
@@ -534,12 +573,9 @@ export default function Contact() {
                     </div>
                   </a>
 
-                  {/* LinkedIn */}
-                  <a
-                    href="https://www.linkedin.com/company/vaultiam"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-blue-50 hover:border-blue-200"
+                  {/* Location */}
+                  <div
+                    className="flex items-start gap-3 p-3 rounded-lg"
                     style={{
                       background: "#ffffff",
                       border: "1px solid #e2e8f0",
@@ -547,32 +583,65 @@ export default function Contact() {
                   >
                     <svg
                       className="w-5 h-5 mt-0.5 flex-shrink-0"
-                      fill="#3b82f6"
+                      fill="none"
+                      stroke="#3b82f6"
                       viewBox="0 0 24 24"
                     >
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
                     </svg>
                     <div>
                       <div style={{ fontSize: 13, color: "#64748b", marginBottom: 2 }}>
-                        LinkedIn
+                        Location
                       </div>
-                      <div style={{ fontSize: 15, color: "#2563eb", fontWeight: 500 }}>
-                        Follow VaultIAM
+                      <div style={{ fontSize: 15, color: "#475569", fontWeight: 500, lineHeight: 1.4 }}>
+                        Based in Toronto & Silicon Valley
+                        <br />
+                        <span style={{ fontSize: 13, color: "#64748b" }}>Serving North America</span>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </div>
               </div>
 
-              {/* Calendly Placeholder */}
+              {/* Calendly Widget */}
               <div
-                className="rounded-2xl p-6 sm:p-8 text-center"
+                className="rounded-2xl overflow-hidden"
                 style={{
                   background: "#f8fafc",
                   border: "1px solid #e2e8f0",
                 }}
               >
-                <p style={{ color: "#64748b", fontSize: 16 }}>Calendly Widget - Coming in Step 4</p>
+                <div className="p-6 sm:p-8 pb-4">
+                  <h3
+                    className="font-semibold mb-2"
+                    style={{
+                      fontSize: "clamp(18px, 2.5vw, 22px)",
+                      color: "#0f172a",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    Or Book Instantly
+                  </h3>
+                  <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.6 }}>
+                    Schedule a 30-minute discovery call to discuss your identity security needs.
+                  </p>
+                </div>
+                <div
+                  className="calendly-inline-widget"
+                  data-url="https://calendly.com/hello-vaultiam/vaultiam-discovery-call?hide_event_type_details=1&hide_gdpr_banner=1&background_color=f8fafc&text_color=0f172a&primary_color=2563eb"
+                  style={{ minWidth: "320px", height: "700px" }}
+                ></div>
               </div>
             </div>
 
