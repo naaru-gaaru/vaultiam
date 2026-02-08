@@ -1,13 +1,57 @@
 import { Helmet } from "react-helmet-async";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // Consumer email domains to block
 const CONSUMER_EMAIL_DOMAINS = [
   'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
   'icloud.com', 'mail.com', 'protonmail.com', 'proton.me', 'tutanota.com',
   'zoho.com', 'yandex.com', 'gmx.com', 'mail.ru', 'live.com', 'msn.com',
-  'yahoo.co.uk', 'yahoo.ca', 'googlemail.com', 'me.com', 'mac.com'
+  'yahoo.co.uk', 'yahoo.ca', 'googlemail.com', 'me.me', 'mac.com'
 ];
+
+// Scroll reveal hook
+function useReveal(threshold = 0.15) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVisible(true); },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  
+  return [ref, visible];
+}
+
+// Animated counter component
+function AnimatedCounter({ end, suffix = "", duration = 2000 }) {
+  const [count, setCount] = useState(0);
+  const [ref, visible] = useReveal(0.3);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (!visible || hasAnimated.current) return;
+    hasAnimated.current = true;
+    
+    const startTime = Date.now();
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * end));
+      if (progress < 1) requestAnimationFrame(animate);
+      else setCount(end);
+    };
+    requestAnimationFrame(animate);
+  }, [visible, end, duration]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
 
 export default function Contact() {
   const [formState, setFormState] = useState({
@@ -65,8 +109,6 @@ export default function Contact() {
     setStatus({ submitting: true, submitted: false, error: false, errorMessage: "" });
 
     try {
-      console.log("=== FORM SUBMISSION START ===");
-
       const payload = {
         access_key: "f81c581f-feae-4ac7-b456-b4b4e0041597",
         name: formState.name,
@@ -77,8 +119,6 @@ export default function Contact() {
         message: formState.message,
       };
 
-      console.log("Payload:", JSON.stringify(payload, null, 2));
-
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -87,15 +127,10 @@ export default function Contact() {
         },
         body: JSON.stringify(payload),
       });
-
-      console.log("Response status:", response.status);
-      console.log("Response ok:", response.ok);
       
       const result = await response.json();
-      console.log("Web3Forms response:", JSON.stringify(result, null, 2));
 
       if (result.success) {
-        console.log("✅ Form submitted successfully!");
         setStatus({ submitting: false, submitted: true, error: false, errorMessage: "" });
         setFormState({
           name: "",
@@ -107,11 +142,9 @@ export default function Contact() {
         });
         setEmailError("");
       } else {
-        console.error("❌ Web3Forms returned error:", result);
         throw new Error(result.message || "Submission failed");
       }
     } catch (error) {
-      console.error("❌ Form submission error:", error);
       setStatus({ 
         submitting: false, 
         submitted: false, 
@@ -143,6 +176,8 @@ export default function Contact() {
     };
   }, []);
 
+  const [trustRef, trustVisible] = useReveal(0.1);
+
   return (
     <>
       <Helmet>
@@ -153,7 +188,7 @@ export default function Contact() {
         />
       </Helmet>
 
-      {/* Hero Section - Reduced bottom padding */}
+      {/* Hero Section */}
       <section
         className="relative overflow-hidden"
         style={{
@@ -199,7 +234,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Form & Contact Info Section - Tighter top spacing */}
+      {/* Form & Contact Info Section */}
       <section className="py-8 sm:py-12" style={{ background: "#ffffff" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
@@ -416,7 +451,7 @@ export default function Contact() {
                         id="message"
                         name="message"
                         required
-                        rows="3"
+                        rows="5"
                         value={formState.message}
                         onChange={handleChange}
                         className="w-full px-3.5 py-2.5 rounded-lg resize-none"
@@ -476,38 +511,27 @@ export default function Contact() {
             </div>
 
             {/* RIGHT: Contact Info & Calendly */}
-            <div className="flex flex-col gap-6">
-              {/* Contact Info */}
+            <div className="flex flex-col gap-5">
+              {/* Contact Info - Compact version */}
               <div
-                className="rounded-2xl p-6 sm:p-7"
+                className="rounded-2xl p-5 sm:p-6"
                 style={{
                   background: "#f8fafc",
                   border: "1px solid #e2e8f0",
                 }}
               >
-                <h3
-                  className="font-semibold mb-5"
-                  style={{
-                    fontSize: "clamp(18px, 2.5vw, 22px)",
-                    color: "#0f172a",
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  Get in Touch Directly
-                </h3>
-
-                <div className="space-y-3">
+                <div className="space-y-2.5">
                   {/* Email */}
                   <a
                     href="mailto:hello@vaultiam.com"
-                    className="flex items-start gap-2.5 p-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 hover:border-blue-200"
+                    className="flex items-center gap-2.5 p-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 hover:border-blue-200"
                     style={{
                       background: "#ffffff",
                       border: "1px solid #e2e8f0",
                     }}
                   >
                     <svg
-                      className="w-5 h-5 mt-0.5 flex-shrink-0"
+                      className="w-4.5 h-4.5 flex-shrink-0"
                       fill="none"
                       stroke="#3b82f6"
                       viewBox="0 0 24 24"
@@ -519,27 +543,22 @@ export default function Contact() {
                         d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                       />
                     </svg>
-                    <div>
-                      <div style={{ fontSize: 12, color: "#64748b", marginBottom: 2, lineHeight: 1.3 }}>
-                        Email
-                      </div>
-                      <div style={{ fontSize: 14, color: "#2563eb", fontWeight: 500, lineHeight: 1.3 }}>
-                        hello@vaultiam.com
-                      </div>
+                    <div style={{ fontSize: 14, color: "#2563eb", fontWeight: 500, lineHeight: 1.3 }}>
+                      hello@vaultiam.com
                     </div>
                   </a>
 
                   {/* Phone */}
                   <a
                     href="tel:+12093155453"
-                    className="flex items-start gap-2.5 p-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 hover:border-blue-200"
+                    className="flex items-center gap-2.5 p-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 hover:border-blue-200"
                     style={{
                       background: "#ffffff",
                       border: "1px solid #e2e8f0",
                     }}
                   >
                     <svg
-                      className="w-5 h-5 mt-0.5 flex-shrink-0"
+                      className="w-4.5 h-4.5 flex-shrink-0"
                       fill="none"
                       stroke="#3b82f6"
                       viewBox="0 0 24 24"
@@ -551,19 +570,14 @@ export default function Contact() {
                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                       />
                     </svg>
-                    <div>
-                      <div style={{ fontSize: 12, color: "#64748b", marginBottom: 2, lineHeight: 1.3 }}>
-                        Phone
-                      </div>
-                      <div style={{ fontSize: 14, color: "#2563eb", fontWeight: 500, lineHeight: 1.3 }}>
-                        (209) 315-5453
-                      </div>
+                    <div style={{ fontSize: 14, color: "#2563eb", fontWeight: 500, lineHeight: 1.3 }}>
+                      (209) 315-5453
                     </div>
                   </a>
                 </div>
               </div>
 
-              {/* Calendly Widget - Smaller height to match form */}
+              {/* Calendly Widget */}
               <div
                 className="rounded-2xl overflow-hidden flex-1"
                 style={{
@@ -571,25 +585,25 @@ export default function Contact() {
                   border: "1px solid #e2e8f0",
                 }}
               >
-                <div className="p-6 sm:p-7 pb-3">
+                <div className="p-5 sm:p-6 pb-3">
                   <h3
-                    className="font-semibold mb-1.5"
+                    className="font-semibold mb-1"
                     style={{
-                      fontSize: "clamp(18px, 2.5vw, 22px)",
+                      fontSize: "clamp(18px, 2.5vw, 21px)",
                       color: "#0f172a",
                       letterSpacing: "-0.01em",
                     }}
                   >
-                    Or Book Instantly
+                    Book a Discovery Call
                   </h3>
-                  <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.4 }}>
-                    Schedule a 30-minute discovery call.
+                  <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.3 }}>
+                    30-minute consultation
                   </p>
                 </div>
                 <div
                   className="calendly-inline-widget"
                   data-url="https://calendly.com/hello-vaultiam/vaultiam-discovery-call?hide_event_type_details=1&hide_gdpr_banner=1&background_color=f8fafc&text_color=0f172a&primary_color=2563eb"
-                  style={{ minWidth: "320px", height: "380px" }}
+                  style={{ minWidth: "320px", height: "480px" }}
                 ></div>
               </div>
             </div>
@@ -598,10 +612,95 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Trust Section Placeholder - Reduced spacing */}
-      <section className="py-8 sm:py-12" style={{ background: "#f8fafc" }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-          <p style={{ color: "#64748b", fontSize: 15 }}>Trust Section with Animated Stats - Coming in Step 5</p>
+      {/* Trust Section with Animated Stats */}
+      <section
+        ref={trustRef}
+        className="py-12 sm:py-16"
+        style={{
+          background: "#f8fafc",
+          opacity: trustVisible ? 1 : 0,
+          transform: trustVisible ? "translateY(0)" : "translateY(30px)",
+          transition: "all 0.8s ease",
+        }}
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
+            {/* Stat 1 */}
+            <div className="text-center">
+              <div
+                className="font-bold mb-1"
+                style={{
+                  fontSize: "clamp(32px, 5vw, 44px)",
+                  color: "#2563eb",
+                  lineHeight: 1.1,
+                }}
+              >
+                <AnimatedCounter end={50} suffix="+" />
+              </div>
+              <div style={{ fontSize: 14, color: "#64748b", fontWeight: 500 }}>
+                Enterprises Served
+              </div>
+            </div>
+
+            {/* Stat 2 */}
+            <div className="text-center">
+              <div
+                className="font-bold mb-1"
+                style={{
+                  fontSize: "clamp(32px, 5vw, 44px)",
+                  color: "#2563eb",
+                  lineHeight: 1.1,
+                }}
+              >
+                <AnimatedCounter end={2} suffix="M+" />
+              </div>
+              <div style={{ fontSize: 14, color: "#64748b", fontWeight: 500 }}>
+                Identities Secured
+              </div>
+            </div>
+
+            {/* Stat 3 */}
+            <div className="text-center">
+              <div
+                className="font-bold mb-1"
+                style={{
+                  fontSize: "clamp(32px, 5vw, 44px)",
+                  color: "#2563eb",
+                  lineHeight: 1.1,
+                }}
+              >
+                <AnimatedCounter end={0} />
+              </div>
+              <div style={{ fontSize: 14, color: "#64748b", fontWeight: 500 }}>
+                Compliance Fines
+              </div>
+            </div>
+
+            {/* Stat 4 */}
+            <div className="text-center">
+              <div
+                className="font-bold mb-1"
+                style={{
+                  fontSize: "clamp(32px, 5vw, 44px)",
+                  color: "#2563eb",
+                  lineHeight: 1.1,
+                }}
+              >
+                <AnimatedCounter end={100} suffix="%" />
+              </div>
+              <div style={{ fontSize: 14, color: "#64748b", fontWeight: 500 }}>
+                Knowledge Transfer
+              </div>
+            </div>
+          </div>
+
+          {/* Privacy Commitment */}
+          <div className="text-center max-w-3xl mx-auto">
+            <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.6 }}>
+              Your information is handled with the same security standards we implement for our enterprise clients. We never sell or share your data with third parties.
+            </p>
+          </div>
         </div>
       </section>
     </>
