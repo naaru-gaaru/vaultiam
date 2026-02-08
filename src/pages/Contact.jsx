@@ -612,18 +612,27 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Trust Section with Animated Stats */}
+      {/* Trust Section with Animated Stats - Dark gradient background */}
       <section
         ref={trustRef}
-        className="py-10 sm:py-14"
+        className="relative overflow-hidden py-10 sm:py-14"
         style={{
-          background: "#f8fafc",
+          background: "linear-gradient(155deg, #1e293b 0%, #334155 60%, #1e3a5f 100%)",
           opacity: trustVisible ? 1 : 0,
           transform: trustVisible ? "translateY(0)" : "translateY(30px)",
           transition: "all 0.8s ease",
         }}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Radial glow */}
+        <div
+          className="absolute top-0 right-0 w-96 h-96 opacity-20 pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%)",
+            transform: "translate(30%, -30%)",
+          }}
+        />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           {/* Stats Grid */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6">
             {/* Stat 1 - 6-10 Week Engagements */}
@@ -632,13 +641,13 @@ export default function Contact() {
                 className="font-bold mb-1"
                 style={{
                   fontSize: "clamp(32px, 5vw, 44px)",
-                  color: "#2563eb",
+                  color: "#60a5fa",
                   lineHeight: 1.1,
                 }}
               >
                 <AnimatedCounter end={6} suffix="-10" />
               </div>
-              <div style={{ fontSize: 14, color: "#64748b", fontWeight: 500 }}>
+              <div style={{ fontSize: 14, color: "#cbd5e1", fontWeight: 500 }}>
                 Week Engagements
               </div>
             </div>
@@ -649,13 +658,13 @@ export default function Contact() {
                 className="font-bold mb-1"
                 style={{
                   fontSize: "clamp(32px, 5vw, 44px)",
-                  color: "#2563eb",
+                  color: "#60a5fa",
                   lineHeight: 1.1,
                 }}
               >
                 <AnimatedCounter end={2} suffix="M+" />
               </div>
-              <div style={{ fontSize: 14, color: "#64748b", fontWeight: 500 }}>
+              <div style={{ fontSize: 14, color: "#cbd5e1", fontWeight: 500 }}>
                 Identities Secured
               </div>
             </div>
@@ -666,13 +675,13 @@ export default function Contact() {
                 className="font-bold mb-1"
                 style={{
                   fontSize: "clamp(32px, 5vw, 44px)",
-                  color: "#2563eb",
+                  color: "#60a5fa",
                   lineHeight: 1.1,
                 }}
               >
                 <AnimatedCounter end={0} />
               </div>
-              <div style={{ fontSize: 14, color: "#64748b", fontWeight: 500 }}>
+              <div style={{ fontSize: 14, color: "#cbd5e1", fontWeight: 500 }}>
                 Compliance Fines
               </div>
             </div>
@@ -683,21 +692,21 @@ export default function Contact() {
                 className="font-bold mb-1"
                 style={{
                   fontSize: "clamp(32px, 5vw, 44px)",
-                  color: "#2563eb",
+                  color: "#60a5fa",
                   lineHeight: 1.1,
                 }}
               >
                 <AnimatedCounter end={100} suffix="%" />
               </div>
-              <div style={{ fontSize: 14, color: "#64748b", fontWeight: 500 }}>
+              <div style={{ fontSize: 14, color: "#cbd5e1", fontWeight: 500 }}>
                 Knowledge Transfer
               </div>
             </div>
           </div>
 
-          {/* Privacy Commitment - Reduced size */}
+          {/* Privacy Commitment */}
           <div className="text-center max-w-2xl mx-auto">
-            <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5 }}>
+            <p style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.5 }}>
               Enterprise-grade security. Your data is never sold or shared.
             </p>
           </div>
