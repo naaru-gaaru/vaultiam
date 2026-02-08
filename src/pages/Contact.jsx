@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useState, useEffect, useRef } from "react";
 
-// Scroll reveal hook
 function useReveal(threshold = 0.15) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -51,7 +50,6 @@ export default function Contact() {
     setStatus({ submitting: true, submitted: false, error: false });
 
     try {
-      // Get reCAPTCHA token
       const token = await window.grecaptcha.execute(
         "6LdXY2MsAAAAAMx1UObm96eFcd6X5QP8GJfqOYf2",
         { action: "submit" }
@@ -96,7 +94,6 @@ export default function Contact() {
     }
   };
 
-  // Load reCAPTCHA script
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://www.google.com/recaptcha/api.js?render=6LdXY2MsAAAAAMx1UObm96eFcd6X5QP8GJfqOYf2";
@@ -108,7 +105,6 @@ export default function Contact() {
     };
   }, []);
 
-  // Load Calendly widget
   useEffect(() => {
     const link = document.createElement("link");
     link.href = "https://assets.calendly.com/assets/external/widget.css";
@@ -477,18 +473,10 @@ export default function Contact() {
                   <div className="space-y-4">
                     
                       href="mailto:hello@vaultiam.com"
-                      className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200"
+                      className="group flex items-start gap-3 p-3 rounded-lg transition-all duration-200"
                       style={{
                         background: "rgba(255,255,255,0.03)",
                         border: "1px solid transparent",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "rgba(37,99,235,0.1)";
-                        e.currentTarget.style.borderColor = "rgba(37,99,235,0.3)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = "rgba(255,255,255,0.03)";
-                        e.currentTarget.style.borderColor = "transparent";
                       }}
                     >
                       <svg
@@ -516,18 +504,10 @@ export default function Contact() {
 
                     
                       href="tel:+12093155453"
-                      className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200"
+                      className="group flex items-start gap-3 p-3 rounded-lg transition-all duration-200"
                       style={{
                         background: "rgba(255,255,255,0.03)",
                         border: "1px solid transparent",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "rgba(37,99,235,0.1)";
-                        e.currentTarget.style.borderColor = "rgba(37,99,235,0.3)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = "rgba(255,255,255,0.03)";
-                        e.currentTarget.style.borderColor = "transparent";
                       }}
                     >
                       <svg
@@ -557,18 +537,10 @@ export default function Contact() {
                       href="https://www.linkedin.com/company/vaultiam"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-start gap-3 p-3 rounded-lg transition-all duration-200"
+                      className="group flex items-start gap-3 p-3 rounded-lg transition-all duration-200"
                       style={{
                         background: "rgba(255,255,255,0.03)",
                         border: "1px solid transparent",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "rgba(37,99,235,0.1)";
-                        e.currentTarget.style.borderColor = "rgba(37,99,235,0.3)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = "rgba(255,255,255,0.03)";
-                        e.currentTarget.style.borderColor = "transparent";
                       }}
                     >
                       <svg
