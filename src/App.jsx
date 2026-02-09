@@ -12,6 +12,10 @@ import AIWorkloadIdentitiesCase from "./pages/AIWorkloadIdentitiesCase";
 import SyntheticIdentityFraudCase from "./pages/SyntheticIdentityFraudCase";
 import JITPrivilegedAccessCase from "./pages/JITPrivilegedAccessCase";
 import ShadowAICase from "./pages/ShadowAICase";
+import IAMService from "./pages/IAMService";
+import CIAMService from "./pages/CIAMService";
+import PAMService from "./pages/PAMService";
+import ITDRService from "./pages/ITDRService";
 
 export default function App() {
   return (
@@ -26,6 +30,10 @@ export default function App() {
         <Route path="customer-stories/shadow-ai-api-keys-healthtech" element={<ShadowAICase />} />
         <Route path="/the-vaultiam-way" element={<VaultIAMWay />} />
         <Route path="contact" element={<Contact />} />
+	<Route path="/capabilities/iam" element={<IAMService />} />
+	<Route path="/capabilities/ciam" element={<CIAMService />} />
+	<Route path="/capabilities/pam" element={<PAMService />} />
+	<Route path="/capabilities/itdr" element={<ITDRService />} />
       </Route>
     </Routes>
   );
