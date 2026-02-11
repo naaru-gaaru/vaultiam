@@ -16,6 +16,9 @@ import IAMService from "./pages/IAMService";
 import CIAMService from "./pages/CIAMService";
 import PAMService from "./pages/PAMService";
 import ITDRService from "./pages/ITDRService";
+import About from "./pages/About";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 
 export default function App() {
   return (
@@ -34,6 +37,9 @@ export default function App() {
 	<Route path="/capabilities/ciam" element={<CIAMService />} />
 	<Route path="/capabilities/pam" element={<PAMService />} />
 	<Route path="/capabilities/itdr" element={<ITDRService />} />
+	<Route path="/about" element={<About />} />
+	<Route path="/privacy" element={<PrivacyPolicy />} />
+	<Route path="/terms" element={<TermsOfService />} />
       </Route>
     </Routes>
   );
