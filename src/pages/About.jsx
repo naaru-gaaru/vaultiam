@@ -204,7 +204,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-slate-900 mb-4" style={{ fontSize: "clamp(24px, 3.5vw, 32px)", fontWeight: 700, letterSpacing: "-0.02em" }}>
-                Based in Toronto.<br />Serving North America.
+                Toronto based.<br />Serving North America.
               </h2>
               <p className="text-slate-600 mb-6" style={{ fontSize: 15, lineHeight: 1.7 }}>
                 We work with FinTech and Healthcare organizations across the United States and Canada. Most engagements are delivered remotely with on-site workshops as needed.
